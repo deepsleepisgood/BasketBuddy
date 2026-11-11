@@ -1,0 +1,224 @@
+# BasketBuddy evaluation set (Phase 8).
+#
+# questions: run end to end through rag.pipeline.answer().
+#   evidence_keywords: the answer is supported if ANY keyword appears (case-insensitive) in the
+#                      names of the retrieved products (cart lines / catalogue products).
+#   expect_fallback:   true for questions the bot must refuse.
+#   expect_sub_categories / forbid_sub_categories: category checks on the retrieved products.
+#   confirmed_items:   for AI-suggested lists, the items the user keeps (simulates the tick boxes).
+#   mode / servings:   what the sidebar would send (null = message decides).
+#
+# ablation: labelled sub-queries for the retrieval ablation. A top-5 hit counts as relevant when
+#   its sub-category is in `sub_categories` AND (if given) its name contains one of `name_any`.
+#
+# threshold_probe: catalogue-style questions with no answer in the catalogue (`off`) vs ones
+#   that have one (`on`), to re-check SIM_THRESHOLD.
+
+questions:
+  - id: Q1
+    type: factual
+    question: "What is the price of Fortune sunflower refined oil 1 L?"
+    evidence_keywords: [sunflower, sun lite, sunlite]
+    expect_fallback: false
+
+  - id: Q2
+    type: comparison
+    question: "Compare Aashirvaad and Pillsbury whole wheat atta 5 kg on price and rating."
+    evidence_keywords: [atta]
+    expect_fallback: false
+
+  - id: Q3
+    type: multi-part
+    question: "Give me everything I need for dal makhani for 4 people, budget mode, I already have salt and ghee."
+    evidence_keywords: [urad, rajma, butter, cream]
+    expect_fallback: false
+    expect_excluded: [salt]
+
+  - id: Q4
+    type: pasted recipe
+    question: "Quick poha: 2 cups poha, 1 onion chopped, 1/2 tsp mustard seeds, 8-10 curry leaves, 1 green chilli, 1/4 tsp haldi, salt to taste, 1 tbsp oil, lemon juice and peanuts."
+    evidence_keywords: [poha, mustard, peanut, curry leaves]
+    expect_fallback: false
+
+  - id: Q5
+    type: hinglish
+    question: "jeera aur haldi kitne ka hai?"
+    evidence_keywords: [jeera, cumin, haldi, turmeric]
+    expect_fallback: false
+
+  - id: Q6
+    type: need → cart (non-food)
+    question: "I need to deep-clean my bathroom this weekend."
+    evidence_keywords: [toilet, bathroom, cleaner, brush]
+    expect_fallback: false
+    forbid_sub_categories: [Skin Care]
+
+  - id: Q7
+    type: need → cart (non-food)
+    question: "Skincare routine for oily skin under ₹1000."
+    evidence_keywords: [face wash, facewash, moistur, sunscreen, toner]
+    expect_fallback: false
+    expect_budget_fits: true
+
+  - id: Q8
+    type: cross-category
+    question: "coconut oil for hair"
+    evidence_keywords: [coconut]
+    expect_fallback: false
+    expect_sub_categories: [Hair Care]
+
+  - id: Q9
+    type: cross-category
+    question: "coconut oil for cooking"
+    evidence_keywords: [coconut]
+    expect_fallback: false
+    expect_sub_categories: [Edible Oils & Ghee, Oils & Vinegar, Organic Staples]
+
+  - id: Q10
+    type: cross-category
+    question: "Cheapest floor cleaner"
+    evidence_keywords: [floor]
+    expect_fallback: false
+    forbid_sub_categories: [Skin Care]
+
+  - id: Q11
+    type: non-food comparison
+    question: "Compare Dove and Pears bathing soaps on price and rating."
+    evidence_keywords: [dove, pears, bathing bar, soap]
+    expect_fallback: false
+
+  - id: Q12
+    type: unsupported
+    question: "Is paneer in stock in Koramangala right now?"
+    evidence_keywords: []
+    expect_fallback: true
+
+  - id: Q13
+    type: unsupported
+    question: "Is Blinkit cheaper than BigBasket?"
+    evidence_keywords: []
+    expect_fallback: true
+
+  # --- extra cases beyond the brief's minimum ---------------------------------------
+  - id: Q14
+    type: unsupported (off-catalogue)
+    question: "best laptop under 50000"
+    evidence_keywords: []
+    expect_fallback: true
+
+  - id: Q15
+    type: need → AI list (confirmed)
+    question: "I'm getting a pet tortoise, what should I buy?"
+    evidence_keywords: [pet, wipes]
+    expect_fallback: false
+    confirmed_items_first: 10     # keep every suggested item (a user who accepts the list)
+
+  - id: Q16
+    type: dish (sidebar servings)
+    question: "paneer butter masala"
+    servings: 6
+    mode: Top rated
+    evidence_keywords: [paneer, butter, cream]
+    expect_fallback: false
+
+  # --- added after manual testing (conversational phrasing, recommendation questions) ---
+  - id: Q17
+    type: dish (conversational)
+    question: "i need to cook butter chicken for 5 ppl"
+    evidence_keywords: [chicken, butter, cream]
+    expect_fallback: false
+
+  - id: Q18
+    type: recommendation (personal care)
+    question: "my skin is oily, what cleanser should i use"
+    evidence_keywords: [cleanser, face wash, facewash]
+    expect_fallback: false
+    expect_sub_categories: [Skin Care, Men's Grooming]
+
+ablation:
+  # food
+  - {query: tomato, domain: food, sub_categories: [Fresh Vegetables, Organic Fruits & Vegetables, Exotic Fruits & Veggies], name_any: [tomato]}
+  - {query: onion, domain: food, sub_categories: [Fresh Vegetables, Organic Fruits & Vegetables], name_any: [onion]}
+  - {query: green chillies, domain: food, sub_categories: [Fresh Vegetables, Organic Fruits & Vegetables], name_any: [chilli]}
+  - {query: paneer, domain: food, sub_categories: [Dairy, Dairy & Cheese], name_any: [paneer]}
+  - {query: butter, domain: food, sub_categories: [Dairy, Dairy & Cheese], name_any: [butter]}
+  - {query: haldi, domain: food, sub_categories: [Masalas & Spices, Organic Staples], name_any: [turmeric, haldi]}
+  - {query: jeera, domain: food, sub_categories: [Masalas & Spices, Organic Staples], name_any: [cumin, jeera]}
+  - {query: coconut oil for cooking, domain: food, sub_categories: [Edible Oils & Ghee, Oils & Vinegar, Organic Staples], name_any: [coconut]}
+  - {query: toor dal, domain: food, sub_categories: [Dals & Pulses, Organic Staples], name_any: [toor, tur, arhar]}
+  - {query: basmati rice, domain: food, sub_categories: [Rice & Rice Products, Organic Staples], name_any: [basmati]}
+  - {query: whole wheat atta, domain: food, sub_categories: ["Atta, Flours & Sooji", Organic Staples], name_any: [atta]}
+  - {query: salt, domain: food, sub_categories: ["Salt, Sugar & Jaggery", Organic Staples], name_any: [salt]}
+  - {query: ghee, domain: food, sub_categories: [Edible Oils & Ghee, Dairy], name_any: [ghee]}
+  - {query: rolled oats, domain: food, sub_categories: [Breakfast Cereals, Cereals & Breakfast, Organic Staples], name_any: [oats]}
+  - {query: lemon, domain: food, sub_categories: [Fresh Fruits, Fresh Vegetables, Organic Fruits & Vegetables, Herbs & Seasonings], name_any: [lemon]}
+  - {query: besan, domain: food, sub_categories: ["Atta, Flours & Sooji", Organic Staples], name_any: [besan, gram flour]}
+  - {query: dhaniya patta, domain: food, sub_categories: [Fresh Vegetables, Organic Fruits & Vegetables, Herbs & Seasonings], name_any: [coriander, dhania]}
+  - {query: sarson ka tel, domain: food, sub_categories: [Edible Oils & Ghee, Oils & Vinegar, Organic Staples], name_any: [mustard]}
+  - {query: nimbu, domain: food, sub_categories: [Fresh Fruits, Fresh Vegetables, Organic Fruits & Vegetables, Herbs & Seasonings], name_any: [lemon, lime]}
+  # personal care
+  - {query: coconut oil for hair, domain: personal_care, sub_categories: [Hair Care], name_any: [coconut]}
+  - {query: face wash for oily skin, domain: personal_care, sub_categories: [Skin Care, Men's Grooming], name_any: [face wash, facewash, cleanser]}
+  - {query: face cleanser, domain: personal_care, sub_categories: [Skin Care, Men's Grooming], name_any: [cleans, face wash]}
+  - {query: shampoo, domain: personal_care, sub_categories: [Hair Care], name_any: [shampoo]}
+  - {query: sunscreen, domain: personal_care, sub_categories: [Skin Care, Men's Grooming], name_any: [sunscreen, spf, sun]}
+  - {query: toothpaste, domain: personal_care, sub_categories: [Oral Care], name_any: [toothpaste, paste]}
+  - {query: bathing soap, domain: personal_care, sub_categories: [Bath & Hand Wash], name_any: [soap, bar]}
+  - {query: hand wash, domain: personal_care, sub_categories: [Bath & Hand Wash], name_any: [hand wash, handwash]}
+  - {query: deodorant, domain: personal_care, sub_categories: [Fragrances & Deos, Men's Grooming], name_any: [deo]}
+  - {query: oats face scrub, domain: personal_care, sub_categories: [Skin Care], name_any: [scrub]}
+  # household
+  - {query: floor cleaner, domain: household, sub_categories: [All Purpose Cleaners], name_any: [floor]}
+  - {query: toilet cleaner, domain: household, sub_categories: [All Purpose Cleaners], name_any: [toilet]}
+  - {query: dishwash liquid, domain: household, sub_categories: [Detergents & Dishwash], name_any: [dish]}
+  - {query: detergent powder, domain: household, sub_categories: [Detergents & Dishwash], name_any: [detergent]}
+  - {query: garbage bags, domain: household, sub_categories: ["Disposables, Garbage Bag"], name_any: [garbage]}
+  - {query: mosquito repellent, domain: household, sub_categories: [Fresheners & Repellents], name_any: [mosquito]}
+  - {query: kitchen wipes, domain: household, sub_categories: [All Purpose Cleaners, "Mops, Brushes & Scrubs", "Disposables, Garbage Bag"], name_any: [wipe, cloth, towel]}
+  # kitchen
+  - {query: non-stick tawa, domain: kitchen, sub_categories: [Cookware & Non Stick], name_any: [tawa]}
+  - {query: steel lunch box, domain: kitchen, sub_categories: [Storage & Accessories, Steel Utensils], name_any: [lunch]}
+  - {query: pressure cooker, domain: kitchen, sub_categories: [Cookware & Non Stick, Steel Utensils, Appliances & Electricals], name_any: [cooker]}
+  - {query: water bottle, domain: kitchen, sub_categories: [Storage & Accessories, Flask & Casserole], name_any: [bottle]}
+  # baby
+  - {query: baby diapers, domain: baby, sub_categories: [Diapers & Wipes], name_any: [diaper, pant]}
+  - {query: baby wipes, domain: baby, sub_categories: [Diapers & Wipes, Baby Bath & Hygiene], name_any: [wipe]}
+  - {query: baby shampoo, domain: baby, sub_categories: [Baby Bath & Hygiene], name_any: [shampoo, wash]}
+  # pets / other
+  - {query: dog food, domain: pets, sub_categories: [Pet Food & Accessories], name_any: [dog]}
+  - {query: cat litter, domain: pets, sub_categories: [Pet Food & Accessories], name_any: [litter]}
+  - {query: potting soil for plants, domain: other, sub_categories: [Gardening], name_any: [soil, potting, compost, manure]}
+
+threshold_probe:
+  answerable:
+    - Fortune sunflower oil price
+    - cheapest floor cleaner
+    - Dove soap price
+    - compare toothpaste brands
+    - best rated shampoo
+    - basmati rice under 200
+    - dog food price
+    - baby diapers price
+    - green tea brands
+    - non-stick tawa price
+    - mosquito repellent
+    - instant noodles
+    - dark chocolate
+    - garbage bags price
+    - sunscreen for oily skin
+  unanswerable:
+    - best laptop under 50000
+    - iPhone 15 price
+    - cricket bat
+    - sofa set for living room
+    - washing machine 7 kg
+    - car tyres
+    - running shoes for men
+    - office chair
+    - LED television 43 inch
+    - gold necklace
+    - bicycle for kids
+    - airpods case
+    - printer ink cartridge
+    - air conditioner 1.5 ton
+    - wooden study table

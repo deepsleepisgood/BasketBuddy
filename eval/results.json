@@ -1,0 +1,3299 @@
+{
+ "questions": [
+  {
+   "id": "Q1",
+   "type": "factual",
+   "question": "What is the price of Fortune sunflower refined oil 1 L?",
+   "top3": [
+    "Sun Lite - Sunflower Refined Oil",
+    "Sun Lite - Sunflower Refined Oil",
+    "Refined Oil - Rice Bran"
+   ],
+   "top3_sub": [
+    "Edible Oils & Ghee",
+    "Edible Oils & Ghee",
+    "Edible Oils & Ghee"
+   ],
+   "evidence": "Y",
+   "answer": "- Sun Lite – Sunflower Refined Oil – ₹171 (Rating 4.1/5) [P15438]  \n- Sun Lite – Sunflower Refined Oil – ₹866 (Rating 4.1/5) [P6749]  \n\nThe dataset does not record the pack size for these variants.",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "",
+   "latency_ms": 2072,
+   "llm_calls": 2,
+   "intent": "catalogue",
+   "trace": [
+    "Intent: catalogue (product-question word: 'price').",
+    "Domain guess: food (confidence 1.0, keyword rule).",
+    "LLM decomposition (openai/gpt-oss-20b): ['Fortune sunflower refined oil 1 L']; constraints none",
+    "Brand filters: Fortune sunflower refined oil 1 L → Fortune",
+    "Answer by openai/gpt-oss-120b; guard passed, 2 citation(s)."
+   ],
+   "kind": "catalogue"
+  },
+  {
+   "id": "Q2",
+   "type": "comparison",
+   "question": "Compare Aashirvaad and Pillsbury whole wheat atta 5 kg on price and rating.",
+   "top3": [
+    "Select Atta/Godihittu",
+    "Atta/Godihittu - Multigrain",
+    "Sugar Release Control Atta/Godihittu"
+   ],
+   "top3_sub": [
+    "Atta, Flours & Sooji",
+    "Atta, Flours & Sooji",
+    "Atta, Flours & Sooji"
+   ],
+   "evidence": "Y",
+   "answer": "- **Aashirvaad whole wheat atta** – Price ₹406, Rating 4.1/5 [P23556]  \n- **Pillsbury whole wheat atta** – No whole‑wheat atta product is listed for Pillsbury in the data.  \n\nThe dataset does not record pack sizes for these items.",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "",
+   "latency_ms": 1879,
+   "llm_calls": 2,
+   "intent": "catalogue",
+   "trace": [
+    "Intent: catalogue (product-question word: 'Compare').",
+    "Domain guess: food (confidence 1.0, keyword rule).",
+    "LLM decomposition (openai/gpt-oss-20b): ['Aashirvaad whole wheat atta 5 kg', 'Pillsbury whole wheat atta 5 kg']; constraints none",
+    "Brand filters: Aashirvaad whole wheat atta 5 kg → Aashirvaad, Pillsbury whole wheat atta 5 kg → Pillsbury",
+    "Answer by openai/gpt-oss-120b; guard passed, 1 citation(s)."
+   ],
+   "kind": "catalogue"
+  },
+  {
+   "id": "Q3",
+   "type": "multi-part",
+   "question": "Give me everything I need for dal makhani for 4 people, budget mode, I already have salt and ghee.",
+   "top3": [
+    "Urad - Black, Whole/Sabut",
+    "Red Rajma/Capparadavare",
+    "Fresh Cream"
+   ],
+   "top3_sub": [
+    "Dals & Pulses",
+    "Dals & Pulses",
+    "Dairy"
+   ],
+   "evidence": "Y",
+   "answer": "This cart was built from the **ingredients of the recipe ‘Creamy Dal Makhani’ from the Archana's Kitchen recipe dataset (serves 4)**, using the Budget selection mode. It includes essentials like Black Urad Dal at **₹31** [P16295] and Fresh Cream at **₹47** [P16605], plus spices such as Chilli Powder/Menasina Pudi for **₹32** [P5768]. The total for all 16 items comes to **₹607.5**. Salt was excluded since you already have it.",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "",
+   "latency_ms": 2475,
+   "llm_calls": 1,
+   "intent": "dish",
+   "trace": [
+    "Intent: dish (cooking phrase: 'everything I need for').",
+    "Pantry (excluded from the cart): ghee, salt",
+    "Recipe search for 'dal makhani': top hits Jain Style Dal Makhani (0.78), Masoor Dal Makhani - Masoor Dal Makhani (0.72), Creamy Dal Makhani (0.73), Delicious Dal Makhani Without Onion and Garlic (Jain) (0.72), Amritsari Murgh Makhani - Chicken Makhani (0.71)",
+    "Matched recipe: Creamy Dal Makhani (similarity 0.73); 17 ingredients; scale ×1.00",
+    "Answer by openai/gpt-oss-120b; guard passed, 3 citation(s)."
+   ],
+   "kind": "cart",
+   "cart_total": 607.5,
+   "cart_lines": [
+    [
+     "Black Urad Dal",
+     "Urad - Black, Whole/Sabut",
+     31.0,
+     "Dals & Pulses"
+    ],
+    [
+     "Rajma",
+     "Red Rajma/Capparadavare",
+     76.0,
+     "Dals & Pulses"
+    ],
+    [
+     "Fresh cream",
+     "Fresh Cream",
+     47.0,
+     "Dairy"
+    ],
+    [
+     "Butter",
+     "Premium Butter - Salted",
+     54.0,
+     "Dairy"
+    ],
+    [
+     "Red Chilli powder",
+     "Chilli Powder/Menasina Pudi",
+     32.0,
+     "Masalas & Spices"
+    ],
+    [
+     "Turmeric powder",
+     "Organic Powder - Turmeric",
+     35.0,
+     "Organic Staples"
+    ],
+    [
+     "Cumin seeds",
+     "Cumin/Jeera/Jeerige - Whole",
+     48.0,
+     "Masalas & Spices"
+    ],
+    [
+     "Onion",
+     "Onion - Thin Sliced",
+     22.0,
+     "Fresh Vegetables"
+    ],
+    [
+     "Homemade tomato puree",
+     "Hommade Tomato Puree - Made From 100% Ripe Tomatoes, No Added Preservatives",
+     23.0,
+     "Spreads, Sauces, Ketchup"
+    ],
+    [
+     "Ginger",
+     "Ginger - Organically Grown",
+     6.0,
+     "Organic Fruits & Vegetables"
+    ],
+    [
+     "Garam masala powder",
+     "Powder - Garam Masala",
+     52.25,
+     "Masalas & Spices"
+    ],
+    [
+     "Asafoetida",
+     "Hing/Asafoetida",
+     38.25,
+     "Masalas & Spices"
+    ],
+    [
+     "Black cardamom",
+     "Organic - Black Cardamom Ealachi, Whole",
+     44.0,
+     "Organic Staples"
+    ],
+    [
+     "Cloves",
+     "Cloves/Lavanga",
+     58.0,
+     "Masalas & Spices"
+    ],
+    [
+     "Green Chillies",
+     "Chilli - Green, Organically Grown",
+     6.0,
+     "Organic Fruits & Vegetables"
+    ],
+    [
+     "Coriander Powder",
+     "Powder - Dhaniya",
+     35.0,
+     "Masalas & Spices"
+    ]
+   ],
+   "unmatched": [],
+   "excluded": [
+    "Salt"
+   ],
+   "fits_budget": null,
+   "recipe": "Creamy Dal Makhani"
+  },
+  {
+   "id": "Q4",
+   "type": "pasted recipe",
+   "question": "Quick poha: 2 cups poha, 1 onion chopped, 1/2 tsp mustard seeds, 8-10 curry leaves, 1 green chilli, 1/4 tsp haldi, salt to taste, 1 tbsp oil, lemon juice and peanuts.",
+   "top3": [
+    "Organic Poha (Flattened Rice/Aval/Atukulu)",
+    "Onion",
+    "Organic Mustard/Sasive Seeds - Whole, Big"
+   ],
+   "top3_sub": [
+    "Organic Staples",
+    "Fresh Vegetables",
+    "Organic Staples"
+   ],
+   "evidence": "Y",
+   "answer": "Here’s a quick‑shopping list created from the ingredients extracted from the recipe the user pasted. It includes key items such as Organic Poha at ₹61.88 [P20102], Fresh Onion at ₹28.71 [P11011] and Lemon Juice Concentrate at ₹285 [P8863]. The cart total comes to ₹1,099.1 for all 10 products.",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "",
+   "latency_ms": 3992,
+   "llm_calls": 2,
+   "intent": "recipe_text",
+   "trace": [
+    "Intent: recipe_text (message contains a list of quantities (pasted recipe)).",
+    "LLM extracted 10 ingredients (openai/gpt-oss-20b).",
+    "Answer by openai/gpt-oss-120b; guard passed, 3 citation(s)."
+   ],
+   "kind": "cart",
+   "cart_total": 1099.1,
+   "cart_lines": [
+    [
+     "poha",
+     "Organic Poha (Flattened Rice/Aval/Atukulu)",
+     61.88,
+     "Organic Staples"
+    ],
+    [
+     "onion",
+     "Onion",
+     28.71,
+     "Fresh Vegetables"
+    ],
+    [
+     "mustard seeds",
+     "Organic Mustard/Sasive Seeds - Whole, Big",
+     25.0,
+     "Organic Staples"
+    ],
+    [
+     "curry leaves",
+     "Curry Leaves",
+     119.0,
+     "Herbs & Seasonings"
+    ],
+    [
+     "green chilli",
+     "Chilli - Green Long, Medium",
+     12.5,
+     "Herbs & Seasonings"
+    ],
+    [
+     "haldi",
+     "Organic Turmeric Powder/Haldi/Arisina Pudi",
+     215.0,
+     "Masalas & Spices"
+    ],
+    [
+     "salt",
+     "Lite - 15% Low Sodium Iodised Salt",
+     28.0,
+     "Salt, Sugar & Jaggery"
+    ],
+    [
+     "oil",
+     "Health - For A Healthy Heart",
+     190.01,
+     "Edible Oils & Ghee"
+    ],
+    [
+     "lemon juice",
+     "Lemon Juice Concentrate",
+     285.0,
+     "Drinks & Beverages"
+    ],
+    [
+     "peanuts",
+     "Peanuts/Kadalekayi - Raw",
+     134.0,
+     "Dals & Pulses"
+    ]
+   ],
+   "unmatched": [],
+   "excluded": [],
+   "fits_budget": null
+  },
+  {
+   "id": "Q5",
+   "type": "hinglish",
+   "question": "jeera aur haldi kitne ka hai?",
+   "top3": [
+    "Organic Cumin Seeds/Jeera/Jeerige",
+    "Organic Turmeric Powder/Haldi/Arisina Pudi",
+    "Organic Cumin Seed Powder"
+   ],
+   "top3_sub": [
+    "Masalas & Spices",
+    "Masalas & Spices",
+    "Organic Staples"
+   ],
+   "evidence": "Y",
+   "answer": "**Jeera (Cumin)**  \n- Organic Cumin Seeds/Jeera – ₹169, not rated [P22635]  \n- Organic Cumin Seed Powder – ₹56, rating 4/5 [P10674]  \n- Jeera/Cumin Powder – ₹32, rating 5/5 [P4842]  \n\n*The dataset does not record pack sizes, so these are different price variants of the same type.*\n\n**Haldi (Turmeric)**  \n- Organic Turmeric Powder – ₹215, not rated [P19522]  \n- Turmeric Powder – ₹78, rating 1/5 [P17457]  \n- Turmeric Powder – ₹30, rating 4.4/5 [P3901]  \n\n*Again, pack sizes are not specified in the data.*",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "",
+   "latency_ms": 2036,
+   "llm_calls": 2,
+   "intent": "catalogue",
+   "trace": [
+    "Intent: catalogue (product-question word: 'kitne').",
+    "Domain guess: food (confidence 1.0, keyword rule).",
+    "LLM decomposition (openai/gpt-oss-20b): ['jeera cumin', 'haldi turmeric']; constraints none",
+    "Answer by openai/gpt-oss-120b; guard passed, 6 citation(s)."
+   ],
+   "kind": "catalogue"
+  },
+  {
+   "id": "Q6",
+   "type": "need → cart (non-food)",
+   "question": "I need to deep-clean my bathroom this weekend.",
+   "top3": [
+    "Toilet Cleaner",
+    "Toilet Brush - Dual",
+    "Disinfectant Bathroom Cleaner - Lemon"
+   ],
+   "top3_sub": [
+    "All Purpose Cleaners",
+    "Mops, Brushes & Scrubs",
+    "All Purpose Cleaners"
+   ],
+   "evidence": "Y",
+   "answer": "Your bathroom deep‑clean kit was assembled from the ‘Bathroom deep‑clean’ kit, a synthetic item list written by the BasketBuddy team (products and prices are real BigBasket data). It includes essentials like Toilet Cleaner ₹149 [P13659] and Disinfectant Floor Cleaner ₹235 [P1268], plus a Bathroom Tile Scrubber Brush ₹125 [P6623]. The complete selection totals ₹912.1.",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "0 forbidden",
+   "latency_ms": 3051,
+   "llm_calls": 1,
+   "intent": "need",
+   "trace": [
+    "Intent: need (task/occasion word: 'deep-clean').",
+    "Matched kit: Bathroom deep-clean (similarity 0.72 ≥ 0.7); 8 items. Kit lists are synthetic, written by the team.",
+    "Answer by openai/gpt-oss-120b; guard passed, 3 citation(s)."
+   ],
+   "kind": "cart",
+   "cart_total": 912.1,
+   "cart_lines": [
+    [
+     "toilet cleaner",
+     "Toilet Cleaner",
+     149.0,
+     "All Purpose Cleaners"
+    ],
+    [
+     "toilet brush",
+     "Toilet Brush - Dual",
+     179.1,
+     "Mops, Brushes & Scrubs"
+    ],
+    [
+     "bathroom tile cleaner",
+     "Disinfectant Bathroom Cleaner - Lemon",
+     44.0,
+     "All Purpose Cleaners"
+    ],
+    [
+     "floor cleaner disinfectant",
+     "Disinfectant Floor Cleaner",
+     235.0,
+     "All Purpose Cleaners"
+    ],
+    [
+     "drain cleaner",
+     "Toilet Cleaner - Super Strong",
+     25.0,
+     "All Purpose Cleaners"
+    ],
+    [
+     "scrub brush",
+     "Bathroom Tile Scrubber Brush",
+     125.0,
+     "Mops, Brushes & Scrubs"
+    ],
+    [
+     "cleaning gloves",
+     "Kitchen Gloves Small",
+     100.0,
+     "Mops, Brushes & Scrubs"
+    ],
+    [
+     "bathroom air freshener",
+     "Zipper Bathroom Air Freshener - Joyful Lavender",
+     55.0,
+     "Fresheners & Repellents"
+    ]
+   ],
+   "unmatched": [],
+   "excluded": [],
+   "fits_budget": null
+  },
+  {
+   "id": "Q7",
+   "type": "need → cart (non-food)",
+   "question": "Skincare routine for oily skin under ₹1000.",
+   "top3": [
+    "Oil Control Face Wash - Sulphate Free",
+    "Purifying Toner",
+    "Oil Control Moisturiser"
+   ],
+   "top3_sub": [
+    "Skin Care",
+    "Skin Care",
+    "Skin Care"
+   ],
+   "evidence": "Y",
+   "answer": "The suggested skincare set comes from the 'Oily-skin routine' kit, a synthetic item list written by the BasketBuddy team (products and prices are real BigBasket data). It includes a gentle Oil Control Face Wash at ₹80.75 [P6538] and a high‑SPF Ultra Sheer Dry Touch SPF 50 Sun Block for ₹237.5 [P26568]. A Tea Tree Skin Clearing Clay Mask adds deep cleansing for ₹187.5 [P25696]. The complete cart totals ₹817.79, comfortably under the ₹1,000 budget.",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "",
+   "latency_ms": 1270,
+   "llm_calls": 1,
+   "intent": "need",
+   "trace": [
+    "Intent: need (task/occasion word: 'Skincare').",
+    "Matched kit: Oily-skin routine (similarity 0.86 ≥ 0.7); 5 items. Kit lists are synthetic, written by the team.",
+    "Answer by openai/gpt-oss-120b; guard passed, 3 citation(s)."
+   ],
+   "kind": "cart",
+   "cart_total": 817.79,
+   "cart_lines": [
+    [
+     "face wash for oily skin",
+     "Oil Control Face Wash - Sulphate Free",
+     80.75,
+     "Skin Care"
+    ],
+    [
+     "toner",
+     "Purifying Toner",
+     217.0,
+     "Skin Care"
+    ],
+    [
+     "oil control moisturiser",
+     "Oil Control Moisturiser",
+     95.04,
+     "Skin Care"
+    ],
+    [
+     "sunscreen SPF 50",
+     "Ultra Sheer Dry Touch SPF 50 Sun Block",
+     237.5,
+     "Skin Care"
+    ],
+    [
+     "clay face mask",
+     "Tea Tree Skin Clearing Clay Mask",
+     187.5,
+     "Skin Care"
+    ]
+   ],
+   "unmatched": [],
+   "excluded": [],
+   "fits_budget": true
+  },
+  {
+   "id": "Q8",
+   "type": "cross-category",
+   "question": "coconut oil for hair",
+   "top3": [
+    "Advansed Aloe Vera Enriched Coconut Hair Oil",
+    "Coconut Oil",
+    "Advansed Aloe Vera Enriched Coconut Hair Oil"
+   ],
+   "top3_sub": [
+    "Hair Care",
+    "Hair Care",
+    "Hair Care"
+   ],
+   "evidence": "Y",
+   "answer": "Here are the coconut‑oil‑for‑hair options in the data (the catalogue does not record pack sizes, so variants with different prices are listed separately):\n\n- **Parachute Advansed Aloe Vera Enriched Coconut Hair Oil** – ₹78, rating 4.3/5 [P9323]  \n- **Patanjali Coconut Oil** – ₹75, rating 4.1/5 [P22920]  \n- **Morpheme Remedies Organic Virgin Coconut Oil** – ₹427, rating 5/5 [P27446]  \n\nThese three cover the available choices; other listed variants (e.g., the same Parachute oil at ₹157.7) are additional price versions of the same product.",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "5/5 in expected",
+   "latency_ms": 1363,
+   "llm_calls": 2,
+   "intent": "catalogue",
+   "trace": [
+    "Intent: catalogue (no rule fired (default)).",
+    "Domain guess: personal_care (confidence 1.0, purpose phrase).",
+    "LLM decomposition (openai/gpt-oss-20b): ['coconut oil for hair']; constraints none",
+    "Answer by openai/gpt-oss-120b; guard passed, 3 citation(s)."
+   ],
+   "kind": "catalogue"
+  },
+  {
+   "id": "Q9",
+   "type": "cross-category",
+   "question": "coconut oil for cooking",
+   "top3": [
+    "Organic Coconut Oil/Narial Tel",
+    "Organic Coconut Oil/Narial Tel",
+    "Coconut Oil - Cold Pressed"
+   ],
+   "top3_sub": [
+    "Edible Oils & Ghee",
+    "Edible Oils & Ghee",
+    "Edible Oils & Ghee"
+   ],
+   "evidence": "Y",
+   "answer": "Here are the coconut‑oil options for cooking found in the data (the catalogue does not record pack sizes, so variants are listed only by price):\n\n- **Earthon Organic Coconut Oil/Narial Tel** – ₹130, not rated [P22405]  \n- **Earthon Organic Coconut Oil/Narial Tel** – ₹285, rating 4.7/5 [P12726]  \n- **Swarnanjali Coconut Oil – Cold Pressed** – ₹440, rating 3.1/5 [P24082]  \n\nThese three cover the available choices; other Earthon variants (₹548) and Forgreen (₹219) also exist but exceed the three‑product limit.",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "5/5 in expected",
+   "latency_ms": 2681,
+   "llm_calls": 2,
+   "intent": "catalogue",
+   "trace": [
+    "Intent: catalogue (no rule fired (default)).",
+    "Domain guess: food (confidence 1.0, purpose phrase).",
+    "LLM decomposition (openai/gpt-oss-20b): ['coconut oil for cooking']; constraints none",
+    "Answer by openai/gpt-oss-120b; guard passed, 3 citation(s)."
+   ],
+   "kind": "catalogue"
+  },
+  {
+   "id": "Q10",
+   "type": "cross-category",
+   "question": "Cheapest floor cleaner",
+   "top3": [
+    "Floor Cleaner - Pine White",
+    "Floor Cleaner - Pine",
+    "Floor Cleaner - Lime"
+   ],
+   "top3_sub": [
+    "All Purpose Cleaners",
+    "All Purpose Cleaners",
+    "All Purpose Cleaners"
+   ],
+   "evidence": "Y",
+   "answer": "- **Floor Cleaner – Pine White** – ₹50, Rating 4/5 [P19563]  \n- **Floor Cleaner – Pine** – ₹55, Rating 3.7/5 [P7398]  \n- **Floor Cleaner – Lime** – ₹70, Rating 3.8/5 [P451]  \n\nThese are the three lowest‑priced floor cleaners in the data.",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "0 forbidden",
+   "latency_ms": 3184,
+   "llm_calls": 2,
+   "intent": "catalogue",
+   "trace": [
+    "Intent: catalogue (product-question word: 'Cheapest').",
+    "Domain guess: household (confidence 1.0, keyword rule).",
+    "LLM decomposition (openai/gpt-oss-20b): ['floor cleaner']; constraints {'sort': 'price_asc'}",
+    "Answer by openai/gpt-oss-120b; guard passed, 3 citation(s)."
+   ],
+   "kind": "catalogue"
+  },
+  {
+   "id": "Q11",
+   "type": "non-food comparison",
+   "question": "Compare Dove and Pears bathing soaps on price and rating.",
+   "top3": [
+    "Care & Protect Moisturising Cream Beauty Bathing Bar",
+    "Pure & Gentle Bathing Bar",
+    "Go Fresh Moisture Bathing Bar Soap"
+   ],
+   "top3_sub": [
+    "Bath & Hand Wash",
+    "Bath & Hand Wash",
+    "Bath & Hand Wash"
+   ],
+   "evidence": "Y",
+   "answer": "**Dove bathing soaps**  \n- Care & Protect Moisturising Cream Beauty Bathing Bar – Price **₹199**, Rating **4.3/5** [P15030]  \n- Go Fresh Moisture Bathing Bar Soap – Price **₹50**, Rating **4.2/5** [P8528]  \n- Cream Beauty Bathing Bar – Price **₹340**, Rating **4.3/5** (other variants at ₹115 and ₹53 also exist, but the dataset does not record pack sizes) [P13886]  \n\n**Pears bathing soaps**  \n- Pure & Gentle Bathing Bar – Price **₹236** (MRP ₹275), Rating **4.3/5** (other variants at ₹40 and ₹120 also exist, pack sizes not recorded) [P6527]  \n- Oil Clear & Glow Soap Bar – Price **₹45**, Rating **4.3/5** [P12366]  \n- Soft & Fresh Soap Bar – Price **₹72**, Rating **4.4/5** [P505]  \n\n**Comparison**  \n- **Price range:** Dove soaps range from **₹50** to **₹340**, while Pears soaps range from **₹40** to **₹236** (MRP ₹275).  \n- **Ratings:** Dove soaps have ratings of **4.2–4.3/5**; Pears soaps have ratings of **4.3–4.4/5**, with Pears Soft & Fresh Soap Bar slightly higher at **4.4/5**.",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "",
+   "latency_ms": 2023,
+   "llm_calls": 2,
+   "intent": "catalogue",
+   "trace": [
+    "Intent: catalogue (product-question word: 'Compare').",
+    "Domain guess: personal_care (confidence 1.0, keyword rule).",
+    "LLM decomposition (openai/gpt-oss-20b): ['Dove bathing soap', 'Pears bathing soap']; constraints none",
+    "Brand filters: Dove bathing soap → Dove, Pears bathing soap → Pears",
+    "Answer by openai/gpt-oss-120b; guard passed, 6 citation(s)."
+   ],
+   "kind": "catalogue"
+  },
+  {
+   "id": "Q12",
+   "type": "unsupported",
+   "question": "Is paneer in stock in Koramangala right now?",
+   "top3": [],
+   "top3_sub": [],
+   "evidence": "n/a",
+   "answer": "I can't answer that from the BigBasket catalogue data I have.\n\n_Why: stock, delivery and availability aren't in the dataset (it's a static price snapshot)._\n\nI can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), or look up and compare BigBasket products by price and rating.",
+   "faithful": "n/a",
+   "faith_notes": "",
+   "guard_ok": null,
+   "regenerated": false,
+   "fallback_expected": true,
+   "fallback_actual": true,
+   "fallback_trigger": "out_of_scope",
+   "fallback_reason": "stock, delivery and availability aren't in the dataset (it's a static price snapshot)",
+   "category_check": "",
+   "latency_ms": 1,
+   "llm_calls": 0,
+   "intent": "out_of_scope",
+   "trace": [
+    "Intent: out_of_scope (stock, delivery and availability aren't in the dataset (it's a static price snapshot)).",
+    "Fallback (out_of_scope): stock, delivery and availability aren't in the dataset (it's a static price snapshot)"
+   ],
+   "kind": "fallback"
+  },
+  {
+   "id": "Q13",
+   "type": "unsupported",
+   "question": "Is Blinkit cheaper than BigBasket?",
+   "top3": [],
+   "top3_sub": [],
+   "evidence": "n/a",
+   "answer": "I can't answer that from the BigBasket catalogue data I have.\n\n_Why: the dataset only covers BigBasket, so it can't compare other shopping apps._\n\nI can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), or look up and compare BigBasket products by price and rating.",
+   "faithful": "n/a",
+   "faith_notes": "",
+   "guard_ok": null,
+   "regenerated": false,
+   "fallback_expected": true,
+   "fallback_actual": true,
+   "fallback_trigger": "out_of_scope",
+   "fallback_reason": "the dataset only covers BigBasket, so it can't compare other shopping apps",
+   "category_check": "",
+   "latency_ms": 1,
+   "llm_calls": 0,
+   "intent": "out_of_scope",
+   "trace": [
+    "Intent: out_of_scope (the dataset only covers BigBasket, so it can't compare other shopping apps).",
+    "Fallback (out_of_scope): the dataset only covers BigBasket, so it can't compare other shopping apps"
+   ],
+   "kind": "fallback"
+  },
+  {
+   "id": "Q14",
+   "type": "unsupported (off-catalogue)",
+   "question": "best laptop under 50000",
+   "top3": [],
+   "top3_sub": [],
+   "evidence": "n/a",
+   "answer": "I can't answer that from the BigBasket catalogue data I have.\n\n_Why: question is about laptops, not grocery/household products._\n\nI can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), or look up and compare BigBasket products by price and rating.",
+   "faithful": "n/a",
+   "faith_notes": "",
+   "guard_ok": null,
+   "regenerated": false,
+   "fallback_expected": true,
+   "fallback_actual": true,
+   "fallback_trigger": "out_of_scope",
+   "fallback_reason": "Question is about laptops, not grocery/household products",
+   "category_check": "",
+   "latency_ms": 816,
+   "llm_calls": 1,
+   "intent": "out_of_scope",
+   "trace": [
+    "Intent: catalogue (product-question word: 'best').",
+    "Domain guess: household (confidence 0.7, retrieval vote).",
+    "LLM judged the question out of scope: Question is about laptops, not grocery/household products",
+    "Fallback (out_of_scope): Question is about laptops, not grocery/household products"
+   ],
+   "kind": "fallback"
+  },
+  {
+   "id": "Q15",
+   "type": "need → AI list (confirmed)",
+   "question": "I'm getting a pet tortoise, what should I buy?",
+   "top3": [],
+   "top3_sub": [],
+   "evidence": "N",
+   "answer": "I can't answer that from the BigBasket catalogue data I have.\n\n_Why: none of the items matched a BigBasket product._\n\nI can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), or look up and compare BigBasket products by price and rating.",
+   "faithful": "n/a",
+   "faith_notes": "",
+   "guard_ok": null,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": true,
+   "fallback_trigger": "no_match",
+   "fallback_reason": "none of the items matched a BigBasket product",
+   "category_check": "",
+   "latency_ms": 1397,
+   "llm_calls": 1,
+   "intent": "need",
+   "trace": [
+    "Intent: need (task/occasion word: 'getting a pet').",
+    "No kit above 0.7 (best: New puppy 0.51); asking the LLM for a list.",
+    "Suggested list (AI-generated, openai/gpt-oss-20b): 6 items. The user should edit it before adding.",
+    "User removed from the suggested list: herbivore food pellets, UVB light fixture, thermometer, water dish",
+    "Fallback (no_match): none of the items matched a BigBasket product"
+   ],
+   "kind": "fallback",
+   "cart_total": 0,
+   "cart_lines": [],
+   "unmatched": [
+    [
+     "herbivore diet mix",
+     "no product mentions the item (closest matches were a different thing)"
+    ],
+    [
+     "tortoise enclosure",
+     "no product above similarity 0.62 (best 0.57)"
+    ]
+   ],
+   "excluded": [],
+   "fits_budget": null
+  },
+  {
+   "id": "Q16",
+   "type": "dish (sidebar servings)",
+   "question": "paneer butter masala",
+   "top3": [
+    "Organic Tofu - Soy Paneer",
+    "Tomato - Local, Organically Grown",
+    "Chilli Powder/Menasina Pudi"
+   ],
+   "top3_sub": [
+    "Dairy & Cheese",
+    "Fresh Vegetables",
+    "Masalas & Spices"
+   ],
+   "evidence": "Y",
+   "answer": "This cart was generated from the **ingredients of the recipe ‘Paneer Butter Masala’ from the Archana’s Kitchen recipe dataset (serves 4; quantities scaled ×1.5 for 6 people)**. It includes items such as Organic Tofu – Soy Paneer at ₹85.14 [P20], Premium Butter – Salted at ₹54 [P17233], and Fresh Cream at ₹50 [P26829]. The complete selection totals **₹789.14** for 13 products.",
+   "faithful": "Y",
+   "faith_notes": "",
+   "guard_ok": true,
+   "regenerated": false,
+   "fallback_expected": false,
+   "fallback_actual": false,
+   "fallback_trigger": null,
+   "fallback_reason": null,
+   "category_check": "",
+   "latency_ms": 2008,
+   "llm_calls": 1,
+   "intent": "dish",
+   "trace": [
+    "Intent: catalogue (no rule fired (default)).",
+    "Re-classified as dish: 'paneer butter masala' is an exact recipe title.",
+    "Recipe search for 'paneer butter masala': top hits Orio Paneer Modak (0.76), Paneer Butter Masala Biryani - Layered Paneer Butter Masala Biryani (0.77), Paneer Matar Butter Masala (Indian Cottage Cheese and Peas Masala With Butter) (0.80), Palak Paneer Bhurji -Spiced Cottage Cheese Scramble With Spinach (0.73), Cottage Cheese Pancake Stuffed With Chocolate - Russian Syrniki (0.74)",
+    "Matched recipe: Paneer Butter Masala (exact title match); 13 ingredients; scale ×1.50 (4 → 6 servings)",
+    "Answer by openai/gpt-oss-120b; guard passed, 3 citation(s)."
+   ],
+   "kind": "cart",
+   "cart_total": 789.14,
+   "cart_lines": [
+    [
+     "Paneer",
+     "Organic Tofu - Soy Paneer",
+     85.14,
+     "Dairy & Cheese"
+    ],
+    [
+     "Tomatoes",
+     "Tomato - Local, Organically Grown",
+     5.0,
+     "Fresh Vegetables"
+    ],
+    [
+     "Red Chilli powder",
+     "Chilli Powder/Menasina Pudi",
+     32.0,
+     "Masalas & Spices"
+    ],
+    [
+     "Cumin powder",
+     "Jeera/Cumin Powder",
+     32.0,
+     "Masalas & Spices"
+    ],
+    [
+     "Garam masala powder",
+     "Garam Masala Powder",
+     65.0,
+     "Masalas & Spices"
+    ],
+    [
+     "Fresh cream",
+     "Cream - Fresh",
+     50.0,
+     "Dairy"
+    ],
+    [
+     "Butter",
+     "Premium Butter - Salted",
+     54.0,
+     "Dairy"
+    ],
+    [
+     "Salt",
+     "Table Salt/Uppu",
+     25.0,
+     "Salt, Sugar & Jaggery"
+    ],
+    [
+     "Kasuri Methi",
+     "Organic Kasoori Methi",
+     24.0,
+     "Masalas & Spices"
+    ],
+    [
+     "Onion",
+     "Onion - Thin Sliced",
+     22.0,
+     "Fresh Vegetables"
+    ],
+    [
+     "Ginger",
+     "Ginger - Organically Grown",
+     6.0,
+     "Organic Fruits & Vegetables"
+    ],
+    [
+     "Garlic",
+     "Garlic - Peeled",
+     39.0,
+     "Herbs & Seasonings"
+    ],
+    [
+     "Cashew nuts",
+     "Cashews",
+     350.0,
+     "Dry Fruits"
+    ]
+   ],
+   "unmatched": [],
+   "excluded": [],
+   "fits_budget": null,
+   "recipe": "Paneer Butter Masala"
+  }
+ ],
+ "ablation": [
+  {
+   "query": "tomato",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Tomato - Hybrid, Organically Grown",
+   "top1_sub": "Fresh Vegetables"
+  },
+  {
+   "query": "tomato",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Tomato - Hybrid",
+   "top1_sub": "Fresh Vegetables"
+  },
+  {
+   "query": "tomato",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Tomato - Hybrid",
+   "top1_sub": "Fresh Vegetables"
+  },
+  {
+   "query": "tomato",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Tomato - Hybrid",
+   "top1_sub": "Fresh Vegetables"
+  },
+  {
+   "query": "onion",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Onion",
+   "top1_sub": "Fresh Vegetables"
+  },
+  {
+   "query": "onion",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.2,
+   "top1": "Sambhar Onion (Small Onion)",
+   "top1_sub": "Fresh Vegetables"
+  },
+  {
+   "query": "onion",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Onion",
+   "top1_sub": "Fresh Vegetables"
+  },
+  {
+   "query": "onion",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Onion",
+   "top1_sub": "Fresh Vegetables"
+  },
+  {
+   "query": "green chillies",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Chilli - Green, Organically Grown",
+   "top1_sub": "Organic Fruits & Vegetables"
+  },
+  {
+   "query": "green chillies",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Chilli - Green, Organically Grown",
+   "top1_sub": "Organic Fruits & Vegetables"
+  },
+  {
+   "query": "green chillies",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Chilli - Green, Organically Grown",
+   "top1_sub": "Organic Fruits & Vegetables"
+  },
+  {
+   "query": "green chillies",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Chilli - Green, Organically Grown",
+   "top1_sub": "Organic Fruits & Vegetables"
+  },
+  {
+   "query": "paneer",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Malai Fresh Paneer",
+   "top1_sub": "Dairy"
+  },
+  {
+   "query": "paneer",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Malai Fresh Paneer",
+   "top1_sub": "Dairy"
+  },
+  {
+   "query": "paneer",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Malai Fresh Paneer",
+   "top1_sub": "Dairy"
+  },
+  {
+   "query": "paneer",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Malai Fresh Paneer",
+   "top1_sub": "Dairy"
+  },
+  {
+   "query": "butter",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Butter - Lightly Salted",
+   "top1_sub": "Dairy & Cheese"
+  },
+  {
+   "query": "butter",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Premium Butter - Salted",
+   "top1_sub": "Dairy"
+  },
+  {
+   "query": "butter",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Premium Butter - Unsalted",
+   "top1_sub": "Dairy"
+  },
+  {
+   "query": "butter",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Premium Butter - Unsalted",
+   "top1_sub": "Dairy"
+  },
+  {
+   "query": "haldi",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 0.3333333333333333,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.4,
+   "top1": "Rock Salt/Uppu",
+   "top1_sub": "Salt, Sugar & Jaggery"
+  },
+  {
+   "query": "haldi",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 0.5,
+   "wrong_top1": 1,
+   "wrong_share@5": 0.2,
+   "top1": "Haldi Powder - Supports Anti-inflammatory Response, As Antioxidant & Healthy Immunity",
+   "top1_sub": "Health & Medicine"
+  },
+  {
+   "query": "haldi",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Turmeric Powder/Haldi/Arisina Pudi",
+   "top1_sub": "Masalas & Spices"
+  },
+  {
+   "query": "haldi",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Turmeric Powder/Haldi/Arisina Pudi",
+   "top1_sub": "Masalas & Spices"
+  },
+  {
+   "query": "jeera",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Fields Of Gold Organic Cumin - Whole",
+   "top1_sub": "Organic Staples"
+  },
+  {
+   "query": "jeera",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Cumin Seeds/Jeera/Jeerige",
+   "top1_sub": "Masalas & Spices"
+  },
+  {
+   "query": "jeera",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Cumin Seeds/Jeera/Jeerige",
+   "top1_sub": "Masalas & Spices"
+  },
+  {
+   "query": "jeera",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Cumin Seeds/Jeera/Jeerige",
+   "top1_sub": "Masalas & Spices"
+  },
+  {
+   "query": "coconut oil for cooking",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 0.5,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Cooking Spray - Coconut Oil",
+   "top1_sub": "Cooking & Baking Needs"
+  },
+  {
+   "query": "coconut oil for cooking",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 0.5,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Cooking Spray - Coconut Oil",
+   "top1_sub": "Cooking & Baking Needs"
+  },
+  {
+   "query": "coconut oil for cooking",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Coconut Oil/Narial Tel",
+   "top1_sub": "Edible Oils & Ghee"
+  },
+  {
+   "query": "coconut oil for cooking",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Coconut Oil/Narial Tel",
+   "top1_sub": "Edible Oils & Ghee"
+  },
+  {
+   "query": "toor dal",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toor/Arhar Dal 2 kg + Moong Dal 1 kg+Moong - Green, Whole/Sabut 1 kg",
+   "top1_sub": "Dals & Pulses"
+  },
+  {
+   "query": "toor dal",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toor/Arhar Dal 2 kg + Moong Dal 1 kg+Moong - Green, Whole/Sabut 1 kg",
+   "top1_sub": "Dals & Pulses"
+  },
+  {
+   "query": "toor dal",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toor/Arhar Dal 2 kg + Moong Dal 1 kg+Moong - Green, Whole/Sabut 1 kg",
+   "top1_sub": "Dals & Pulses"
+  },
+  {
+   "query": "toor dal",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toor/Arhar Dal 2 kg + Moong Dal 1 kg+Moong - Green, Whole/Sabut 1 kg",
+   "top1_sub": "Dals & Pulses"
+  },
+  {
+   "query": "basmati rice",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Basmati Rice/Basmati Akki - Rozana",
+   "top1_sub": "Rice & Rice Products"
+  },
+  {
+   "query": "basmati rice",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Basmati Rice/Basmati Akki - White Sella",
+   "top1_sub": "Rice & Rice Products"
+  },
+  {
+   "query": "basmati rice",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Basmati Rice/Basmati Akki - White Sella",
+   "top1_sub": "Rice & Rice Products"
+  },
+  {
+   "query": "basmati rice",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Basmati Rice/Basmati Akki - White Sella",
+   "top1_sub": "Rice & Rice Products"
+  },
+  {
+   "query": "whole wheat atta",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 0.5,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Wheat Flour",
+   "top1_sub": "Atta, Flours & Sooji"
+  },
+  {
+   "query": "whole wheat atta",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Whole Wheat Atta/Godihittu - Pesticide Free",
+   "top1_sub": "Atta, Flours & Sooji"
+  },
+  {
+   "query": "whole wheat atta",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Whole Wheat Atta/Godihittu - Pesticide Free",
+   "top1_sub": "Atta, Flours & Sooji"
+  },
+  {
+   "query": "whole wheat atta",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Whole Wheat Atta/Godihittu - Pesticide Free",
+   "top1_sub": "Atta, Flours & Sooji"
+  },
+  {
+   "query": "salt",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 0.3333333333333333,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Salt - Unrefined, 100% Natural",
+   "top1_sub": "Cooking & Baking Needs"
+  },
+  {
+   "query": "salt",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Lite - 15% Low Sodium Iodised Salt",
+   "top1_sub": "Salt, Sugar & Jaggery"
+  },
+  {
+   "query": "salt",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Lite - 15% Low Sodium Iodised Salt",
+   "top1_sub": "Salt, Sugar & Jaggery"
+  },
+  {
+   "query": "salt",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Lite - 15% Low Sodium Iodised Salt",
+   "top1_sub": "Salt, Sugar & Jaggery"
+  },
+  {
+   "query": "ghee",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Ghee/Tuppa",
+   "top1_sub": "Edible Oils & Ghee"
+  },
+  {
+   "query": "ghee",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Ghee/Tuppa",
+   "top1_sub": "Edible Oils & Ghee"
+  },
+  {
+   "query": "ghee",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Ghee/Tuppa",
+   "top1_sub": "Edible Oils & Ghee"
+  },
+  {
+   "query": "ghee",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Ghee/Tuppa",
+   "top1_sub": "Edible Oils & Ghee"
+  },
+  {
+   "query": "rolled oats",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Rolled Oats",
+   "top1_sub": "Cereals & Breakfast"
+  },
+  {
+   "query": "rolled oats",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Rolled Oats",
+   "top1_sub": "Cereals & Breakfast"
+  },
+  {
+   "query": "rolled oats",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Rolled Oats",
+   "top1_sub": "Cereals & Breakfast"
+  },
+  {
+   "query": "rolled oats",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Rolled Oats",
+   "top1_sub": "Cereals & Breakfast"
+  },
+  {
+   "query": "lemon",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.2,
+   "top1": "Lemon - Organically Grown",
+   "top1_sub": "Organic Fruits & Vegetables"
+  },
+  {
+   "query": "lemon",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 0.2,
+   "wrong_top1": 1,
+   "wrong_share@5": 0.4,
+   "top1": "Lemon Essentail Oil - 100% Pure & Natural",
+   "top1_sub": "Skin Care"
+  },
+  {
+   "query": "lemon",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Lemon",
+   "top1_sub": "Herbs & Seasonings"
+  },
+  {
+   "query": "lemon",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Lemon",
+   "top1_sub": "Herbs & Seasonings"
+  },
+  {
+   "query": "besan",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Besan/Kadale Hittu",
+   "top1_sub": "Atta, Flours & Sooji"
+  },
+  {
+   "query": "besan",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Besan/Kadale Hittu",
+   "top1_sub": "Atta, Flours & Sooji"
+  },
+  {
+   "query": "besan",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Besan/Kadale Hittu",
+   "top1_sub": "Atta, Flours & Sooji"
+  },
+  {
+   "query": "besan",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Besan/Kadale Hittu",
+   "top1_sub": "Atta, Flours & Sooji"
+  },
+  {
+   "query": "dhaniya patta",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 0.2,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Coriander Seeds/Kottambari Beeja",
+   "top1_sub": "Masalas & Spices"
+  },
+  {
+   "query": "dhaniya patta",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 0,
+   "rr": 0.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Powder - Coriander (Dhaniya)",
+   "top1_sub": "Masalas & Spices"
+  },
+  {
+   "query": "dhaniya patta",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Coriander Leaves",
+   "top1_sub": "Herbs & Seasonings"
+  },
+  {
+   "query": "dhaniya patta",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Coriander Leaves",
+   "top1_sub": "Herbs & Seasonings"
+  },
+  {
+   "query": "sarson ka tel",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Mustard Oil/Rai Ka Tel",
+   "top1_sub": "Edible Oils & Ghee"
+  },
+  {
+   "query": "sarson ka tel",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Mustard Oil/Rai Ka Tel",
+   "top1_sub": "Edible Oils & Ghee"
+  },
+  {
+   "query": "sarson ka tel",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Mustard Oil/Rai Ka Tel",
+   "top1_sub": "Edible Oils & Ghee"
+  },
+  {
+   "query": "sarson ka tel",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Mustard Oil/Rai Ka Tel",
+   "top1_sub": "Edible Oils & Ghee"
+  },
+  {
+   "query": "nimbu",
+   "domain": "food",
+   "variant": "a. vector only",
+   "inferred_domain": "food",
+   "hit@5": 0,
+   "rr": 0.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Lemon Grass Kombucha",
+   "top1_sub": "Drinks & Beverages"
+  },
+  {
+   "query": "nimbu",
+   "domain": "food",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "food",
+   "hit@5": 0,
+   "rr": 0.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Nimbu Achar",
+   "top1_sub": "Pickles & Chutney"
+  },
+  {
+   "query": "nimbu",
+   "domain": "food",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "food",
+   "hit@5": 0,
+   "rr": 0.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Nimbu Achar",
+   "top1_sub": "Pickles & Chutney"
+  },
+  {
+   "query": "nimbu",
+   "domain": "food",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "food",
+   "hit@5": 0,
+   "rr": 0.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Nimbu Achar",
+   "top1_sub": "Pickles & Chutney"
+  },
+  {
+   "query": "coconut oil for hair",
+   "domain": "personal_care",
+   "variant": "a. vector only",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 0.5,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Coconut Hair & Skin Oil",
+   "top1_sub": "Skin Care"
+  },
+  {
+   "query": "coconut oil for hair",
+   "domain": "personal_care",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Advansed Aloe Vera Enriched Coconut Hair Oil",
+   "top1_sub": "Hair Care"
+  },
+  {
+   "query": "coconut oil for hair",
+   "domain": "personal_care",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Advansed Aloe Vera Enriched Coconut Hair Oil",
+   "top1_sub": "Hair Care"
+  },
+  {
+   "query": "coconut oil for hair",
+   "domain": "personal_care",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Advansed Aloe Vera Enriched Coconut Hair Oil",
+   "top1_sub": "Hair Care"
+  },
+  {
+   "query": "face wash for oily skin",
+   "domain": "personal_care",
+   "variant": "a. vector only",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Face Wash - Oil Control, Active",
+   "top1_sub": "Skin Care"
+  },
+  {
+   "query": "face wash for oily skin",
+   "domain": "personal_care",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Face Wash - Oily Skin",
+   "top1_sub": "Men's Grooming"
+  },
+  {
+   "query": "face wash for oily skin",
+   "domain": "personal_care",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Face Wash - Oily Skin",
+   "top1_sub": "Men's Grooming"
+  },
+  {
+   "query": "face wash for oily skin",
+   "domain": "personal_care",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Face Wash - Oily Skin",
+   "top1_sub": "Men's Grooming"
+  },
+  {
+   "query": "face cleanser",
+   "domain": "personal_care",
+   "variant": "a. vector only",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Face Cleanser",
+   "top1_sub": "Skin Care"
+  },
+  {
+   "query": "face cleanser",
+   "domain": "personal_care",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Face Cleanser",
+   "top1_sub": "Skin Care"
+  },
+  {
+   "query": "face cleanser",
+   "domain": "personal_care",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Face Cleanser",
+   "top1_sub": "Skin Care"
+  },
+  {
+   "query": "face cleanser",
+   "domain": "personal_care",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Face Cleanser",
+   "top1_sub": "Skin Care"
+  },
+  {
+   "query": "shampoo",
+   "domain": "personal_care",
+   "variant": "a. vector only",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Shampoo - Environmental Defence",
+   "top1_sub": "Hair Care"
+  },
+  {
+   "query": "shampoo",
+   "domain": "personal_care",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Dryness Care Shampoo",
+   "top1_sub": "Hair Care"
+  },
+  {
+   "query": "shampoo",
+   "domain": "personal_care",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Dryness Care Shampoo",
+   "top1_sub": "Hair Care"
+  },
+  {
+   "query": "shampoo",
+   "domain": "personal_care",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Dryness Care Shampoo",
+   "top1_sub": "Hair Care"
+  },
+  {
+   "query": "sunscreen",
+   "domain": "personal_care",
+   "variant": "a. vector only",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Sunblock Sport Sunscreen SPF 50, Non Greasy & Water Resistant",
+   "top1_sub": "Men's Grooming"
+  },
+  {
+   "query": "sunscreen",
+   "domain": "personal_care",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Sunblock Sport Sunscreen SPF 50, Non Greasy & Water Resistant",
+   "top1_sub": "Men's Grooming"
+  },
+  {
+   "query": "sunscreen",
+   "domain": "personal_care",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Sunblock Sport Sunscreen SPF 50, Non Greasy & Water Resistant",
+   "top1_sub": "Men's Grooming"
+  },
+  {
+   "query": "sunscreen",
+   "domain": "personal_care",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Sunblock Sport Sunscreen SPF 50, Non Greasy & Water Resistant",
+   "top1_sub": "Men's Grooming"
+  },
+  {
+   "query": "toothpaste",
+   "domain": "personal_care",
+   "variant": "a. vector only",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toothpaste - Gum Care, Expert Protection",
+   "top1_sub": "Oral Care"
+  },
+  {
+   "query": "toothpaste",
+   "domain": "personal_care",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toothpaste - Whitening, Cavity Protection, 150 G",
+   "top1_sub": "Oral Care"
+  },
+  {
+   "query": "toothpaste",
+   "domain": "personal_care",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toothpaste - Whitening, Cavity Protection, 150 G",
+   "top1_sub": "Oral Care"
+  },
+  {
+   "query": "toothpaste",
+   "domain": "personal_care",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toothpaste - Whitening, Cavity Protection, 150 G",
+   "top1_sub": "Oral Care"
+  },
+  {
+   "query": "bathing soap",
+   "domain": "personal_care",
+   "variant": "a. vector only",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Bathing Bar Soap - Skincare",
+   "top1_sub": "Bath & Hand Wash"
+  },
+  {
+   "query": "bathing soap",
+   "domain": "personal_care",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Bathing Soap - Aloe Vera",
+   "top1_sub": "Bath & Hand Wash"
+  },
+  {
+   "query": "bathing soap",
+   "domain": "personal_care",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Bathing Soap - Aloe Vera",
+   "top1_sub": "Bath & Hand Wash"
+  },
+  {
+   "query": "bathing soap",
+   "domain": "personal_care",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Bathing Soap - Aloe Vera",
+   "top1_sub": "Bath & Hand Wash"
+  },
+  {
+   "query": "hand wash",
+   "domain": "personal_care",
+   "variant": "a. vector only",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Hand Wash - Tropical Fruit",
+   "top1_sub": "Bath & Hand Wash"
+  },
+  {
+   "query": "hand wash",
+   "domain": "personal_care",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Lemon Hand Wash",
+   "top1_sub": "Bath & Hand Wash"
+  },
+  {
+   "query": "hand wash",
+   "domain": "personal_care",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Lemon Hand Wash",
+   "top1_sub": "Bath & Hand Wash"
+  },
+  {
+   "query": "hand wash",
+   "domain": "personal_care",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Lemon Hand Wash",
+   "top1_sub": "Bath & Hand Wash"
+  },
+  {
+   "query": "deodorant",
+   "domain": "personal_care",
+   "variant": "a. vector only",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Deodorant Spray - Romance",
+   "top1_sub": "Fragrances & Deos"
+  },
+  {
+   "query": "deodorant",
+   "domain": "personal_care",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Do It Deodorant",
+   "top1_sub": "Fragrances & Deos"
+  },
+  {
+   "query": "deodorant",
+   "domain": "personal_care",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Do It Deodorant",
+   "top1_sub": "Fragrances & Deos"
+  },
+  {
+   "query": "deodorant",
+   "domain": "personal_care",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Do It Deodorant",
+   "top1_sub": "Fragrances & Deos"
+  },
+  {
+   "query": "oats face scrub",
+   "domain": "personal_care",
+   "variant": "a. vector only",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 0.5,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Olive & Oat Face Wash",
+   "top1_sub": "Skin Care"
+  },
+  {
+   "query": "oats face scrub",
+   "domain": "personal_care",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 0.5,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Charcoal Face Scrub For Exfoliation & Tan Removal - Tea Tree & Peppermint",
+   "top1_sub": "Men's Grooming"
+  },
+  {
+   "query": "oats face scrub",
+   "domain": "personal_care",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Clear Complexion Whitening Face Scrub",
+   "top1_sub": "Skin Care"
+  },
+  {
+   "query": "oats face scrub",
+   "domain": "personal_care",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "personal_care",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Clear Complexion Whitening Face Scrub",
+   "top1_sub": "Skin Care"
+  },
+  {
+   "query": "floor cleaner",
+   "domain": "household",
+   "variant": "a. vector only",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Floor Cleaner",
+   "top1_sub": "All Purpose Cleaners"
+  },
+  {
+   "query": "floor cleaner",
+   "domain": "household",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Floor Cleaner - Neem & Pine",
+   "top1_sub": "All Purpose Cleaners"
+  },
+  {
+   "query": "floor cleaner",
+   "domain": "household",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Floor Cleaner - Neem & Pine",
+   "top1_sub": "All Purpose Cleaners"
+  },
+  {
+   "query": "floor cleaner",
+   "domain": "household",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Floor Cleaner - Neem & Pine",
+   "top1_sub": "All Purpose Cleaners"
+  },
+  {
+   "query": "toilet cleaner",
+   "domain": "household",
+   "variant": "a. vector only",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toilet Bowl Cleaner - Vinegar",
+   "top1_sub": "All Purpose Cleaners"
+  },
+  {
+   "query": "toilet cleaner",
+   "domain": "household",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toilet Cleaner",
+   "top1_sub": "All Purpose Cleaners"
+  },
+  {
+   "query": "toilet cleaner",
+   "domain": "household",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toilet Cleaner",
+   "top1_sub": "All Purpose Cleaners"
+  },
+  {
+   "query": "toilet cleaner",
+   "domain": "household",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Toilet Cleaner",
+   "top1_sub": "All Purpose Cleaners"
+  },
+  {
+   "query": "dishwash liquid",
+   "domain": "household",
+   "variant": "a. vector only",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Dishwash Liquid - Lime",
+   "top1_sub": "Detergents & Dishwash"
+  },
+  {
+   "query": "dishwash liquid",
+   "domain": "household",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Dishwash Liquid - Lime",
+   "top1_sub": "Detergents & Dishwash"
+  },
+  {
+   "query": "dishwash liquid",
+   "domain": "household",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Dishwash Liquid - Lime",
+   "top1_sub": "Detergents & Dishwash"
+  },
+  {
+   "query": "dishwash liquid",
+   "domain": "household",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Dishwash Liquid - Lime",
+   "top1_sub": "Detergents & Dishwash"
+  },
+  {
+   "query": "detergent powder",
+   "domain": "household",
+   "variant": "a. vector only",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Quick Wash Detergent Powder",
+   "top1_sub": "Detergents & Dishwash"
+  },
+  {
+   "query": "detergent powder",
+   "domain": "household",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Detergent Powder - Lemon & Orange",
+   "top1_sub": "Detergents & Dishwash"
+  },
+  {
+   "query": "detergent powder",
+   "domain": "household",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Detergent Powder - Lemon & Orange",
+   "top1_sub": "Detergents & Dishwash"
+  },
+  {
+   "query": "detergent powder",
+   "domain": "household",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Detergent Powder - Lemon & Orange",
+   "top1_sub": "Detergents & Dishwash"
+  },
+  {
+   "query": "garbage bags",
+   "domain": "household",
+   "variant": "a. vector only",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Garbage Bags - Compostable, 100% Corn Starch, Large, Green, Mono-Carton(24x32 Inches)",
+   "top1_sub": "Disposables, Garbage Bag"
+  },
+  {
+   "query": "garbage bags",
+   "domain": "household",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Garbage Bags - Compostable, 100% Corn Starch, Large, Green, Mono-Carton(24x32 Inches)",
+   "top1_sub": "Disposables, Garbage Bag"
+  },
+  {
+   "query": "garbage bags",
+   "domain": "household",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Garbage Bags - Compostable, 100% Corn Starch, Large, Green, Mono-Carton(24x32 Inches)",
+   "top1_sub": "Disposables, Garbage Bag"
+  },
+  {
+   "query": "garbage bags",
+   "domain": "household",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Garbage Bags - Compostable, 100% Corn Starch, Large, Green, Mono-Carton(24x32 Inches)",
+   "top1_sub": "Disposables, Garbage Bag"
+  },
+  {
+   "query": "mosquito repellent",
+   "domain": "household",
+   "variant": "a. vector only",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Mosquito Repellent, Pleasant Fragrance - 10 Hr | 100% Protection from Dengue Mosquitoes",
+   "top1_sub": "Fresheners & Repellents"
+  },
+  {
+   "query": "mosquito repellent",
+   "domain": "household",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Naturals Mosquito Repellent Spray",
+   "top1_sub": "Fresheners & Repellents"
+  },
+  {
+   "query": "mosquito repellent",
+   "domain": "household",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Naturals Mosquito Repellent Spray",
+   "top1_sub": "Fresheners & Repellents"
+  },
+  {
+   "query": "mosquito repellent",
+   "domain": "household",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Naturals Mosquito Repellent Spray",
+   "top1_sub": "Fresheners & Repellents"
+  },
+  {
+   "query": "kitchen wipes",
+   "domain": "household",
+   "variant": "a. vector only",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Sponge Wipe - Large",
+   "top1_sub": "Mops, Brushes & Scrubs"
+  },
+  {
+   "query": "kitchen wipes",
+   "domain": "household",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.2,
+   "top1": "Kitchen Cloth - Small",
+   "top1_sub": "Mops, Brushes & Scrubs"
+  },
+  {
+   "query": "kitchen wipes",
+   "domain": "household",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Kitchen Cloth - Small",
+   "top1_sub": "Mops, Brushes & Scrubs"
+  },
+  {
+   "query": "kitchen wipes",
+   "domain": "household",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "household",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Kitchen Cloth - Small",
+   "top1_sub": "Mops, Brushes & Scrubs"
+  },
+  {
+   "query": "non-stick tawa",
+   "domain": "kitchen",
+   "variant": "a. vector only",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Non-Stick Dosa/ Flat Tawa - 29.5 cm, Red",
+   "top1_sub": "Cookware & Non Stick"
+  },
+  {
+   "query": "non-stick tawa",
+   "domain": "kitchen",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Non-Stick Flat Dosa Tawa - 260 mm, Aluminium, Assorted Colour",
+   "top1_sub": "Cookware & Non Stick"
+  },
+  {
+   "query": "non-stick tawa",
+   "domain": "kitchen",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Non-Stick Flat Dosa Tawa - 260 mm, Aluminium, Assorted Colour",
+   "top1_sub": "Cookware & Non Stick"
+  },
+  {
+   "query": "non-stick tawa",
+   "domain": "kitchen",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Non-Stick Flat Dosa Tawa - 260 mm, Aluminium, Assorted Colour",
+   "top1_sub": "Cookware & Non Stick"
+  },
+  {
+   "query": "steel lunch box",
+   "domain": "kitchen",
+   "variant": "a. vector only",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Steel Lunch Box/Tiffin Set With Bag - Klip Lock",
+   "top1_sub": "Steel Utensils"
+  },
+  {
+   "query": "steel lunch box",
+   "domain": "kitchen",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Steel Lunch Box/Tiffin Set With Bag - Klip Lock",
+   "top1_sub": "Steel Utensils"
+  },
+  {
+   "query": "steel lunch box",
+   "domain": "kitchen",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Steel Lunch Box/Tiffin Set With Bag - Klip Lock",
+   "top1_sub": "Steel Utensils"
+  },
+  {
+   "query": "steel lunch box",
+   "domain": "kitchen",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Steel Lunch Box/Tiffin Set With Bag - Klip Lock",
+   "top1_sub": "Steel Utensils"
+  },
+  {
+   "query": "pressure cooker",
+   "domain": "kitchen",
+   "variant": "a. vector only",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Pressure Cooker - Silver, MM25",
+   "top1_sub": "Cookware & Non Stick"
+  },
+  {
+   "query": "pressure cooker",
+   "domain": "kitchen",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Pressure Cooker - Silver, MM25",
+   "top1_sub": "Cookware & Non Stick"
+  },
+  {
+   "query": "pressure cooker",
+   "domain": "kitchen",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Pressure Cooker - Silver, MM25",
+   "top1_sub": "Cookware & Non Stick"
+  },
+  {
+   "query": "pressure cooker",
+   "domain": "kitchen",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Pressure Cooker - Silver, MM25",
+   "top1_sub": "Cookware & Non Stick"
+  },
+  {
+   "query": "water bottle",
+   "domain": "kitchen",
+   "variant": "a. vector only",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Water Bottle - Crystal, Blue",
+   "top1_sub": "Storage & Accessories"
+  },
+  {
+   "query": "water bottle",
+   "domain": "kitchen",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Water Bottle - H2O Steel, Silver",
+   "top1_sub": "Storage & Accessories"
+  },
+  {
+   "query": "water bottle",
+   "domain": "kitchen",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Water Bottle - H2O Steel, Silver",
+   "top1_sub": "Storage & Accessories"
+  },
+  {
+   "query": "water bottle",
+   "domain": "kitchen",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "kitchen",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Water Bottle - H2O Steel, Silver",
+   "top1_sub": "Storage & Accessories"
+  },
+  {
+   "query": "baby diapers",
+   "domain": "baby",
+   "variant": "a. vector only",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Baby Happy Diapers - Mini",
+   "top1_sub": "Diapers & Wipes"
+  },
+  {
+   "query": "baby diapers",
+   "domain": "baby",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Baby Dry Medium - 20 Diapers",
+   "top1_sub": "Diapers & Wipes"
+  },
+  {
+   "query": "baby diapers",
+   "domain": "baby",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Baby Dry Medium - 20 Diapers",
+   "top1_sub": "Diapers & Wipes"
+  },
+  {
+   "query": "baby diapers",
+   "domain": "baby",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Baby Dry Medium - 20 Diapers",
+   "top1_sub": "Diapers & Wipes"
+  },
+  {
+   "query": "baby wipes",
+   "domain": "baby",
+   "variant": "a. vector only",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Baby Wipes - Combo Pack",
+   "top1_sub": "Diapers & Wipes"
+  },
+  {
+   "query": "baby wipes",
+   "domain": "baby",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Baby Wipes - Combo Pack",
+   "top1_sub": "Diapers & Wipes"
+  },
+  {
+   "query": "baby wipes",
+   "domain": "baby",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Baby Wipes - Combo Pack",
+   "top1_sub": "Diapers & Wipes"
+  },
+  {
+   "query": "baby wipes",
+   "domain": "baby",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Baby Wipes - Combo Pack",
+   "top1_sub": "Diapers & Wipes"
+  },
+  {
+   "query": "baby shampoo",
+   "domain": "baby",
+   "variant": "a. vector only",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.2,
+   "top1": "Rich Moisture Baby Shampoo",
+   "top1_sub": "Baby Bath & Hygiene"
+  },
+  {
+   "query": "baby shampoo",
+   "domain": "baby",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Rich Moisture Baby Shampoo",
+   "top1_sub": "Baby Bath & Hygiene"
+  },
+  {
+   "query": "baby shampoo",
+   "domain": "baby",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Rich Moisture Baby Shampoo",
+   "top1_sub": "Baby Bath & Hygiene"
+  },
+  {
+   "query": "baby shampoo",
+   "domain": "baby",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "baby",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Rich Moisture Baby Shampoo",
+   "top1_sub": "Baby Bath & Hygiene"
+  },
+  {
+   "query": "dog food",
+   "domain": "pets",
+   "variant": "a. vector only",
+   "inferred_domain": "pets",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Puppy Dry Dog Food - Ultra Premium",
+   "top1_sub": "Pet Food & Accessories"
+  },
+  {
+   "query": "dog food",
+   "domain": "pets",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "pets",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Premium Adult Wet Dog Food - White Meat Fish & Vegetables",
+   "top1_sub": "Pet Food & Accessories"
+  },
+  {
+   "query": "dog food",
+   "domain": "pets",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "pets",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Premium Adult Wet Dog Food - White Meat Fish & Vegetables",
+   "top1_sub": "Pet Food & Accessories"
+  },
+  {
+   "query": "dog food",
+   "domain": "pets",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "pets",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Premium Adult Wet Dog Food - White Meat Fish & Vegetables",
+   "top1_sub": "Pet Food & Accessories"
+  },
+  {
+   "query": "cat litter",
+   "domain": "pets",
+   "variant": "a. vector only",
+   "inferred_domain": "pets",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Hygiene Plus Non Clumping 100% Natural Cat Litter",
+   "top1_sub": "Pet Food & Accessories"
+  },
+  {
+   "query": "cat litter",
+   "domain": "pets",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "pets",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Hygiene Plus Non Clumping 100% Natural Cat Litter",
+   "top1_sub": "Pet Food & Accessories"
+  },
+  {
+   "query": "cat litter",
+   "domain": "pets",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "pets",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Hygiene Plus Non Clumping 100% Natural Cat Litter",
+   "top1_sub": "Pet Food & Accessories"
+  },
+  {
+   "query": "cat litter",
+   "domain": "pets",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "pets",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Hygiene Plus Non Clumping 100% Natural Cat Litter",
+   "top1_sub": "Pet Food & Accessories"
+  },
+  {
+   "query": "potting soil for plants",
+   "domain": "other",
+   "variant": "a. vector only",
+   "inferred_domain": "other",
+   "hit@5": 1,
+   "rr": 1.0,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Organic Vermi Compost",
+   "top1_sub": "Gardening"
+  },
+  {
+   "query": "potting soil for plants",
+   "domain": "other",
+   "variant": "b. hybrid (vector + BM25)",
+   "inferred_domain": "other",
+   "hit@5": 1,
+   "rr": 0.25,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Neem Mix",
+   "top1_sub": "Gardening"
+  },
+  {
+   "query": "potting soil for plants",
+   "domain": "other",
+   "variant": "c. hybrid + category filter",
+   "inferred_domain": "other",
+   "hit@5": 1,
+   "rr": 0.25,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Neem Mix",
+   "top1_sub": "Gardening"
+  },
+  {
+   "query": "potting soil for plants",
+   "domain": "other",
+   "variant": "d. hybrid + inferred domain",
+   "inferred_domain": "other",
+   "hit@5": 1,
+   "rr": 0.25,
+   "wrong_top1": 0,
+   "wrong_share@5": 0.0,
+   "top1": "Neem Mix",
+   "top1_sub": "Gardening"
+  }
+ ],
+ "probe": [
+  {
+   "group": "on",
+   "query": "Fortune sunflower oil price",
+   "stopped_by": "answered",
+   "best_sim": 0.805
+  },
+  {
+   "group": "on",
+   "query": "cheapest floor cleaner",
+   "stopped_by": "answered",
+   "best_sim": 0.784
+  },
+  {
+   "group": "on",
+   "query": "Dove soap price",
+   "stopped_by": "answered",
+   "best_sim": 0.82
+  },
+  {
+   "group": "on",
+   "query": "compare toothpaste brands",
+   "stopped_by": "answered",
+   "best_sim": 0.748
+  },
+  {
+   "group": "on",
+   "query": "best rated shampoo",
+   "stopped_by": "answered",
+   "best_sim": 0.71
+  },
+  {
+   "group": "on",
+   "query": "basmati rice under 200",
+   "stopped_by": "answered",
+   "best_sim": 0.814
+  },
+  {
+   "group": "on",
+   "query": "dog food price",
+   "stopped_by": "answered",
+   "best_sim": 0.798
+  },
+  {
+   "group": "on",
+   "query": "baby diapers price",
+   "stopped_by": "answered",
+   "best_sim": 0.796
+  },
+  {
+   "group": "on",
+   "query": "green tea brands",
+   "stopped_by": "answered",
+   "best_sim": 0.805
+  },
+  {
+   "group": "on",
+   "query": "non-stick tawa price",
+   "stopped_by": "answered",
+   "best_sim": 0.842
+  },
+  {
+   "group": "on",
+   "query": "mosquito repellent",
+   "stopped_by": "answered",
+   "best_sim": 0.8
+  },
+  {
+   "group": "on",
+   "query": "instant noodles",
+   "stopped_by": "answered",
+   "best_sim": 0.797
+  },
+  {
+   "group": "on",
+   "query": "dark chocolate",
+   "stopped_by": "answered",
+   "best_sim": 0.774
+  },
+  {
+   "group": "on",
+   "query": "garbage bags price",
+   "stopped_by": "answered",
+   "best_sim": 0.796
+  },
+  {
+   "group": "on",
+   "query": "sunscreen for oily skin",
+   "stopped_by": "answered",
+   "best_sim": 0.803
+  },
+  {
+   "group": "off",
+   "query": "best laptop under 50000",
+   "stopped_by": "scope rule",
+   "best_sim": NaN
+  },
+  {
+   "group": "off",
+   "query": "iPhone 15 price",
+   "stopped_by": "scope rule",
+   "best_sim": NaN
+  },
+  {
+   "group": "off",
+   "query": "cricket bat",
+   "stopped_by": "scope rule",
+   "best_sim": NaN
+  },
+  {
+   "group": "off",
+   "query": "sofa set for living room",
+   "stopped_by": "scope rule",
+   "best_sim": NaN
+  },
+  {
+   "group": "off",
+   "query": "washing machine 7 kg",
+   "stopped_by": "threshold",
+   "best_sim": 0.691
+  },
+  {
+   "group": "off",
+   "query": "car tyres",
+   "stopped_by": "scope rule",
+   "best_sim": NaN
+  },
+  {
+   "group": "off",
+   "query": "running shoes for men",
+   "stopped_by": "scope rule",
+   "best_sim": NaN
+  },
+  {
+   "group": "off",
+   "query": "office chair",
+   "stopped_by": "threshold",
+   "best_sim": 0.645
+  },
+  {
+   "group": "off",
+   "query": "LED television 43 inch",
+   "stopped_by": "threshold",
+   "best_sim": 0.672
+  },
+  {
+   "group": "off",
+   "query": "gold necklace",
+   "stopped_by": "scope rule",
+   "best_sim": NaN
+  },
+  {
+   "group": "off",
+   "query": "bicycle for kids",
+   "stopped_by": "scope rule",
+   "best_sim": NaN
+  },
+  {
+   "group": "off",
+   "query": "airpods case",
+   "stopped_by": "threshold",
+   "best_sim": 0.613
+  },
+  {
+   "group": "off",
+   "query": "printer ink cartridge",
+   "stopped_by": "threshold",
+   "best_sim": 0.692
+  },
+  {
+   "group": "off",
+   "query": "air conditioner 1.5 ton",
+   "stopped_by": "threshold",
+   "best_sim": 0.599
+  },
+  {
+   "group": "off",
+   "query": "wooden study table",
+   "stopped_by": "threshold",
+   "best_sim": 0.641
+  }
+ ]
+}

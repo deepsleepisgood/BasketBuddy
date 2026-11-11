@@ -1,0 +1,1526 @@
+{
+  "_label": "Synthetic kit lists, authored by the team; products and prices come from real BigBasket data.",
+  "_schema": "kit: {id, name, aliases[], domain, description, items[]}; item: {item, qty, unit, domain, sub_category?}. `item` is the retrieval sub-query; `domain`/`sub_category` are metadata filters that must match values in data/clean/products.parquet.",
+  "kits": [
+    {
+      "id": "bathroom-deep-clean",
+      "name": "Bathroom deep-clean",
+      "aliases": [
+        "clean my bathroom",
+        "toilet cleaning",
+        "bathroom cleaning supplies",
+        "scrub the bathroom"
+      ],
+      "domain": "household",
+      "description": "Everything to deep-clean a bathroom: toilet, tiles, floor, taps and drain.",
+      "items": [
+        {
+          "item": "toilet cleaner",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "household",
+          "sub_category": "All Purpose Cleaners"
+        },
+        {
+          "item": "toilet brush",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "household",
+          "sub_category": "Mops, Brushes & Scrubs"
+        },
+        {
+          "item": "bathroom tile cleaner",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "household",
+          "sub_category": "All Purpose Cleaners"
+        },
+        {
+          "item": "floor cleaner disinfectant",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "household",
+          "sub_category": "All Purpose Cleaners"
+        },
+        {
+          "item": "drain cleaner",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "All Purpose Cleaners"
+        },
+        {
+          "item": "scrub brush",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "household",
+          "sub_category": "Mops, Brushes & Scrubs"
+        },
+        {
+          "item": "cleaning gloves",
+          "qty": 1,
+          "unit": "pair",
+          "domain": "household",
+          "sub_category": "Mops, Brushes & Scrubs"
+        },
+        {
+          "item": "bathroom air freshener",
+          "qty": 1,
+          "unit": "can",
+          "domain": "household",
+          "sub_category": "Fresheners & Repellents"
+        }
+      ]
+    },
+    {
+      "id": "kitchen-deep-clean",
+      "name": "Kitchen deep-clean",
+      "aliases": [
+        "clean the kitchen",
+        "kitchen cleaning supplies",
+        "degrease kitchen"
+      ],
+      "domain": "household",
+      "description": "Degrease the stove, wash utensils, wipe counters and clean the kitchen floor.",
+      "items": [
+        {
+          "item": "dishwash liquid",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "household",
+          "sub_category": "Detergents & Dishwash"
+        },
+        {
+          "item": "kitchen cleaner spray",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "household",
+          "sub_category": "All Purpose Cleaners"
+        },
+        {
+          "item": "scrub pad",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Mops, Brushes & Scrubs"
+        },
+        {
+          "item": "steel scrubber",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Mops, Brushes & Scrubs"
+        },
+        {
+          "item": "kitchen towel roll",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Disposables, Garbage Bag"
+        },
+        {
+          "item": "floor cleaner",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "household",
+          "sub_category": "All Purpose Cleaners"
+        },
+        {
+          "item": "garbage bags",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Disposables, Garbage Bag"
+        }
+      ]
+    },
+    {
+      "id": "laundry-starter",
+      "name": "Laundry starter",
+      "aliases": [
+        "laundry supplies",
+        "washing clothes",
+        "detergent for washing machine"
+      ],
+      "domain": "household",
+      "description": "Basics to wash, rinse, dry and store clothes.",
+      "items": [
+        {
+          "item": "detergent powder",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Detergents & Dishwash"
+        },
+        {
+          "item": "liquid detergent",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "household",
+          "sub_category": "Detergents & Dishwash"
+        },
+        {
+          "item": "fabric conditioner",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "household",
+          "sub_category": "Detergents & Dishwash"
+        },
+        {
+          "item": "detergent bar",
+          "qty": 1,
+          "unit": "bar",
+          "domain": "household",
+          "sub_category": "Detergents & Dishwash"
+        },
+        {
+          "item": "cloth clips",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Bins & Bathroom Ware"
+        },
+        {
+          "item": "laundry basket",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "household",
+          "sub_category": "Bins & Bathroom Ware"
+        }
+      ]
+    },
+    {
+      "id": "oily-skin-routine",
+      "name": "Oily-skin routine",
+      "aliases": [
+        "skincare routine for oily skin",
+        "oily skin care",
+        "acne prone skin routine",
+        "oil control skincare"
+      ],
+      "domain": "personal_care",
+      "description": "A simple cleanse, tone, moisturise and protect routine using products labelled for oily skin.",
+      "items": [
+        {
+          "item": "face wash for oily skin",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "personal_care",
+          "sub_category": "Skin Care"
+        },
+        {
+          "item": "toner",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Skin Care"
+        },
+        {
+          "item": "oil control moisturiser",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "personal_care",
+          "sub_category": "Skin Care"
+        },
+        {
+          "item": "sunscreen SPF 50",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "personal_care",
+          "sub_category": "Skin Care"
+        },
+        {
+          "item": "clay face mask",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "personal_care",
+          "sub_category": "Skin Care"
+        }
+      ]
+    },
+    {
+      "id": "dry-skin-routine",
+      "name": "Dry-skin routine",
+      "aliases": [
+        "skincare routine for dry skin",
+        "dry skin care",
+        "winter skincare"
+      ],
+      "domain": "personal_care",
+      "description": "A gentle routine using products labelled for dry skin.",
+      "items": [
+        {
+          "item": "face wash for dry skin",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "personal_care",
+          "sub_category": "Skin Care"
+        },
+        {
+          "item": "moisturising cream",
+          "qty": 1,
+          "unit": "jar",
+          "domain": "personal_care",
+          "sub_category": "Skin Care"
+        },
+        {
+          "item": "body lotion",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Skin Care"
+        },
+        {
+          "item": "lip balm",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "personal_care",
+          "sub_category": "Skin Care"
+        },
+        {
+          "item": "sunscreen",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "personal_care",
+          "sub_category": "Skin Care"
+        }
+      ]
+    },
+    {
+      "id": "mens-grooming-basics",
+      "name": "Men's grooming basics",
+      "aliases": [
+        "men's grooming kit",
+        "shaving kit",
+        "grooming essentials for men"
+      ],
+      "domain": "personal_care",
+      "description": "Shave, cleanse and smell good.",
+      "items": [
+        {
+          "item": "shaving foam",
+          "qty": 1,
+          "unit": "can",
+          "domain": "personal_care",
+          "sub_category": "Men's Grooming"
+        },
+        {
+          "item": "razor",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "personal_care",
+          "sub_category": "Men's Grooming"
+        },
+        {
+          "item": "after shave lotion",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Men's Grooming"
+        },
+        {
+          "item": "face wash for men",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "personal_care",
+          "sub_category": "Men's Grooming"
+        },
+        {
+          "item": "deodorant for men",
+          "qty": 1,
+          "unit": "can",
+          "domain": "personal_care",
+          "sub_category": "Fragrances & Deos"
+        },
+        {
+          "item": "beard oil",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Men's Grooming"
+        }
+      ]
+    },
+    {
+      "id": "basic-hair-care",
+      "name": "Basic hair-care routine",
+      "aliases": [
+        "hair care routine",
+        "hair wash essentials",
+        "hair oiling"
+      ],
+      "domain": "personal_care",
+      "description": "Wash, condition and oil hair.",
+      "items": [
+        {
+          "item": "shampoo",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Hair Care"
+        },
+        {
+          "item": "conditioner",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Hair Care"
+        },
+        {
+          "item": "coconut hair oil",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Hair Care"
+        },
+        {
+          "item": "comb",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "personal_care",
+          "sub_category": "Hair Care"
+        }
+      ]
+    },
+    {
+      "id": "monsoon-hygiene",
+      "name": "Monsoon hygiene",
+      "aliases": [
+        "rainy season essentials",
+        "monsoon essentials",
+        "mosquito protection"
+      ],
+      "domain": "household",
+      "description": "Keep mosquitoes, damp and germs away during the rains.",
+      "items": [
+        {
+          "item": "mosquito repellent refill machine",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Fresheners & Repellents"
+        },
+        {
+          "item": "mosquito repellent cream",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "household",
+          "sub_category": "Fresheners & Repellents"
+        },
+        {
+          "item": "antiseptic liquid",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Health & Medicine"
+        },
+        {
+          "item": "hand sanitizer",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Bath & Hand Wash"
+        },
+        {
+          "item": "naphthalene balls",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Fresheners & Repellents"
+        },
+        {
+          "item": "floor cleaner disinfectant",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "household",
+          "sub_category": "All Purpose Cleaners"
+        }
+      ]
+    },
+    {
+      "id": "newborn-first-month",
+      "name": "Newborn's first month",
+      "aliases": [
+        "new baby essentials",
+        "newborn baby kit",
+        "baby shower shopping",
+        "things for a newborn"
+      ],
+      "domain": "baby",
+      "description": "Diapering, bathing and feeding basics for a newborn.",
+      "items": [
+        {
+          "item": "newborn diapers",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "baby",
+          "sub_category": "Diapers & Wipes"
+        },
+        {
+          "item": "baby wipes",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "baby",
+          "sub_category": "Diapers & Wipes"
+        },
+        {
+          "item": "diaper rash cream",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "baby",
+          "sub_category": "Diapers & Wipes"
+        },
+        {
+          "item": "baby wash",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "baby",
+          "sub_category": "Baby Bath & Hygiene"
+        },
+        {
+          "item": "baby oil",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "baby",
+          "sub_category": "Baby Bath & Hygiene"
+        },
+        {
+          "item": "baby lotion",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "baby",
+          "sub_category": "Baby Bath & Hygiene"
+        },
+        {
+          "item": "baby feeding bottle",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "baby",
+          "sub_category": "Feeding & Nursing"
+        },
+        {
+          "item": "baby laundry detergent",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "baby",
+          "sub_category": "Baby Bath & Hygiene"
+        }
+      ]
+    },
+    {
+      "id": "toddler-snacks",
+      "name": "Toddler snacks",
+      "aliases": [
+        "snacks for toddlers",
+        "healthy snacks for kids",
+        "baby food for 1 year old"
+      ],
+      "domain": "baby",
+      "description": "Easy snacks and cereals for a toddler.",
+      "items": [
+        {
+          "item": "baby cereal",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "baby",
+          "sub_category": "Baby Food & Formula"
+        },
+        {
+          "item": "ragi flakes",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "rusk",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "banana",
+          "qty": 6,
+          "unit": "pcs",
+          "domain": "food",
+          "sub_category": "Fresh Fruits"
+        },
+        {
+          "item": "makhana",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "baby sipper",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "baby",
+          "sub_category": "Feeding & Nursing"
+        }
+      ]
+    },
+    {
+      "id": "house-party-10",
+      "name": "House party for 10",
+      "aliases": [
+        "party for 10 people",
+        "house party snacks",
+        "hosting friends",
+        "get together at home"
+      ],
+      "domain": "food",
+      "description": "Snacks, drinks and disposables for about ten guests.",
+      "items": [
+        {
+          "item": "potato chips",
+          "qty": 4,
+          "unit": "pack",
+          "domain": "food",
+          "sub_category": "Snacks & Namkeen"
+        },
+        {
+          "item": "namkeen mixture",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "food",
+          "sub_category": "Snacks & Namkeen"
+        },
+        {
+          "item": "nachos",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "salsa dip",
+          "qty": 1,
+          "unit": "jar",
+          "domain": "food"
+        },
+        {
+          "item": "soft drink cola",
+          "qty": 3,
+          "unit": "bottle",
+          "domain": "food",
+          "sub_category": "Energy & Soft Drinks"
+        },
+        {
+          "item": "fruit juice",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "food",
+          "sub_category": "Fruit Juices & Drinks"
+        },
+        {
+          "item": "disposable cups",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Party & Festive Needs"
+        },
+        {
+          "item": "paper plates",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Party & Festive Needs"
+        },
+        {
+          "item": "paper napkins",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Disposables, Garbage Bag"
+        },
+        {
+          "item": "garbage bags",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Disposables, Garbage Bag"
+        }
+      ]
+    },
+    {
+      "id": "kids-birthday",
+      "name": "Kids' birthday party",
+      "aliases": [
+        "children's birthday party",
+        "birthday decorations",
+        "birthday party for kids"
+      ],
+      "domain": "household",
+      "description": "Decorations, candles and treats for a child's birthday.",
+      "items": [
+        {
+          "item": "balloons",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Party & Festive Needs"
+        },
+        {
+          "item": "birthday candles",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Party & Festive Needs"
+        },
+        {
+          "item": "party caps",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Party & Festive Needs"
+        },
+        {
+          "item": "chocolate cake",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "food"
+        },
+        {
+          "item": "chocolates",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "food",
+          "sub_category": "Chocolates & Candies"
+        },
+        {
+          "item": "fruit juice",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "food",
+          "sub_category": "Fruit Juices & Drinks"
+        },
+        {
+          "item": "paper plates",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Party & Festive Needs"
+        },
+        {
+          "item": "gift wrap",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Party & Festive Needs"
+        }
+      ]
+    },
+    {
+      "id": "diwali-puja",
+      "name": "Diwali puja",
+      "aliases": [
+        "diwali shopping",
+        "lakshmi puja items",
+        "pooja samagri",
+        "deepavali"
+      ],
+      "domain": "household",
+      "description": "Puja essentials, lamps and sweets for Diwali.",
+      "items": [
+        {
+          "item": "agarbatti incense sticks",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Pooja Needs"
+        },
+        {
+          "item": "camphor",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Pooja Needs"
+        },
+        {
+          "item": "diya lamp",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Pooja Needs"
+        },
+        {
+          "item": "cotton wicks",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Pooja Needs"
+        },
+        {
+          "item": "lamp oil",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "household",
+          "sub_category": "Pooja Needs"
+        },
+        {
+          "item": "kumkum",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Pooja Needs"
+        },
+        {
+          "item": "candles",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household"
+        },
+        {
+          "item": "dry fruits gift box",
+          "qty": 1,
+          "unit": "box",
+          "domain": "food"
+        },
+        {
+          "item": "soan papdi",
+          "qty": 1,
+          "unit": "box",
+          "domain": "food"
+        }
+      ]
+    },
+    {
+      "id": "holi",
+      "name": "Holi",
+      "aliases": [
+        "holi colours",
+        "holi party",
+        "holi festival shopping"
+      ],
+      "domain": "household",
+      "description": "Colours, water guns and snacks for Holi.",
+      "items": [
+        {
+          "item": "holi colours",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Party & Festive Needs"
+        },
+        {
+          "item": "pichkari water gun",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "household",
+          "sub_category": "Party & Festive Needs"
+        },
+        {
+          "item": "thandai",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "food"
+        },
+        {
+          "item": "gujiya",
+          "qty": 1,
+          "unit": "box",
+          "domain": "food",
+          "note": "Deliberately kept: not in the BigBasket snapshot, so it shows the \"Couldn't find\" path."
+        },
+        {
+          "item": "namkeen",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "food",
+          "sub_category": "Snacks & Namkeen"
+        },
+        {
+          "item": "coconut hair oil",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Hair Care"
+        }
+      ]
+    },
+    {
+      "id": "new-puppy",
+      "name": "New puppy",
+      "aliases": [
+        "bringing home a puppy",
+        "puppy essentials",
+        "dog supplies",
+        "new dog"
+      ],
+      "domain": "pets",
+      "description": "Food, bowls and hygiene for a new puppy.",
+      "items": [
+        {
+          "item": "puppy dog food",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "pets"
+        },
+        {
+          "item": "dog treats",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "pets"
+        },
+        {
+          "item": "pet feeding bowl",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "pets"
+        },
+        {
+          "item": "dog shampoo",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "pets"
+        },
+        {
+          "item": "dog collar leash",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "pets"
+        },
+        {
+          "item": "chew toy",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "pets"
+        }
+      ]
+    },
+    {
+      "id": "new-cat",
+      "name": "New cat",
+      "aliases": [
+        "bringing home a kitten",
+        "cat supplies",
+        "kitten essentials"
+      ],
+      "domain": "pets",
+      "description": "Food, litter and grooming for a new cat.",
+      "items": [
+        {
+          "item": "cat food",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "pets"
+        },
+        {
+          "item": "wet cat food",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "pets"
+        },
+        {
+          "item": "cat litter",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "pets"
+        },
+        {
+          "item": "pet feeding bowl",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "pets"
+        },
+        {
+          "item": "cat treats",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "pets"
+        }
+      ]
+    },
+    {
+      "id": "hostel-move-in",
+      "name": "Hostel move-in",
+      "aliases": [
+        "moving into a hostel",
+        "college hostel essentials",
+        "dorm essentials",
+        "pg move in"
+      ],
+      "domain": "household",
+      "description": "Toiletries, cleaning and snack basics for a hostel or PG room.",
+      "items": [
+        {
+          "item": "bathing soap",
+          "qty": 3,
+          "unit": "bar",
+          "domain": "personal_care",
+          "sub_category": "Bath & Hand Wash"
+        },
+        {
+          "item": "toothpaste",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "personal_care",
+          "sub_category": "Oral Care"
+        },
+        {
+          "item": "toothbrush",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "personal_care",
+          "sub_category": "Oral Care"
+        },
+        {
+          "item": "shampoo",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Hair Care"
+        },
+        {
+          "item": "detergent powder",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Detergents & Dishwash"
+        },
+        {
+          "item": "bucket and mug",
+          "qty": 1,
+          "unit": "set",
+          "domain": "household",
+          "sub_category": "Bins & Bathroom Ware"
+        },
+        {
+          "item": "hangers",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Bins & Bathroom Ware"
+        },
+        {
+          "item": "instant noodles",
+          "qty": 4,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "notebook",
+          "qty": 2,
+          "unit": "piece",
+          "domain": "household",
+          "sub_category": "Stationery"
+        }
+      ]
+    },
+    {
+      "id": "first-apartment-kitchen",
+      "name": "First apartment kitchen",
+      "aliases": [
+        "setting up a kitchen",
+        "new home kitchen essentials",
+        "kitchen starter kit",
+        "basic utensils"
+      ],
+      "domain": "kitchen",
+      "description": "Cookware, utensils and storage for a first kitchen.",
+      "items": [
+        {
+          "item": "non stick frying pan",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "kitchen",
+          "sub_category": "Cookware & Non Stick"
+        },
+        {
+          "item": "pressure cooker",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "kitchen",
+          "sub_category": "Cookware & Non Stick"
+        },
+        {
+          "item": "kadai",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "kitchen"
+        },
+        {
+          "item": "steel plates",
+          "qty": 4,
+          "unit": "piece",
+          "domain": "kitchen",
+          "sub_category": "Steel Utensils"
+        },
+        {
+          "item": "kitchen knife",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "kitchen",
+          "sub_category": "Kitchen Accessories"
+        },
+        {
+          "item": "chopping board",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "kitchen",
+          "sub_category": "Kitchen Accessories"
+        },
+        {
+          "item": "storage containers",
+          "qty": 1,
+          "unit": "set",
+          "domain": "kitchen",
+          "sub_category": "Storage & Accessories"
+        },
+        {
+          "item": "water bottle",
+          "qty": 2,
+          "unit": "piece",
+          "domain": "kitchen",
+          "sub_category": "Storage & Accessories"
+        }
+      ]
+    },
+    {
+      "id": "pantry-staples",
+      "name": "Indian pantry staples",
+      "aliases": [
+        "monthly grocery",
+        "kitchen staples",
+        "stock up the pantry",
+        "monthly ration"
+      ],
+      "domain": "food",
+      "description": "The monthly basics of an Indian kitchen.",
+      "items": [
+        {
+          "item": "whole wheat atta",
+          "qty": 5,
+          "unit": "kg",
+          "domain": "food",
+          "sub_category": "Atta, Flours & Sooji"
+        },
+        {
+          "item": "basmati rice",
+          "qty": 5,
+          "unit": "kg",
+          "domain": "food",
+          "sub_category": "Rice & Rice Products"
+        },
+        {
+          "item": "toor dal",
+          "qty": 1,
+          "unit": "kg",
+          "domain": "food",
+          "sub_category": "Dals & Pulses"
+        },
+        {
+          "item": "sunflower oil",
+          "qty": 1,
+          "unit": "l",
+          "domain": "food",
+          "sub_category": "Edible Oils & Ghee"
+        },
+        {
+          "item": "salt",
+          "qty": 1,
+          "unit": "kg",
+          "domain": "food",
+          "sub_category": "Salt, Sugar & Jaggery"
+        },
+        {
+          "item": "sugar",
+          "qty": 1,
+          "unit": "kg",
+          "domain": "food",
+          "sub_category": "Salt, Sugar & Jaggery"
+        },
+        {
+          "item": "turmeric powder",
+          "qty": 100,
+          "unit": "g",
+          "domain": "food",
+          "sub_category": "Masalas & Spices"
+        },
+        {
+          "item": "red chilli powder",
+          "qty": 100,
+          "unit": "g",
+          "domain": "food",
+          "sub_category": "Masalas & Spices"
+        },
+        {
+          "item": "tea",
+          "qty": 250,
+          "unit": "g",
+          "domain": "food",
+          "sub_category": "Tea"
+        }
+      ]
+    },
+    {
+      "id": "healthy-breakfast-week",
+      "name": "Healthy breakfast week",
+      "aliases": [
+        "healthy breakfast",
+        "breakfast for a week",
+        "high protein breakfast"
+      ],
+      "domain": "food",
+      "description": "Oats, fruit, eggs and nuts for a week of breakfasts.",
+      "items": [
+        {
+          "item": "rolled oats",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "muesli",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "eggs",
+          "qty": 12,
+          "unit": "pcs",
+          "domain": "food",
+          "sub_category": "Eggs"
+        },
+        {
+          "item": "banana",
+          "qty": 6,
+          "unit": "pcs",
+          "domain": "food",
+          "sub_category": "Fresh Fruits"
+        },
+        {
+          "item": "almonds",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food",
+          "sub_category": "Dry Fruits"
+        },
+        {
+          "item": "peanut butter",
+          "qty": 1,
+          "unit": "jar",
+          "domain": "food"
+        },
+        {
+          "item": "brown bread",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "milk",
+          "qty": 1,
+          "unit": "l",
+          "domain": "food",
+          "sub_category": "Dairy"
+        }
+      ]
+    },
+    {
+      "id": "travel-toiletries",
+      "name": "Travel toiletries",
+      "aliases": [
+        "travel kit",
+        "toiletries for a trip",
+        "packing for travel"
+      ],
+      "domain": "personal_care",
+      "description": "Small toiletries for a trip.",
+      "items": [
+        {
+          "item": "toothbrush",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "personal_care",
+          "sub_category": "Oral Care"
+        },
+        {
+          "item": "toothpaste",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "personal_care",
+          "sub_category": "Oral Care"
+        },
+        {
+          "item": "hand sanitizer",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Bath & Hand Wash"
+        },
+        {
+          "item": "wet wipes",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "household",
+          "sub_category": "Disposables, Garbage Bag"
+        },
+        {
+          "item": "sunscreen",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "personal_care",
+          "sub_category": "Skin Care"
+        },
+        {
+          "item": "deodorant",
+          "qty": 1,
+          "unit": "can",
+          "domain": "personal_care",
+          "sub_category": "Fragrances & Deos"
+        },
+        {
+          "item": "shampoo",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "personal_care",
+          "sub_category": "Hair Care"
+        }
+      ]
+    },
+    {
+      "id": "office-snack-drawer",
+      "name": "Office snack drawer",
+      "aliases": [
+        "snacks for office",
+        "desk snacks",
+        "work snacks"
+      ],
+      "domain": "food",
+      "description": "Non-perishable snacks and drinks for a desk drawer.",
+      "items": [
+        {
+          "item": "roasted makhana",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "trail mix nuts",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "protein bar",
+          "qty": 4,
+          "unit": "piece",
+          "domain": "food"
+        },
+        {
+          "item": "digestive biscuits",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food",
+          "sub_category": "Biscuits & Cookies"
+        },
+        {
+          "item": "instant coffee",
+          "qty": 1,
+          "unit": "jar",
+          "domain": "food",
+          "sub_category": "Coffee"
+        },
+        {
+          "item": "green tea bags",
+          "qty": 1,
+          "unit": "box",
+          "domain": "food",
+          "sub_category": "Tea"
+        }
+      ]
+    },
+    {
+      "id": "period-care",
+      "name": "Period care",
+      "aliases": [
+        "periods essentials",
+        "menstrual care",
+        "sanitary pads"
+      ],
+      "domain": "personal_care",
+      "description": "Menstrual hygiene products.",
+      "items": [
+        {
+          "item": "sanitary pads",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "personal_care",
+          "sub_category": "Feminine Hygiene"
+        },
+        {
+          "item": "panty liners",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "personal_care",
+          "sub_category": "Feminine Hygiene"
+        },
+        {
+          "item": "intimate wash",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Feminine Hygiene"
+        },
+        {
+          "item": "hot water bottle",
+          "qty": 1,
+          "unit": "piece",
+          "domain": "personal_care"
+        },
+        {
+          "item": "dark chocolate",
+          "qty": 1,
+          "unit": "bar",
+          "domain": "food"
+        }
+      ]
+    },
+    {
+      "id": "first-aid-box",
+      "name": "Home first-aid box",
+      "aliases": [
+        "first aid kit",
+        "medicine box basics",
+        "first aid supplies"
+      ],
+      "domain": "personal_care",
+      "description": "Basic first-aid supplies. Not medical advice: product descriptions only.",
+      "items": [
+        {
+          "item": "antiseptic liquid",
+          "qty": 1,
+          "unit": "bottle",
+          "domain": "personal_care",
+          "sub_category": "Health & Medicine"
+        },
+        {
+          "item": "bandage",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "personal_care",
+          "sub_category": "Health & Medicine"
+        },
+        {
+          "item": "cotton roll",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "personal_care"
+        },
+        {
+          "item": "antiseptic cream",
+          "qty": 1,
+          "unit": "tube",
+          "domain": "personal_care"
+        },
+        {
+          "item": "pain relief balm",
+          "qty": 1,
+          "unit": "jar",
+          "domain": "personal_care",
+          "sub_category": "Health & Medicine"
+        }
+      ]
+    },
+    {
+      "id": "movie-night",
+      "name": "Movie night",
+      "aliases": [
+        "movie night snacks",
+        "netflix night",
+        "binge watch snacks"
+      ],
+      "domain": "food",
+      "description": "Popcorn, nachos and drinks for a movie night.",
+      "items": [
+        {
+          "item": "popcorn",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "nachos",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food"
+        },
+        {
+          "item": "cheese dip",
+          "qty": 1,
+          "unit": "jar",
+          "domain": "food"
+        },
+        {
+          "item": "cold drink",
+          "qty": 2,
+          "unit": "bottle",
+          "domain": "food",
+          "sub_category": "Energy & Soft Drinks"
+        },
+        {
+          "item": "chocolate",
+          "qty": 2,
+          "unit": "bar",
+          "domain": "food",
+          "sub_category": "Chocolates & Candies"
+        }
+      ]
+    },
+    {
+      "id": "chai-for-guests",
+      "name": "Chai for guests",
+      "aliases": [
+        "evening tea with guests",
+        "tea time snacks",
+        "guests coming over for tea"
+      ],
+      "domain": "food",
+      "description": "Tea and the usual snacks to serve visitors.",
+      "items": [
+        {
+          "item": "tea leaves",
+          "qty": 250,
+          "unit": "g",
+          "domain": "food",
+          "sub_category": "Tea"
+        },
+        {
+          "item": "milk",
+          "qty": 1,
+          "unit": "l",
+          "domain": "food",
+          "sub_category": "Dairy"
+        },
+        {
+          "item": "sugar",
+          "qty": 1,
+          "unit": "kg",
+          "domain": "food",
+          "sub_category": "Salt, Sugar & Jaggery"
+        },
+        {
+          "item": "biscuits",
+          "qty": 2,
+          "unit": "pack",
+          "domain": "food",
+          "sub_category": "Biscuits & Cookies"
+        },
+        {
+          "item": "namkeen",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food",
+          "sub_category": "Snacks & Namkeen"
+        },
+        {
+          "item": "rusk",
+          "qty": 1,
+          "unit": "pack",
+          "domain": "food"
+        }
+      ]
+    }
+  ]
+}
