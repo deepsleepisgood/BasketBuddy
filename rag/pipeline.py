@@ -11,14 +11,14 @@ from typing import Any, Literal
 import config
 from rag.cart import Cart, CatalogueResult, build_cart, retrieve_catalogue
 from rag.decompose import Mode, Plan, decompose
-from rag.fallback import fallback_text, is_sentinel, weak_retrieval
+from rag.fallback import CAPABILITIES, fallback_text, is_sentinel, weak_retrieval
 from rag.generator import (
     CART_INSTRUCTIONS, CATALOGUE_INSTRUCTIONS, Context, GuardResult, cart_context, catalogue_context,
     generate, normalise_citations, verify_answer,
 )
 from rag.llm import LLMError
 
-Kind = Literal["cart", "catalogue", "suggestion", "fallback"]
+Kind = Literal["cart", "catalogue", "suggestion", "fallback", "help"]
 
 
 @dataclass
@@ -106,6 +106,11 @@ def answer(
     t0 = time.perf_counter()
     plan = decompose(message, extra_pantry, default_servings)
     timings = {"decompose_ms": round((time.perf_counter() - t0) * 1000, 1)}
+
+    if plan.intent == "smalltalk":
+        timings["total_ms"] = timings["decompose_ms"]
+        plan.trace.append("Small talk: replied with what BasketBuddy can do (no retrieval, no LLM).")
+        return BotResponse("help", "Hi! I'm BasketBuddy. " + CAPABILITIES, plan, timings=timings)
 
     if plan.intent == "out_of_scope":
         timings["total_ms"] = timings["decompose_ms"]

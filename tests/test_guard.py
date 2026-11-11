@@ -83,3 +83,11 @@ def test_fallback_helpers():
     assert fallback_text("x").startswith(FALLBACK_MESSAGE)
     assert weak_retrieval(0.65, 0.70) is not None
     assert weak_retrieval(0.75, 0.70) is None
+
+
+def test_users_price_limit_may_be_quoted():
+    # "olive oil under 500": the answer may say "under ₹500" (it's the user's number, not a price)
+    c = Context("Question: atta under 500")
+    c.products = {101: _meta(101, "Select Atta/Godihittu", 248.0, 260.0)}
+    c.extra_amounts = {500.0}
+    assert verify_answer("Select Atta is ₹248 [P101], within your ₹500 limit.", c).ok

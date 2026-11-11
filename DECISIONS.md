@@ -608,3 +608,43 @@ Probing similar phrasings showed the same pattern:
     product answers;
   - the medical-dosage question, paneer-in-stock and laptop → still refused.
 - Both questions added to the eval as Q17 and Q18, and the full eval re-run (`results.md`).
+
+---
+
+## Edge-case battery: 56 realistic messages (11 Nov 2026)
+
+`eval/edge_cases.py` + `eval/run_edge_cases.py` (`python -m eval.run_edge_cases [numbers]`): 56 messages
+run end to end through `answer()`:
+- 16 dishes (conversational, typos, Hinglish, one that isn't in the data);
+- 8 needs or occasions;
+- 9 product recommendations;
+- 10 catalogue facts;
+- 13 out-of-scope messages, prompt injection, greetings and junk.
+
+Every cart and answer was **read**, not just its result type.
+
+**First run: 4 wrong result types, plus content problems found by reading the carts**
+| Problem | Example | Root cause → fix |
+|---|---|---|
+| Budget amount rejected by the guard | "olive oil under 500" → fallback (₹500 "not a price") | The user's own limit wasn't a known amount → `max_price` and the budget are added to the catalogue context's allowed amounts |
+| Wrong domain | "my hair is falling, which oil" searched **food** oils | "hair" wasn't a personal-care keyword → added *hair, dandruff, frizz, acne, pimple* |
+| Wrong recipe | chicken biryani → *Chicken **Kappa** Biryani*; kadhai paneer → *Paneer Chilli **Dosa***; "panner butter masala" → *Baby Corn Butter Masala*; aloo gobi → *Aloo **Patta** Gobi* | Candidates were only the top-8 semantic hits, with no typo tolerance → `correct_dish_spelling` (difflib against recipe-title words) and `literal_recipe`: titles containing every dish word (per-word spelling variants, e.g. kadhai ~ kadai), choosing the plainest (penalising variant and unrequested-protein words; *one pot, sabzi, curry* are descriptors). Semantic search only when no title matches. |
+| Ingredient → wrong product | protein powder → *Fenugreek* Powder; milk powder → *Strawberry Milk **Shake*** Powder; boneless chicken → a coconut-milk **combo**; potato masala → *Dal Tadka Masala*; all-purpose flour → *Jowar* Flour | Food had no "the product must name the item" check → `_rank_food_by_words`: at least one key word (or synonym) must be in the name, where form words like *powder, masala, fresh* don't count; more matched words rank first; combo packs rank last. *shake, milkshake, crispy* added as processed forms. Synonyms: *all purpose / plain flour → maida, cottage cheese → paneer, yogurt → curd/dahi*. |
+| Product question routed to a kit | "best diapers for a newborn", "food for my puppy" | Need words (*newborn, puppy*) fired → a product **for** a baby or pet is a catalogue question unless the message asks for "stuff/everything/essentials" |
+| Wrongly refused | "mosquito repellent safe for babies" | The medical scope rule contained "safe for" → removed (doses and treatment are still refused) |
+| "for 2" read as servings | "book a table for 2 at a restaurant" → dish | Scope rule for restaurant bookings, food ordering and tickets |
+| Small talk | "hi", "thanks", "?" went to the LLM | New `smalltalk` intent → a friendly "what I can do" reply (0 LLM calls, kind `help`) |
+| AI list item on the wrong shelf | "olive oil" (labelled kitchen) → oil dispenser bottle | A confident keyword/purpose rule overrides the LLM's domain label |
+| LLM too literal on scope (found by the eval probe) | "compare toothpaste brands" refused: "no specific brands mentioned" | Prompt: broad questions are in scope (the product type is the sub-query). Code: if the rules found a product word and no scope rule fired, the LLM's refusal is overridden. Laptop, iPhone and sofa are still refused. |
+| More dish phrasings | "whats needed for…", "how do i make…", "can u help me cook…", "tonight's dinner:", "bake a cake", "rajma chawal **banana hai 4 logo ke liye**", "gulab jamun **for diwali**", "pav bhaji for a **party of 10**" | More lead-ins, Hinglish (*banana hai, logo ke liye*), occasion phrases and "party/group of N". A need-worded message with servings and a matching recipe title becomes a dish. |
+
+**Final run: 56/56 behave as expected.** The eval was re-run after all fixes: 17/18 (only the tortoise list, as
+before), faithful 14/14, ablation unchanged, and the threshold probe 15/15 answerable kept and 11/11 blocked.
+202 pytest tests (29 new for these cases).
+
+**Still imperfect (data or semantics, documented):**
+- Some substitutions remain: rice vinegar → a rice product, seaweed sheets → seaweed crackers,
+  tea leaves → a tulsi green tea. The catalogue lacks the exact item, and the closest one still names it.
+- AI-suggested lists can include items BigBasket doesn't sell (balloons, resistance bands); they are listed
+  under "Couldn't find".
+- "sushi for 2" builds a cart: the dataset *does* have a "Vegetarian Sushi" recipe.

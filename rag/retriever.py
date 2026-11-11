@@ -414,7 +414,7 @@ _PURPOSE_RULES: list[tuple[str, str]] = [
 _WORD_RULES: dict[str, str] = {
     "personal_care": r"\b(shampoo|conditioner|soaps?|bathing|body ?wash|face ?wash|deo(dorant)?|perfume|"
                      r"lipstick|sunscreen|moisturi[sz]er|serum|toothpaste|toothbrush|razor|skincare|haircare|"
-                     r"sanitary|cleanser|face|skin|lips?|scalp)\b",
+                     r"sanitary|cleanser|face|skin|lips?|scalp|hair|dandruff|frizz\w*|acne|pimples?)\b",
     "household": r"\b(floor|toilet|detergent|dishwash|mop|broom|repellent|garbage|agarbatti|camphor|"
                  r"pooja|puja|freshener|bleach|disinfectant)\b",
     "baby": r"\b(baby|diapers?|infant|newborn|toddler)\b",

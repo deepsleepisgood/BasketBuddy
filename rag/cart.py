@@ -19,7 +19,7 @@ from rag.retriever import Hit, ItemSpec, SearchResult, search_item, search_items
 # must not be matched to "Chicken Fries", "Tomato Ketchup" or "Cashew Cookies" unless
 # the ingredient itself names that form.
 _PROCESSED = re.compile(
-    r"\b(fries|nuggets?|sausages?|salami|ketchup|sauce|puree|paste|pickle|achaa?r|syrup|sharbat|chips|crisps|namkeen|bhujia|"
+    r"\b(fries|nuggets?|sausages?|salami|ketchup|sauce|puree|paste|pickle|achaa?r|syrup|sharbat|shake|milkshake|crispy|chips|crisps|namkeen|bhujia|"
     r"masala|mix|instant|ready to (cook|eat)|noodles|soup|biscuits?|cookies|cake|candy|chocolates?|"
     r"juice|drink|squash|jam|spread|flavou?red|marinade|seasoning|popcorn|tea|coffee|cereal|"
     r"flakes|powder|chutney|gravy|curry|snack|wafers?|bites|drops?|extract|essence|"
@@ -184,7 +184,65 @@ def relevant_hits(sq: SubQuery, result: SearchResult) -> tuple[list[Hit], str | 
     if not ok:
         word = processed_mismatch(sq.text, above[0].metadata["product"], above[0].metadata.get("sub_category", ""))
         return [], f"only processed products found ('{word}', e.g. {above[0].metadata['product']})"
-    return ok, None
+    return _rank_food_by_words(sq.text, ok)
+
+
+# Words that describe a form or state, not what the ingredient is ("protein powder" is about protein).
+_FORM_WORDS = {"powder", "paste", "masala", "seeds", "seed", "leaves", "leaf", "whole", "fresh", "chopped",
+               "sliced", "dried", "dry", "organic", "green", "red", "black", "white", "yellow", "small", "large",
+               "big", "medium", "pieces", "piece", "cubes", "split", "boneless", "skinless", "finely", "grated",
+               "boiled", "cooked", "raw", "ripe", "mixture", "mix", "sheets", "wedges", "juice", "extract"}
+_COMBO = re.compile(r"\s\+\s|\bcombo\b", re.I)
+
+
+def _word_groups(item: str) -> list[tuple[str, set[str]]]:
+    """Each content word of the item with its Hinglish/English synonyms, as name stems."""
+    from rag.synonyms import expand_query
+
+    groups = []
+    for w in re.findall(r"[a-z]+", item.lower()):
+        if len(w) < 3 or w in _GENERIC_WORDS:
+            continue
+        alts = {w} | {t for t in re.findall(r"[a-z]+", expand_query(w).lower()) if len(t) > 2}
+        groups.append((w, {a[: max(3, min(5, len(a) - 1))] for a in alts}))
+    return groups
+
+
+def _rank_food_by_words(item: str, hits: list[Hit]) -> tuple[list[Hit], str | None]:
+    """Keep products that name the ingredient; rank by how many of its words they contain.
+
+    "protein powder" must not become "Fenugreek Powder" (only the form word matches) and
+    "potato masala" must not become "Dal Tadka Masala". Combo packs rank below single items.
+    """
+    groups = _word_groups(item)
+    key = [g for w, g in groups if w not in _FORM_WORDS]
+    if not key:
+        return hits, None
+
+    def score(h: Hit) -> tuple[int, int]:
+        text = f"{h.metadata.get('product', '')} {h.metadata.get('type', '')}".lower()
+        return sum(any(a in text for a in g) for g in key), sum(any(a in text for a in g) for _, g in groups)
+
+    # whole-phrase synonyms ("all purpose flour" → "maida") also name the item
+    from rag.synonyms import expand_query
+
+    own = set(re.findall(r"[a-z]+", item.lower()))
+    phrase_alts = {w[: max(3, min(5, len(w) - 1))] for w in re.findall(r"[a-z]+", expand_query(item).lower())
+                   if w not in own and len(w) > 2}
+    word_score = score
+
+    def score(h: Hit) -> tuple[int, int]:  # noqa: F811 - wraps the per-word score
+        k, a = word_score(h)
+        text = f"{h.metadata.get('product', '')} {h.metadata.get('type', '')}".lower()
+        return (k + 1, a + 1) if any(x in text for x in phrase_alts) else (k, a)
+
+    named = [h for h in hits if score(h)[0] > 0]
+    if not named:
+        return [], f"no product names the item (closest: {hits[0].metadata['product']})"
+    order = {id(h): i for i, h in enumerate(hits)}
+    named.sort(key=lambda h: (-score(h)[0], -score(h)[1], bool(_COMBO.search(h.metadata.get("product", ""))),
+                              order[id(h)]))
+    return named, None
 
 
 _BASE = {"g": ("g", 1), "kg": ("g", 1000), "ml": ("ml", 1), "l": ("ml", 1000)}

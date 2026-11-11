@@ -1,34 +1,36 @@
 # BasketBuddy evaluation results
 
-Run: 11 Nov 2026 20:10 · LLM: groq · openai/gpt-oss-120b (answers; decomposition uses the fast model) · cache reads: off (--fresh) · SIM_THRESHOLD 0.7
+Run: 11 Nov 2026 21:19 · LLM: groq · openai/gpt-oss-120b (answers; decomposition uses the fast model) · cache reads: off (--fresh) · SIM_THRESHOLD 0.7
 
 ## 1. End-to-end questions
 
-- Fallback behaviour as expected: **15/16**
-- Evidence present (keyword check): **12/13**
-- Faithful (citations ⊆ retrieved, cited prices match metadata): **12/12** answered questions
-- Latency of answered questions: median **2.1 s**, max 4.0 s
+- Fallback behaviour as expected: **17/18**
+- Evidence present (keyword check): **14/15**
+- Faithful (citations ⊆ retrieved, cited prices match metadata): **14/14** answered questions
+- Latency of answered questions: median **2.7 s**, max 7.3 s
 
 Manual score: 1 = wrong or irrelevant, 2 = partly right, 3 = correct and relevant. **Fill in by hand.**
 
 | ID | Type | Question | Top-3 retrieved | Evidence? | Answer | Faithful? | Fallback exp → act | Category check | Latency | LLM calls | Manual score (1–3) |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Q1 | factual | What is the price of Fortune sunflower refined oil 1 L? | Sun Lite - Sunflower Refined Oil; Sun Lite - Sunflower Refined Oil; Refined Oil - Rice Bran | Y | - Sun Lite – Sunflower Refined Oil – ₹171 (Rating 4.1/5) [P15438] - Sun Lite – Sunflower Refined Oil – ₹866 (Rating 4.1/5) [P6749] The dataset does not record the pack size for these variants. | Y | N → N |  | 2.1 s | 2 |  |
-| Q2 | comparison | Compare Aashirvaad and Pillsbury whole wheat atta 5 kg on price and rating. | Select Atta/Godihittu; Atta/Godihittu - Multigrain; Sugar Release Control Atta/Godihittu | Y | - **Aashirvaad whole wheat atta** – Price ₹406, Rating 4.1/5 [P23556] - **Pillsbury whole wheat atta** – No whole‑wheat atta product is listed for Pillsbury in the data. The dataset does not record pack sizes for these items. | Y | N → N |  | 1.9 s | 2 |  |
-| Q3 | multi-part | Give me everything I need for dal makhani for 4 people, budget mode, I already have salt … | Urad - Black, Whole/Sabut; Red Rajma/Capparadavare; Fresh Cream | Y | This cart was built from the **ingredients of the recipe ‘Creamy Dal Makhani’ from the Archana's Kitchen recipe dataset (serves 4)**, using the Budget selection mode. It includes essentials like Black Urad Dal at **₹31** [P16295] and Fresh Cream at **₹47** [P… | Y | N → N |  | 2.5 s | 1 |  |
-| Q4 | pasted recipe | Quick poha: 2 cups poha, 1 onion chopped, 1/2 tsp mustard seeds, 8-10 curry leaves, 1 gre… | Organic Poha (Flattened Rice/Aval/Atukulu); Onion; Organic Mustard/Sasive Seeds - Whole, Big | Y | Here’s a quick‑shopping list created from the ingredients extracted from the recipe the user pasted. It includes key items such as Organic Poha at ₹61.88 [P20102], Fresh Onion at ₹28.71 [P11011] and Lemon Juice Concentrate at ₹285 [P8863]. The cart total come… | Y | N → N |  | 4.0 s | 2 |  |
-| Q5 | hinglish | jeera aur haldi kitne ka hai? | Organic Cumin Seeds/Jeera/Jeerige; Organic Turmeric Powder/Haldi/Arisina Pudi; Organic Cumin Seed Powder | Y | **Jeera (Cumin)** - Organic Cumin Seeds/Jeera – ₹169, not rated [P22635] - Organic Cumin Seed Powder – ₹56, rating 4/5 [P10674] - Jeera/Cumin Powder – ₹32, rating 5/5 [P4842] *The dataset does not record pack sizes, so these are different price variants of th… | Y | N → N |  | 2.0 s | 2 |  |
-| Q6 | need → cart (non-food) | I need to deep-clean my bathroom this weekend. | Toilet Cleaner; Toilet Brush - Dual; Disinfectant Bathroom Cleaner - Lemon | Y | Your bathroom deep‑clean kit was assembled from the ‘Bathroom deep‑clean’ kit, a synthetic item list written by the BasketBuddy team (products and prices are real BigBasket data). It includes essentials like Toilet Cleaner ₹149 [P13659] and Disinfectant Floor… | Y | N → N | 0 forbidden | 3.1 s | 1 |  |
-| Q7 | need → cart (non-food) | Skincare routine for oily skin under ₹1000. | Oil Control Face Wash - Sulphate Free; Purifying Toner; Oil Control Moisturiser | Y | The suggested skincare set comes from the 'Oily-skin routine' kit, a synthetic item list written by the BasketBuddy team (products and prices are real BigBasket data). It includes a gentle Oil Control Face Wash at ₹80.75 [P6538] and a high‑SPF Ultra Sheer Dry… | Y | N → N |  | 1.3 s | 1 |  |
-| Q8 | cross-category | coconut oil for hair | Advansed Aloe Vera Enriched Coconut Hair Oil; Coconut Oil; Advansed Aloe Vera Enriched Coconut Hair Oil | Y | Here are the coconut‑oil‑for‑hair options in the data (the catalogue does not record pack sizes, so variants with different prices are listed separately): - **Parachute Advansed Aloe Vera Enriched Coconut Hair Oil** – ₹78, rating 4.3/5 [P9323] - **Patanjali C… | Y | N → N | 5/5 in expected | 1.4 s | 2 |  |
-| Q9 | cross-category | coconut oil for cooking | Organic Coconut Oil/Narial Tel; Organic Coconut Oil/Narial Tel; Coconut Oil - Cold Pressed | Y | Here are the coconut‑oil options for cooking found in the data (the catalogue does not record pack sizes, so variants are listed only by price): - **Earthon Organic Coconut Oil/Narial Tel** – ₹130, not rated [P22405] - **Earthon Organic Coconut Oil/Narial Tel… | Y | N → N | 5/5 in expected | 2.7 s | 2 |  |
-| Q10 | cross-category | Cheapest floor cleaner | Floor Cleaner - Pine White; Floor Cleaner - Pine; Floor Cleaner - Lime | Y | - **Floor Cleaner – Pine White** – ₹50, Rating 4/5 [P19563] - **Floor Cleaner – Pine** – ₹55, Rating 3.7/5 [P7398] - **Floor Cleaner – Lime** – ₹70, Rating 3.8/5 [P451] These are the three lowest‑priced floor cleaners in the data. | Y | N → N | 0 forbidden | 3.2 s | 2 |  |
-| Q11 | non-food comparison | Compare Dove and Pears bathing soaps on price and rating. | Care & Protect Moisturising Cream Beauty Bathing Bar; Pure & Gentle Bathing Bar; Go Fresh Moisture Bathing Bar Soap | Y | **Dove bathing soaps** - Care & Protect Moisturising Cream Beauty Bathing Bar – Price **₹199**, Rating **4.3/5** [P15030] - Go Fresh Moisture Bathing Bar Soap – Price **₹50**, Rating **4.2/5** [P8528] - Cream Beauty Bathing Bar – Price **₹340**, Rating **4.3/… | Y | N → N |  | 2.0 s | 2 |  |
+| Q1 | factual | What is the price of Fortune sunflower refined oil 1 L? | Sun Lite - Sunflower Refined Oil; Sun Lite - Sunflower Refined Oil; Refined Oil - Rice Bran | Y | Fortune Sunflower Refined Oil (Sun Lite) – two price variants are listed: - Price ₹171 (MRP ₹233) – rating 4.1/5 [P15438] - Price ₹866 (MRP ₹1,195) – rating 4.1/5 [P6749] The dataset does not record pack sizes, so the exact “1 L” size cannot be confirmed. | Y | N → N |  | 4.3 s | 2 |  |
+| Q2 | comparison | Compare Aashirvaad and Pillsbury whole wheat atta 5 kg on price and rating. | Select Atta/Godihittu; Atta/Godihittu - Multigrain; Sugar Release Control Atta/Godihittu | Y | - **Aashirvaad whole wheat atta** – Price ₹406, Rating 4.1/5 [P23556] - **Pillsbury whole wheat atta** – No whole‑wheat atta product for Pillsbury is present in the data. The dataset does not record pack sizes for these items. | Y | N → N |  | 2.9 s | 2 |  |
+| Q3 | multi-part | Give me everything I need for dal makhani for 4 people, budget mode, I already have salt … | Urad - Black, Whole/Sabut; Red Rajma/Capparadavare; Fresh Cream | Y | This cart was built from the **ingredients of the recipe ‘Creamy Dal Makhani’ from the Archana's Kitchen recipe dataset (serves 4)**, selecting the budget options. It includes essentials like Black Urad Dal at ₹31 [P16295] and Fresh Cream at ₹47 [P16605], plu… | Y | N → N |  | 4.1 s | 1 |  |
+| Q4 | pasted recipe | Quick poha: 2 cups poha, 1 onion chopped, 1/2 tsp mustard seeds, 8-10 curry leaves, 1 gre… | Organic Poha (Flattened Rice/Aval/Atukulu); Onion; Organic Mustard/Sasive Seeds - Whole, Big | Y | Here’s a quick‑shopping list created from the “ingredients extracted from the recipe the user pasted.” It includes key items such as Organic Poha at ₹61.88 [P20102], Fresh Onion at ₹28.71 [P11011] and Lemon Juice Concentrate at ₹285 [P8863]. The cart total co… | Y | N → N |  | 2.3 s | 2 |  |
+| Q5 | hinglish | jeera aur haldi kitne ka hai? | Organic Cumin Seeds/Jeera/Jeerige; Organic Turmeric Powder/Haldi/Arisina Pudi; Organic Cumin Seed Powder | Y | **Jeera (Cumin)** - Organic Cumin Seeds – ₹169, not rated [P22635] - Jeera/Cumin Powder (Ravi) – ₹32, 5/5 [P4842] - Powder – Jeera (JK) – ₹230, 4.4/5 [P5376] **Haldi (Turmeric)** - Organic Turmeric Powder (Earthon) – ₹215, not rated [P19522] - Turmeric Powder… | Y | N → N |  | 2.0 s | 2 |  |
+| Q6 | need → cart (non-food) | I need to deep-clean my bathroom this weekend. | Toilet Cleaner; Toilet Brush - Dual; Disinfectant Bathroom Cleaner - Lemon | Y | Your bathroom deep‑clean kit was assembled from the ‘Bathroom deep‑clean’ kit, a synthetic item list written by the BasketBuddy team (products and prices are real BigBasket data). It includes essentials like Toilet Cleaner ₹149 [P13659] and Disinfectant Floor… | Y | N → N | 0 forbidden | 1.6 s | 1 |  |
+| Q7 | need → cart (non-food) | Skincare routine for oily skin under ₹1000. | Oil Control Face Wash - Sulphate Free; Purifying Toner; Oil Control Moisturiser | Y | Here’s a quick look at the ‘Oily‑skin routine’ kit, a synthetic item list written by the BasketBuddy team (products and prices are real BigBasket data). The cart includes the Oil Control Face Wash at ₹80.75 [P6538] and the Ultra Sheer Dry Touch SPF 50 Sun Blo… | Y | N → N |  | 2.4 s | 1 |  |
+| Q8 | cross-category | coconut oil for hair | Advansed Aloe Vera Enriched Coconut Hair Oil; Coconut Oil; Advansed Aloe Vera Enriched Coconut Hair Oil | Y | Here are the coconut‑oil‑for‑hair options in the data (the catalogue does not record pack sizes, so variants with different prices are listed separately): - **Parachute Advansed Aloe Vera Enriched Coconut Hair Oil** – ₹78, rating 4.3/5 [P9323] - **Parachute A… | Y | N → N | 5/5 in expected | 5.2 s | 2 |  |
+| Q9 | cross-category | coconut oil for cooking | Organic Coconut Oil/Narial Tel; Organic Coconut Oil/Narial Tel; Coconut Oil - Cold Pressed | Y | Here are the coconut‑oil options for cooking found in the data (the catalogue does not record pack sizes, so variants with the same name appear as separate entries): - **Earthon Organic Coconut Oil/Narial Tel** – ₹130 [P22405] - **Earthon Organic Coconut Oil/… | Y | N → N | 5/5 in expected | 2.6 s | 3 |  |
+| Q10 | cross-category | Cheapest floor cleaner | Floor Cleaner - Pine White; Floor Cleaner - Pine; Floor Cleaner - Lime | Y | - **Floor Cleaner - Pine White** – ₹50, Rating 4/5 [P19563] - **Floor Cleaner - Pine** – ₹55, Rating 3.7/5 [P7398] - **Floor Cleaner - Lime** – ₹70, Rating 3.8/5 [P451] | Y | N → N | 0 forbidden | 3.4 s | 2 |  |
+| Q11 | non-food comparison | Compare Dove and Pears bathing soaps on price and rating. | Care & Protect Moisturising Cream Beauty Bathing Bar; Pure & Gentle Bathing Bar; Go Fresh Moisture Bathing Bar Soap | Y | **Dove bathing soaps** - Care & Protect Moisturising Cream Beauty Bathing Bar – Price **₹199**, Rating **4.3/5** [P15030] - Go Fresh Moisture Bathing Bar Soap – Price **₹50**, Rating **4.2/5** [P8528] - Cream Beauty Bathing Bar – Price **₹340**, Rating **4.3/… | Y | N → N |  | 7.3 s | 2 |  |
 | Q12 | unsupported | Is paneer in stock in Koramangala right now? |  | n/a | I can't answer that from the BigBasket catalogue data I have. _Why: stock, delivery and availability aren't in the dataset (it's a static price snapshot)._ I can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), … | n/a | Y → Y (out_of_scope) |  | 0.0 s | 0 |  |
 | Q13 | unsupported | Is Blinkit cheaper than BigBasket? |  | n/a | I can't answer that from the BigBasket catalogue data I have. _Why: the dataset only covers BigBasket, so it can't compare other shopping apps._ I can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), or look up … | n/a | Y → Y (out_of_scope) |  | 0.0 s | 0 |  |
-| Q14 | unsupported (off-catalogue) | best laptop under 50000 |  | n/a | I can't answer that from the BigBasket catalogue data I have. _Why: question is about laptops, not grocery/household products._ I can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), or look up and compare BigBa… | n/a | Y → Y (out_of_scope) |  | 0.8 s | 1 |  |
-| Q15 | need → AI list (confirmed) | I'm getting a pet tortoise, what should I buy? |  | N | I can't answer that from the BigBasket catalogue data I have. _Why: none of the items matched a BigBasket product._ I can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), or look up and compare BigBasket product… | n/a | N → Y (no_match) |  | 1.4 s | 1 |  |
+| Q14 | unsupported (off-catalogue) | best laptop under 50000 |  | n/a | I can't answer that from the BigBasket catalogue data I have. _Why: the request is for a laptop, which is not sold by BigBasket._ I can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), or look up and compare Big… | n/a | Y → Y (out_of_scope) |  | 0.9 s | 1 |  |
+| Q15 | need → AI list (confirmed) | I'm getting a pet tortoise, what should I buy? |  | N | I can't answer that from the BigBasket catalogue data I have. _Why: none of the items matched a BigBasket product._ I can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), or look up and compare BigBasket product… | n/a | N → Y (no_match) |  | 2.2 s | 1 |  |
 | Q16 | dish (sidebar servings) | paneer butter masala | Organic Tofu - Soy Paneer; Tomato - Local, Organically Grown; Chilli Powder/Menasina Pudi | Y | This cart was generated from the **ingredients of the recipe ‘Paneer Butter Masala’ from the Archana’s Kitchen recipe dataset (serves 4; quantities scaled ×1.5 for 6 people)**. It includes items such as Organic Tofu – Soy Paneer at ₹85.14 [P20], Premium Butte… | Y | N → N |  | 2.0 s | 1 |  |
+| Q17 | dish (conversational) | i need to cook butter chicken for 5 ppl | Fresh Boneless Chicken Breast; Dahi - Made From Toned Milk; Paste - Ginger Garlic | Y | This cart was generated from the **ingredients of the recipe 'Butter Chicken - The Classic Indian Chicken Gravy' from the Archana's Kitchen recipe dataset (serves 4; quantities scaled ×1.25 for 5 people)**. It includes Fresh Boneless Chicken Breast at ₹240 [P… | Y | N → N |  | 5.0 s | 1 |  |
+| Q18 | recommendation (personal care) | my skin is oily, what cleanser should i use | Deep Clean Facial Cleanser - Normal to Oily Skin; Anti-Acne Face Cleanser - With Salyclic Acid, For Oily Skin; Oil Free Acne Wash Facial Cleanser | Y | For oily skin, the catalogue lists these facial cleansers: - **Deep Clean Facial Cleanser – Normal to Oily Skin** – ₹123.5, Rating 4.2/5 [P17600] - **Anti‑Acne Face Cleanser – With Salicylic Acid, For Oily Skin** – ₹236, Rating 3/5 [P305] - **Oil Free Acne Wa… | Y | N → N | 5/5 in expected | 2.2 s | 2 |  |
 
 ## 2. Retrieval ablation
 
@@ -101,17 +103,17 @@ Manual score: 1 = wrong or irrelevant, 2 = partly right, 3 = correct and relevan
 
 Catalogue-style questions with an answer in the catalogue (`on`, 15) and without (`off`, 15), run through the real catalogue path (decompose → retrieve_catalogue). Best vector similarity per question; `stopped_by` is the first check that stopped it.
 
-- `on` best similarity: min **0.710**, mean 0.793
-- `off` best similarity: max **0.692**, mean 0.650 (8 stopped before retrieval)
+- `on` best similarity: min **0.710**, mean 0.795
+- `off` best similarity: max **0.692**, mean 0.643 (4 stopped before retrieval)
 
 | threshold | answerable kept | unanswerable blocked |
 |---|---|---|
-| 0.64 | 15/15 | 2/7 |
-| 0.66 | 15/15 | 4/7 |
-| 0.68 | 15/15 | 5/7 |
-| 0.70 | 15/15 | 7/7 |
-| 0.72 | 14/15 | 7/7 |
-| 0.74 | 14/15 | 7/7 |
+| 0.64 | 15/15 | 5/11 |
+| 0.66 | 15/15 | 7/11 |
+| 0.68 | 15/15 | 8/11 |
+| 0.70 | 15/15 | 11/11 |
+| 0.72 | 14/15 | 11/11 |
+| 0.74 | 14/15 | 11/11 |
 
 <details><summary>Per-question similarities</summary>
 
@@ -120,7 +122,7 @@ Catalogue-style questions with an answer in the catalogue (`on`, 15) and without
 | on | Fortune sunflower oil price | answered | 0.805 |
 | on | cheapest floor cleaner | answered | 0.784 |
 | on | Dove soap price | answered | 0.820 |
-| on | compare toothpaste brands | answered | 0.748 |
+| on | compare toothpaste brands | answered | 0.770 |
 | on | best rated shampoo | answered | 0.710 |
 | on | basmati rice under 200 | answered | 0.814 |
 | on | dog food price | answered | 0.798 |
@@ -131,21 +133,21 @@ Catalogue-style questions with an answer in the catalogue (`on`, 15) and without
 | on | instant noodles | answered | 0.797 |
 | on | dark chocolate | answered | 0.774 |
 | on | garbage bags price | answered | 0.796 |
-| on | sunscreen for oily skin | answered | 0.803 |
+| on | sunscreen for oily skin | answered | 0.808 |
 | off | best laptop under 50000 | scope rule |  |
 | off | iPhone 15 price | scope rule |  |
 | off | cricket bat | scope rule |  |
 | off | sofa set for living room | scope rule |  |
 | off | washing machine 7 kg | threshold | 0.691 |
-| off | car tyres | scope rule |  |
-| off | running shoes for men | scope rule |  |
+| off | car tyres | threshold | 0.618 |
+| off | running shoes for men | threshold | 0.683 |
 | off | office chair | threshold | 0.645 |
 | off | LED television 43 inch | threshold | 0.672 |
-| off | gold necklace | scope rule |  |
-| off | bicycle for kids | scope rule |  |
+| off | gold necklace | threshold | 0.622 |
+| off | bicycle for kids | threshold | 0.603 |
 | off | airpods case | threshold | 0.613 |
 | off | printer ink cartridge | threshold | 0.692 |
-| off | air conditioner 1.5 ton | threshold | 0.599 |
+| off | air conditioner 1.5 ton | threshold | 0.589 |
 | off | wooden study table | threshold | 0.641 |
 
 </details>

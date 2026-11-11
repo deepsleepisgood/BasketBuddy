@@ -113,3 +113,57 @@ def test_conversational_dish_requests(msg, dish, servings):
 
 def test_for_cooking_stays_a_product_question():
     assert classify("coconut oil for cooking")[0] == "catalogue"
+
+
+@pytest.mark.parametrize("msg, dish, servings", [
+    ("whats needed for chicken biryani for 8", "chicken biryani", 8),
+    ("how do i make aloo paratha", "aloo paratha", None),
+    ("tonight's dinner: chole bhature for 3 people", "chole bhature", 3),
+    ("can u help me cook kadhai paneer", "kadhai paneer", None),
+    ("I want to bake a chocolate cake", "chocolate cake", None),
+    ("mujhe rajma chawal banana hai 4 logo ke liye", "rajma chawal", 4),
+    ("aloo gobi banana hai", "aloo gobi", None),
+    ("planning to make gulab jamun for diwali", "gulab jamun", None),
+])
+def test_more_dish_phrasings(msg, dish, servings):
+    assert classify(msg)[0] == "dish"
+    assert dish_name_from(msg) == dish
+    assert extract_servings(msg) == servings
+
+
+def test_party_of_n_gives_servings():
+    assert extract_servings("pav bhaji for a party of 10") == 10
+    assert dish_name_from("pav bhaji for a party of 10") == "pav bhaji"
+
+
+@pytest.mark.parametrize("msg, intent", [
+    ("best diapers for a newborn", "catalogue"),      # a product *for* a baby, not the newborn kit
+    ("food for my puppy", "catalogue"),
+    ("we're getting a puppy", "need"),
+    ("need stuff for diwali puja", "need"),
+    ("mosquito repellent safe for babies", "catalogue"),   # product safety ≠ medical advice
+    ("my baby has a rash, what dose of medicine should i give", "out_of_scope"),
+    ("book a table for 2 at a restaurant", "out_of_scope"),
+    ("hi", "smalltalk"), ("thanks!", "smalltalk"), ("?", "smalltalk"),
+    ("restaurant style paneer butter masala for 4", "dish"),
+])
+def test_routing_edge_cases(msg, intent):
+    assert classify(msg)[0] == intent
+
+
+@pytest.mark.parametrize("dish, title", [
+    ("kadhai paneer", "Kadai Paneer"),                       # spelling variant of a title word
+    ("chicken biryani", "Chicken Dum Biryani"),              # not "Chicken Kappa (tapioca) Biryani"
+    ("hakka noodles", "Vegetarian Hakka Noodles - Vegetarian Hakka Noodles"),  # not the egg version
+    ("aloo gobi", "Aloo Gobi Sabzi - Potato And Cauliflower Dry Curry"),       # not cabbage / kathi roll
+    ("dal makhani", "Creamy Dal Makhani"),
+])
+def test_literal_recipe_prefers_plain_titles(dish, title):
+    from rag.decompose import _recipes, correct_dish_spelling, literal_recipe
+    rid = literal_recipe(correct_dish_spelling(dish))
+    assert rid is not None and _recipes().loc[rid]["name"] == title
+
+
+def test_dish_typo_is_corrected():
+    from rag.decompose import correct_dish_spelling
+    assert correct_dish_spelling("panner butter masala") == "paneer butter masala"

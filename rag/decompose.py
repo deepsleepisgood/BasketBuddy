@@ -24,7 +24,7 @@ import config
 from rag.ingredients import ParsedIngredient, parse_ingredient_list
 from rag.synonyms import expand_query
 
-Intent = Literal["dish", "recipe_text", "need", "catalogue", "out_of_scope"]
+Intent = Literal["dish", "recipe_text", "need", "catalogue", "out_of_scope", "smalltalk"]
 Mode = Literal["Best match", "Budget", "Top rated"]
 DOMAINS = ("food", "personal_care", "household", "baby", "kitchen", "pets", "other")
 
@@ -85,11 +85,12 @@ class Plan:
 # --- entity extraction (rules) --------------------------------------------------------
 
 _PEOPLE_WORDS = (r"people|persons?|ppl|peeps|pax|guests|servings|members|adults|folks|friends|kids|"
-                 r"family members|of us")
+                 r"family members|of us|log|logo|logon|logoan|jan|jane|jano|bande|bando")
 _SERVINGS_RE = re.compile(
     rf"\b(?:for|serves?|serving)\s+(\d{{1,2}})\s*({_PEOPLE_WORDS})?\b", re.I)
 # "5 ppl", "4 of us", "family of 4"
-_PEOPLE_RE = re.compile(rf"\b(?:family of\s+(\d{{1,2}})|(\d{{1,2}})\s+({_PEOPLE_WORDS}))\b", re.I)
+_PEOPLE_RE = re.compile(
+    rf"\b(?:(?:family|party|group|gathering) of\s+(\d{{1,2}})|(\d{{1,2}})\s+({_PEOPLE_WORDS}))\b", re.I)
 _BUDGET_RE = re.compile(
     r"(?:under|below|less than|within|upto|up to|max(?:imum)?|budget(?: of| is)?|not more than)\s*"
     r"(?:rs\.?|inr|₹)?\s*(\d[\d,]*)", re.I)
@@ -178,11 +179,12 @@ _OOS_RULES: list[tuple[str, str]] = [
      r"|nature'?s basket|more supermarket|spencer'?s)\b",
      "the dataset only covers BigBasket, so it can't compare other shopping apps"),
     (r"\b(cure|cures|treat|treats|treatment|disease|diabetes|blood pressure|cholesterol|cancer|pregnan\w*"
-     r"|dosage|side effects?|doctor|prescription|is it safe|safe for|good for (my )?(health|heart|kidney|liver)"
+     r"|dosage|dose|side effects?|doctor|prescription|good for (my )?(health|heart|kidney|liver)"
      r"|lose weight|weight loss|allerg\w*|medicine for|medical advice)\b",
      "medical, health and skin advice beyond the product description isn't something the data can support"),
     (r"\b(weather|cricket|ipl|news|stock market|share price|bitcoin|politics|election|write (me )?(a |an )?(code|poem|essay|story)"
-     r"|tell me a joke|who (is|was) the|capital of)\b",
+     r"|tell me a joke|who (is|was) the|capital of|book (a )?table|table reservation|(at|in) a restaurant"
+     r"|order food|zomato|movie tickets?|flight|train ticket|hotel booking)\b",
      "the question isn't about BigBasket products"),
 ]
 _RECIPE_TEXT_QTY = re.compile(
@@ -198,7 +200,10 @@ _NEED_RE = re.compile(
 _DISH_RE = re.compile(
     r"\b(make|cook|prepare|recipe (for|of)|ingredients (for|of|needed for|to make)|"
     r"everything (i need |needed )?(for|to make)|what (do|would) i need (for|to make)|shopping list for|"
-    r"cart for|i want to make|planning to make|dinner of|lunch of|making|(?<!for )cooking)\b", re.I)
+    r"cart for|i want to make|planning to make|dinner of|lunch of|making|(?<!for )cooking|bake|"
+    r"(?<!for )baking|"
+    # Hinglish: "rajma chawal banana hai", "aloo gobi bnana h"
+    r"(?:banana|bnana|banani|banaana|banaani|bnani) (?:hai|he|h)|bnana|bnani)\b", re.I)
 _CATALOGUE_RE = re.compile(
     r"\b(price|prices|cost|costs|cheap|cheapest|expensive|compare|comparison|vs\.?|versus|rating|rated|reviews?|"
     r"brands?|which|best|how much|kitne|kitna|kya|discount|mrp|offer|difference|options|show me|list|"
@@ -228,15 +233,29 @@ _DISH_FILLER = re.compile(
     r"for dinner|for lunch|a cart|the cart|budget mode|top rated|best match|mode|"
     # conversational lead-ins: "i need to cook butter chicken for 5 ppl" → "butter chicken"
     r"i need to|need to|i have to|have to|got to|gotta|gonna|going to|want to|wanna|would like to|"
-    r"help me|let'?s|we are|we're|i am|i'm|making|cooking|cooked|this weekend)\b", re.I)
+    r"help me|let'?s|we are|we're|i am|i'm|making|cooking|cooked|this weekend|"
+    r"what'?s needed|whats needed|what is needed|needed|how (do|can|should|would) (i|we|you|u)|how to|"
+    r"can u|could u|pls|plz|tonight'?s|today'?s|tomorrow'?s|bake|baking|"
+    r"(?:banana|bnana|banani|banaana|banaani|bnani) (?:hai|he|h)|bnana|bnani|mujhe|humein|hume|hamein|"
+    r"ke liye|ke lie|liye|"
+    # occasions: "gulab jamun for diwali", "pav bhaji for a party of 10"
+    r"for (?:a |the |our |my )?(?:party|diwali|holi|eid|christmas|guests|birthday|potluck|festival|"
+    r"get[- ]together|weekend|celebration|picnic)(?: of \d+)?)\b", re.I)
 # Words that change the dish (penalised unless the user asked for them) …
 _VARIANT_WORDS = {"jain", "without", "no", "onion", "garlic", "masoor", "oats", "millet", "ragi", "quinoa",
                   "vegan", "eggless", "sugar", "free", "low", "fat", "protein", "diabetic", "sattvic", "biryani",
-                  "pulao", "salad", "wrap", "cutlet", "cutlets", "soup", "sandwich", "paratha", "noodles"}
+                  "pulao", "salad", "wrap", "cutlet", "cutlets", "soup", "sandwich", "paratha", "noodles",
+                  "roll", "frankie", "kathi", "pizza", "pasta", "trifle", "pudding", "bread", "dosa", "kappa",
+                  "rum", "wine", "flourless", "fusion", "flavored", "flavoured", "stuffed", "bites", "tikki",
+                  "kebab", "burger", "cheesy", "keema", "soya", "achari", "shakarkandi", "fried", "rice",
+                  # a main ingredient the user didn't name ("Egg Hakka Noodles" for "hakka noodles")
+                  "egg", "chicken", "mutton", "prawn", "fish", "paneer", "tofu", "mushroom", "corn"}
 # … and words that only describe it (ignored when counting extra words).
 _DESCRIPTOR_WORDS = {"creamy", "delicious", "easy", "quick", "homemade", "home", "restaurant", "style",
                      "classic", "authentic", "simple", "special", "rich", "spicy", "tasty", "punjabi",
-                     "dhaba", "traditional", "best", "perfect", "recipe"}
+                     "dhaba", "traditional", "best", "perfect", "recipe", "one", "pot", "using", "preethi",
+                     "electric", "pressure", "cooker", "instant", "sabzi", "sabji", "curry", "dry", "gravy",
+                     "weeknight", "dinner", "wholesome", "masaledar", "style", "version", "way"}
 
 
 def dish_name_from(msg: str) -> str:
@@ -248,6 +267,7 @@ def dish_name_from(msg: str) -> str:
     text = _BUDGET_RE.sub(" ", text)
     text = _DISH_FILLER.sub(" ", text)
     text = re.sub(r"[^\w\s&'-]", " ", text)
+    text = re.sub(r"(?<!\w)'s\b|\B'|'\B", " ", text)   # stray possessives/quotes ("tonight's" → "")
     text = re.sub(r"\b(for|of|the|a|an|i|me|my|we|us|our|some|and|with|to|need|want|people|persons|ppl|"
                   r"peeps|folks|friends|kids|family|guests|members|adults|everyone|dinner|lunch|breakfast)\b",
                   " ", text, flags=re.I)
@@ -287,6 +307,60 @@ def choose_recipe(dish: str, hits: list[Any]) -> tuple[Any | None, list[Any]]:
     return ranked[0], ranked[1:]
 
 
+@lru_cache(maxsize=1)
+def _recipe_vocab() -> frozenset[str]:
+    return frozenset(w for n in _recipes()["name"] for w in re.findall(r"[a-z]+", n.lower()) if len(w) > 2)
+
+
+def correct_dish_spelling(dish: str) -> str:
+    """Fix typos against words that occur in recipe titles: 'panner' → 'paneer', 'kadhai' → 'kadai'."""
+    import difflib
+
+    vocab = _recipe_vocab()
+    out = []
+    for w in dish.lower().split():
+        if len(w) >= 4 and w not in vocab:
+            close = difflib.get_close_matches(w, vocab, n=1, cutoff=0.8)
+            w = close[0] if close else w
+        out.append(w)
+    return " ".join(out)
+
+
+def _title_head(name: str) -> str:
+    """The part of a title before an English gloss: 'Aloo Gobi Sabzi - Potato And …' → 'Aloo Gobi Sabzi'."""
+    return re.split(r"\s+-\s+|\(", name)[0]
+
+
+def literal_recipe(dish: str) -> int | None:
+    """The plainest recipe whose title contains every word of the dish, or None.
+
+    Semantic search ranks "Paneer Chilli Dosa" above "Kadai Paneer" for "kadai paneer"; a
+    title that literally contains the dish is a better answer. Among such titles, prefer
+    fewer variant words the user didn't ask for, then fewer extra words, then shorter titles.
+    """
+    import difflib
+
+    words = [w.rstrip("s") for w in re.findall(r"[a-z]+", dish.lower()) if len(w) > 2]
+    if not words:
+        return None
+    # spelling variants per word, from recipe titles: kadhai ~ kadai ~ karahi, chole ~ chhole
+    vocab = _recipe_vocab()
+    variants = {w: {w} | {v.rstrip("s") for v in difflib.get_close_matches(w, vocab, n=4, cutoff=0.8)} for w in words}
+    asked = set(words) & _VARIANT_WORDS
+    best = None
+    for rid, name in _recipes()["name"].items():
+        head = _title_head(name).lower()
+        head_words = {w.rstrip("s") for w in re.findall(r"[a-z]+", head)}
+        if not all(variants[w] & head_words for w in words):
+            continue
+        matched = set().union(*(variants[w] & head_words for w in words))
+        extra = head_words - matched - _DESCRIPTOR_WORDS
+        key = (len((extra & _VARIANT_WORDS) - asked), len(extra), len(head))
+        if best is None or key < best[0]:
+            best = (key, int(rid))
+    return best[1] if best else None
+
+
 def exact_recipe(dish: str) -> int | None:
     """recipe_id whose name equals the dish name (case-insensitive), if any."""
     names = _recipes()["name"].str.lower().str.strip()
@@ -318,14 +392,22 @@ def recipe_sub_queries(ingredients: list[ParsedIngredient], scale: float, pantry
 def plan_dish(plan: Plan, dish: str) -> Plan:
     from rag.retriever import hybrid_search
 
+    fixed = correct_dish_spelling(dish)
+    if fixed != dish.lower():
+        plan.trace.append(f"Spelling corrected against recipe titles: '{dish}' → '{fixed}'.")
+        dish = fixed
     res = hybrid_search(dish, k=8, collection="recipes")
     plan.trace.append(f"Recipe search for '{dish}': top hits " + ", ".join(
         f"{h.metadata['name']} ({h.vector_sim:.2f})" for h in res.hits[:5]))
     exact_id = exact_recipe(dish)
+    literal_id = None if exact_id is not None else literal_recipe(dish)
     best, others = choose_recipe(dish, res.hits)
     if exact_id is not None:  # an exact title beats any semantic neighbour
         recipe_id, similarity, how = exact_id, 1.0, "exact title match"
         others = [h for h in res.hits if h.metadata["recipe_id"] != exact_id]
+    elif literal_id is not None:  # a title containing every dish word beats a semantic neighbour
+        recipe_id, similarity, how = literal_id, 1.0, "title contains the dish name"
+        others = [h for h in res.hits if h.metadata["recipe_id"] != literal_id]
     elif best is not None:
         recipe_id, similarity, how = int(best.metadata["recipe_id"]), best.vector_sim, f"similarity {best.vector_sim:.2f}"
     else:
@@ -456,6 +538,12 @@ def plan_need(plan: Plan, core: str, kit_hit: Any | None = None) -> Plan:
         for it in data.get("items", [])[:10]:
             name = str(it.get("item", "")).strip()
             dom = it.get("domain") if it.get("domain") in DOMAINS else None
+            # the LLM sometimes files an item on the wrong shelf ("olive oil" → kitchen became an oil
+            # dispenser); a confident keyword/purpose rule wins over its label
+            from rag.retriever import infer_domain
+            rule_dom, _, rule_how = infer_domain(name)
+            if rule_how in ("purpose phrase", "keyword rule") and rule_dom:
+                dom = rule_dom
             if name:
                 plan.sub_queries.append(SubQuery(
                     text=name, label=name, domain=dom, quantity=it.get("qty"), unit=it.get("unit"),
@@ -480,6 +568,8 @@ Rules:
 - Keep brand, product type and pack-size words. Translate Hindi/Hinglish product words to English
   and keep the original too (e.g. "jeera cumin").
 - Never add products the user did not mention.
+- A broad question is still in scope: "compare toothpaste brands" -> sub_queries ["toothpaste"]; use the
+  product type as the sub-query when no brand or variant is named.
 - "cheapest" → sort price_asc; "best rated"/"highest rated" → rating_desc; "under ₹300" → max_price 300;
   "rated above 4" → min_rating 4.
 - in_scope is TRUE for any request to find, price, compare or recommend products, including
@@ -546,12 +636,21 @@ def plan_catalogue(plan: Plan) -> Plan:
     try:
         data, resp = complete_json(_CATALOGUE_SYSTEM, plan.message, fast=True)
         plan.llm_calls += 1
-        if data.get("in_scope") is False:
-            plan.intent = "out_of_scope"
-            plan.reason = data.get("reason") or "the question isn't about BigBasket products"
-            plan.trace.append(f"LLM judged the question out of scope: {plan.reason}")
-            return plan
         queries = [str(q).strip() for q in data.get("sub_queries", []) if str(q).strip()]
+        if data.get("in_scope") is False:
+            reason = data.get("reason") or "the question isn't about BigBasket products"
+            # The rules already found a catalogue product word ("toothpaste", "for hair") and no scope
+            # rule fired, so a refusal is the LLM being over-literal ("compare toothpaste brands":
+            # "no specific brands mentioned"). Keep going; retrieval and the guard still apply.
+            if how in ("purpose phrase", "keyword rule"):
+                plan.trace.append(f"LLM said out of scope ({reason}), but the rules found a product word "
+                                  f"({how}: {dom}); continuing as a catalogue question.")
+                queries = queries or _rule_catalogue_split(plan.message)
+            else:
+                plan.intent = "out_of_scope"
+                plan.reason = reason
+                plan.trace.append(f"LLM judged the question out of scope: {plan.reason}")
+                return plan
         plan.constraints = {k: data.get(k) for k in ("max_price", "min_rating", "sort") if data.get(k) is not None}
         plan.trace.append(f"LLM decomposition ({resp.model}{', cached' if resp.cached else ''}): {queries}; "
                           f"constraints {plan.constraints or 'none'}")
@@ -578,10 +677,26 @@ def plan_catalogue(plan: Plan) -> Plan:
 
 # --- entry point ----------------------------------------------------------------------
 
+_SMALLTALK_RE = re.compile(
+    r"^\s*(hi+|hello+|hey+|hiya|yo|namaste|namaskar|good (morning|afternoon|evening|night)|thanks?( you)?|"
+    r"thank u|thx|ty|ok(ay)?|cool|great|nice|bye|goodbye|see you|who are you|what can you do|help)"
+    r"[\s!.?]*(basketbuddy|bot)?[\s!.?]*$", re.I)
+# "best diapers for a newborn", "food for my puppy": a product for a recipient, not a "new baby" kit.
+_FOR_RECIPIENT_RE = re.compile(
+    r"\bfor (?:a |an |my |our |the )?(?:newborn|new ?born|new baby|baby|babies|infant|toddler|puppy|kitten|"
+    r"dog|cat|pet)s?\b", re.I)
+_GENERIC_NEED_WORDS = re.compile(r"\b(stuff|things|everything|essentials|items|what (should|do) i|starter|kit)\b", re.I)
+
+
 def classify(msg: str) -> tuple[Intent, str]:
     """Rule-based intent with the rule that fired (shown in the Evidence panel)."""
+    if _SMALLTALK_RE.match(msg) or not re.search(r"[a-zA-Z\u0900-\u097F]{2,}", msg):
+        return "smalltalk", "greeting, thanks or no question"
     if reason := _oos_reason(msg):
         return "out_of_scope", reason
+    if (_FOR_RECIPIENT_RE.search(msg) and not _GENERIC_NEED_WORDS.search(msg)
+            and not _DISH_RE.search(msg) and not _looks_like_recipe_text(msg)):
+        return "catalogue", f"a product for a recipient: '{_FOR_RECIPIENT_RE.search(msg).group(0)}'"
     if _looks_like_recipe_text(msg):
         return "recipe_text", "message contains a list of quantities (pasted recipe)"
     if _NEED_RE.search(msg) and not _DISH_RE.search(msg):
@@ -615,9 +730,20 @@ def decompose(message: str, extra_pantry: list[str] | None = None, default_servi
     if plan.pantry:
         plan.trace.append(f"Pantry (excluded from the cart): {', '.join(plan.pantry)}")
 
-    if intent == "out_of_scope":
+    if intent in ("out_of_scope", "smalltalk"):
         plan.reason = why
         return plan
+
+    if intent == "need" and extract_servings(msg):
+        # "pav bhaji for a party of 10": an occasion word, but the message names a dish for N people.
+        name = dish_name_from(msg)
+        if 0 < len(name.split()) <= 5:
+            name = correct_dish_spelling(name)
+            rec_id = exact_recipe(name) if exact_recipe(name) is not None else literal_recipe(name)
+            rec = None if rec_id is not None else choose_recipe(name, hybrid_search(name, k=8, collection="recipes").hits)[0]
+            if rec_id is not None or (rec is not None and rec.vector_sim >= config.RECIPE_MATCH_SIM + 0.1):
+                plan.intent = "dish"
+                plan.trace.append(f"Re-classified as dish: '{name}' names a recipe and the message gives servings.")
 
     if intent == "catalogue" and why.endswith("(default)"):
         # Short bare names ("paneer butter masala") may be dishes; check the recipe index.

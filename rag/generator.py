@@ -130,6 +130,10 @@ def catalogue_context(plan: Plan, results: list[CatalogueResult]) -> Context:
     lines = [f"Question: {plan.message}"]
     if plan.constraints:
         lines.append(f"Filters applied by the app: {plan.constraints}")
+    # the user's own price limit ("under ₹300") may be quoted back
+    for amt in (plan.constraints.get("max_price"), plan.budget):
+        if amt is not None:
+            ctx.extra_amounts.add(round(float(amt), 2))
     for cr in results:
         sq = cr.sub_query
         head = f"Products for '{sq.text}'" + (f" (brand {sq.brand})" if sq.brand else "")

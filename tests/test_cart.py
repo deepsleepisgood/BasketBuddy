@@ -66,3 +66,22 @@ def test_achar_is_a_processed_form():
     # Phase 8 eval: "nimbu" (lemon) matched "Nimbu Achar"
     assert processed_mismatch("nimbu", "Nimbu Achar") == "achar"
     assert processed_mismatch("lemon pickle", "Lime Pickle") is None
+
+
+def _hit(name):
+    return SimpleNamespace(metadata={"product": name, "type": ""})
+
+
+def test_food_needs_a_key_word_not_just_the_form():
+    from rag.cart import _rank_food_by_words
+    hits, why = _rank_food_by_words("protein powder", [_hit("Organic Powder - Fenugreek")])
+    assert hits == [] and "no product names" in why
+
+
+def test_food_ranking_prefers_more_words_and_single_items():
+    from rag.cart import _rank_food_by_words
+    combo = _hit("Coconut Milk 200ml + Chicken Breast Boneless 500G")
+    plain = _hit("Fresh Boneless Chicken Breast")
+    other = _hit("Chicken Masala")
+    hits, _ = _rank_food_by_words("boneless chicken", [combo, other, plain])
+    assert hits[0] is plain and hits[-1] is not plain

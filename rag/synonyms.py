@@ -39,6 +39,9 @@ HINGLISH_TO_ENGLISH: dict[str, str] = {
     # "patta" = leaves: without these, "dhaniya patta" matched coriander *seeds* (Phase 8 eval)
     "dhaniya patta": "coriander leaves", "dhania patta": "coriander leaves", "hara dhaniya": "coriander leaves",
     "hara dhania": "coriander leaves", "pudina patta": "mint leaves", "methi patta": "fenugreek leaves",
+    # English phrases BigBasket sells under a Hindi name ("All Purpose Flour" → "Maida")
+    "all purpose flour": "maida", "plain flour": "maida", "cottage cheese": "paneer",
+    "clarified butter": "ghee", "yogurt": "curd dahi", "yoghurt": "curd dahi",
     # dry fruits
     "kaju": "cashew", "badam": "almonds", "kishmish": "raisins",
 }
