@@ -81,6 +81,9 @@ soaps"* (brand filter), *"I'm getting a pet tortoise, what should I buy?"* (AI-s
 
 ```
 app.py                 Streamlit UI (renders only; calls rag.pipeline.answer)
+ui/                    BigBasket-style look: style.py (CSS, product cards, header), basket_download.py
+                       (animated CSV download, a Streamlit custom component)
+.streamlit/config.toml theme: BigBasket greens, crimson CTAs, Plus Jakarta Sans
 config.py              paths, models, thresholds
 ingest/                clean_products, clean_recipes, pack_size, text_fix, build_index
 rag/                   chunking, embeddings, synonyms, category_map, retriever (hybrid + RRF + filters),
@@ -88,7 +91,7 @@ rag/                   chunking, embeddings, synonyms, category_map, retriever (
 data/kits/kits.json    26 synthetic need/occasion kits (team-written)
 eval/                  test_questions.yaml, run_eval.py, results.md, failure_cases.md
 tests/                 pytest: pack sizes, cleaning, chunking, synonyms, RRF, retriever, decomposition,
-                       cart, faithfulness guard
+                       cart, faithfulness guard, UI (cards + headless start-page run)
 docs/                  PIPELINE.md, DATA_LOG.md
 ```
 

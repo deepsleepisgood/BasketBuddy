@@ -648,3 +648,54 @@ before), faithful 14/14, ablation unchanged, and the threshold probe 15/15 answe
 - AI-suggested lists can include items BigBasket doesn't sell (balloons, resistance bands); they are listed
   under "Couldn't find".
 - "sushi for 2" builds a cart: the dataset *does* have a "Vegetarian Sushi" recipe.
+
+## UI refresh: BigBasket look, product cards, basket download (16 Nov 2026)
+
+**Health check first.** Before the redesign: 202 unit tests passed. After it: 210 (8 new UI tests);
+the 56-case edge battery was re-run (result below). No change to `rag/`: the redesign only touches rendering.
+
+**What changed**
+- **Theme** (`.streamlit/config.toml`): BigBasket colours: leaf green `#84C225` / forest green `#689F38`
+  for the brand and active states, crimson `#CC0000` for calls to action, white surfaces, `#F4F6F8`
+  dividers, `#E5E7EB` borders, Plus Jakarta Sans. Locked to light, like the storefront.
+- **Sticky top bar**: logo, a "Cart in seconds" pill, a guest pill and a red basket pill with the live
+  item count and total of the newest cart. The pill bounces when the count changes. On phones it is not
+  sticky, and the tag line and side pills are hidden so it doesn't cover the screen.
+- **"Shop by need" strip**: six pills (Dinner tonight, Party, Deep clean, Self-care, Chai time, Pets);
+  one tap sends a ready-made question.
+- **Product cards** for carts and catalogue answers: discount ribbon (from MRP vs sale price), a
+  category icon (the dataset has no photos), a "for <ingredient>" tag, brand, 2-line title, pack size +
+  rating, price with struck-through MRP.
+  - Veg / non-veg dot only where the category settles it (Fruits & Vegetables; Eggs, Meat & Fish).
+    Other categories get no dot, because the data doesn't say.
+- **Quantity stepper**: an outlined red **Add** at 0 that becomes a solid red `[ − | n | + ]`
+  (BigBasket's pattern). Edits update the total, the savings banner, the budget bar, the header pill and
+  the CSV. A "Quantities edited" badge and a **Reset** button appear; the caption notes that the LLM's
+  text describes the cart as first built (its prices were checked against that cart).
+- **Fun, but honest, extras**: a "You save ₹X vs MRP" banner (real MRP data), a budget progress bar,
+  a hero banner with floating vegetables, a rotating usage tip, a bookmark on every card with a
+  "Saved for later" list in the sidebar, and a toast when the basket is downloaded.
+- **Basket download** (`ui/basket_download.py`): a Streamlit custom component (CCv2, inline). On click,
+  three items drop into the basket, it bounces, turns green with "Basket packed!", then the browser
+  saves the CSV. The file is named after the recipe or kit (`basketbuddy_paneer_butter_masala.csv`)
+  and has a UTF-8 BOM, so Excel shows "₹". With "reduce motion" on, it downloads with no animation.
+
+**Decisions and why**
+- *Own stepper from three buttons, not `st.number_input`*: on a 180 px card the number input hides
+  its −/+ buttons, leaving a bare field.
+- *Quantities live in session state under `q_<message>_<line>`*, separate from the widgets, so a line
+  can go to 0 (Add button) and back without Streamlit dropping the state of an unrendered widget.
+- *No invented store facts*: no "10 min delivery" claim, pincode or free-delivery threshold. The SLA
+  pill says what BasketBuddy really does ("Cart in seconds").
+- *CSS only where the theme can't reach*, targeted through `.st-key-<key>` classes. The one exception is
+  `[data-testid="stHtml"]` inside the stepper (to centre the count). Sticky is set on the layout wrapper
+  around `.st-key-bb_top` (via `:has()`), because the keyed container is only as tall as its wrapper.
+
+**Verification**
+- Streamlit agent API: a dish query renders 13 cards; qty 0 → Add, Add → 1, + → 2, Reset → 1;
+  no exceptions and no server warnings.
+- Browser (Playwright) at 1366 px and 390 px: header, cards, stepper, savings banner, catalogue
+  cards, bookmark → sidebar; no console errors; no horizontal scroll on the phone.
+- Download: one file per click, `basketbuddy_paneer_butter_masala.csv`, 13 rows + header, edited
+  quantity (Paneer ×2) carried into the file; "Basket packed!" toast shown.
+- Edge-case battery re-run after the redesign: 56/56 OK (`BAD: []`).

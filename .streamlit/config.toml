@@ -1,0 +1,24 @@
+# BasketBuddy theme: BigBasket-style colours (leaf green brand, crimson CTAs, white surfaces).
+# Locked light theme, like the BigBasket storefront.
+[theme]
+base = "light"
+primaryColor = "#689F38"            # deep forest green: active states, toggles, primary buttons
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F4F6F8"
+textColor = "#222222"
+linkColor = "#558B2F"
+borderColor = "#E5E7EB"
+showWidgetBorder = true
+baseRadius = "12px"
+buttonRadius = "999px"
+font = "'Plus Jakarta Sans':https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+headingFontWeights = [800, 700, 700, 700, 600, 600]
+codeFont = "monospace"
+redColor = "#CC0000"
+greenColor = "#689F38"
+dataframeHeaderBackgroundColor = "#F4F6F8"
+chartCategoricalColors = ["#689F38", "#CC0000", "#84C225", "#F59E0B", "#0EA5E9"]
+
+[theme.sidebar]
+backgroundColor = "#F4F6F8"
+secondaryBackgroundColor = "#FFFFFF"
