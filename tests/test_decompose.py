@@ -167,3 +167,18 @@ def test_literal_recipe_prefers_plain_titles(dish, title):
 def test_dish_typo_is_corrected():
     from rag.decompose import correct_dish_spelling
     assert correct_dish_spelling("panner butter masala") == "paneer butter masala"
+
+
+@pytest.mark.parametrize("msg, is_dish", [
+    ("butter chicken", True),            # head of "Butter Chicken - The Classic Indian Chicken Gravy"
+    ("panner butter masala", True),      # typo fixed first
+    ("kadai paneer", True),
+    ("green tea", False),                # a recipe title, but 328 product names: a product question
+    ("peanut butter", False),
+    ("paneer", False),                   # one product word never equals a whole title
+    ("amul butter", False),
+])
+def test_bare_dish_name_is_a_dish_unless_it_is_a_common_product(msg, is_dish):
+    from rag.decompose import _bare_dish_title
+
+    assert (_bare_dish_title(msg) is not None) is is_dish

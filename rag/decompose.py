@@ -361,6 +361,39 @@ def literal_recipe(dish: str) -> int | None:
     return best[1] if best else None
 
 
+PRODUCT_NAME_LIMIT = 40   # a bare name in ≥ this many product names is a product ("green tea": 328)
+
+
+def _bare_dish_title(name: str) -> str | None:
+    """The title head ('Butter Chicken') if the message is exactly a recipe title's head, after typo
+    fixes, and the phrase isn't itself a common product: "butter chicken" is in 13 product names
+    (masala mixes), "green tea" in 328 and "peanut butter" in 124, so those two stay product questions."""
+    fixed = correct_dish_spelling(name)
+    rid = literal_recipe(fixed)
+    if rid is None:
+        return None
+    head = _title_head(str(_recipes().loc[rid, "name"])).strip()
+    norm = lambda s: re.sub(r"[^a-z ]", "", s.lower()).split()  # noqa: E731
+    if norm(head) != norm(fixed) or _products_named(" ".join(norm(fixed))) >= PRODUCT_NAME_LIMIT:
+        return None
+    return head
+
+
+@lru_cache(maxsize=256)
+def _products_named(phrase: str) -> int:
+    """How many product names contain every word of the phrase (as word starts)."""
+    names = _product_names()
+    mask = pd.Series(True, index=names.index)
+    for w in phrase.split():
+        mask &= names.str.contains(rf"\b{re.escape(w)}", regex=True)
+    return int(mask.sum())
+
+
+@lru_cache(maxsize=1)
+def _product_names() -> pd.Series:
+    return pd.read_parquet(config.PRODUCTS_PARQUET, columns=["product"])["product"].str.lower()
+
+
 def exact_recipe(dish: str) -> int | None:
     """recipe_id whose name equals the dish name (case-insensitive), if any."""
     names = _recipes()["name"].str.lower().str.strip()
@@ -626,6 +659,12 @@ def detect_brand(text: str, domain: str | None) -> str | None:
     return best
 
 
+def _best_catalogue_sim(message: str) -> float:
+    from rag.retriever import NO_FILTER, hybrid_search
+
+    return hybrid_search(message, 1, NO_FILTER).best_vector_sim
+
+
 def plan_catalogue(plan: Plan) -> Plan:
     from rag.llm import LLMError, complete_json
     from rag.retriever import infer_domain
@@ -645,6 +684,13 @@ def plan_catalogue(plan: Plan) -> Plan:
             if how in ("purpose phrase", "keyword rule"):
                 plan.trace.append(f"LLM said out of scope ({reason}), but the rules found a product word "
                                   f"({how}: {dom}); continuing as a catalogue question.")
+                queries = queries or _rule_catalogue_split(plan.message)
+            elif (best := _best_catalogue_sim(plan.message)) >= config.SIM_THRESHOLD:
+                # The catalogue has a strong match, so "not sold" is factually wrong ("rat poison price"
+                # → Mortein Rat Kill Cake, 0.73). Unsafe/medical asks were already stopped by rag.safety;
+                # retrieval and the guard still apply. iPhone/TV/petrol score 0.58-0.66 and stay refused.
+                plan.trace.append(f"LLM said out of scope ({reason}), but the catalogue has a strong match "
+                                  f"(similarity {best:.2f} ≥ {config.SIM_THRESHOLD}); continuing.")
                 queries = queries or _rule_catalogue_split(plan.message)
             else:
                 plan.intent = "out_of_scope"
@@ -752,6 +798,11 @@ def decompose(message: str, extra_pantry: list[str] | None = None, default_servi
             if exact_recipe(name) is not None:
                 plan.intent = "dish"
                 plan.trace.append(f"Re-classified as dish: '{name}' is an exact recipe title.")
+            elif (head := _bare_dish_title(name)) is not None:
+                # "butter chicken" = the head of "Butter Chicken - The Classic Indian Chicken Curry".
+                # A single product word ("paneer", "butter") never equals a whole title head.
+                plan.intent = "dish"
+                plan.trace.append(f"Re-classified as dish: '{name}' is the recipe title '{head}'.")
             else:
                 rec = choose_recipe(name, hybrid_search(name, k=8, collection="recipes").hits)[0]
                 if rec is not None and rec.vector_sim >= config.RECIPE_MATCH_SIM + 0.1:

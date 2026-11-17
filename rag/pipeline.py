@@ -17,6 +17,7 @@ from rag.generator import (
     generate, normalise_citations, verify_answer,
 )
 from rag.llm import LLMError
+from rag.safety import check_input
 
 Kind = Literal["cart", "catalogue", "suggestion", "fallback", "help"]
 
@@ -32,6 +33,7 @@ class BotResponse:
     guard: GuardResult | None = None
     regenerated: bool = False
     fallback_trigger: str | None = None   # out_of_scope | weak_retrieval | no_match | llm_sentinel | guard | llm_error
+    #                                        | safety: too_long | self_harm | injection | unsafe | abusive | medical
     fallback_reason: str | None = None
     llm_model: str | None = None
     timings: dict[str, float] = field(default_factory=dict)
@@ -104,6 +106,14 @@ def answer(
       so the user can tick/untick items before retrieval (as the brief requires).
     """
     t0 = time.perf_counter()
+    if (verdict := check_input(message)) is not None:
+        # Unsafe, abusive, injected or medical: refuse before any planning, retrieval or LLM call.
+        plan = Plan(intent="out_of_scope", message=message[:500], reason=verdict.reason)
+        timings = {"total_ms": round((time.perf_counter() - t0) * 1000, 1)}
+        resp = _fallback(plan, verdict.trigger, verdict.reason, timings=timings)
+        if verdict.reply:
+            resp.text = verdict.reply
+        return resp
     plan = decompose(message, extra_pantry, default_servings)
     timings = {"decompose_ms": round((time.perf_counter() - t0) * 1000, 1)}
 

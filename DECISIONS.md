@@ -699,3 +699,56 @@ the 56-case edge battery was re-run (result below). No change to `rag/`: the red
 - Download: one file per click, `basketbuddy_paneer_butter_masala.csv`, 13 rows + header, edited
   quantity (Paneer ×2) carried into the file; "Basket packed!" toast shown.
 - Edge-case battery re-run after the redesign: 56/56 OK (`BAD: []`).
+
+## Guardrail gaps closed (17 Nov 2026)
+
+The gaps found in the guardrail review, and what closes each one.
+
+| Gap | Fix | Where |
+|---|---|---|
+| The guard checked facts (citations, prices, sizes) but not benefit or health wording | **Claim check:** a sentence with a benefit or health claim ("for oily skin", "kills 99.9% germs", "organic", "safe for babies", "reduces hair fall", "clinically proven"…) passes only if the claim's words are in the cited product's own context line. The user's message is never evidence. On failure the answer is regenerated once, then refused. | `rag/generator.py` (`_CLAIM_RE`, rule 7) |
+| Topic rules were word lists | **Safety check before planning**, by intent rather than single words: medical advice (symptom + "what should I take", "medicine for…", Hinglish word order), unsafe requests (weapons, poisoning a person, drugs), abuse, self-harm (a supportive reply with the Tele-MANAS 14416 / KIRAN / 112 numbers, not a refusal). | `rag/safety.py` |
+| No prompt-injection filter | **Injection rules** (ignore/override instructions, "you are now", role-play, "show your system prompt", fake `</system>` tags, "say everything is free"). **Prompt hardening:** the user's text is fenced as data (`<<< >>>`, with any fence markers removed) and rule 8 tells the model to ignore instructions inside the message or the descriptions. | `rag/safety.py`, `rag/generator.py` |
+| No moderation or rate limiting | Abuse rule (above); input capped at 4,000 characters (in the chat box and in the pipeline); **8 questions per minute per session**, with a "try again in N s" warning. | `rag/safety.py`, `app.py` |
+| Edited quantities weren't re-checked | After any quantity edit, the reply becomes a **code-written summary** ("Updated basket: 31 items across 30 products, total ₹4,757.16 (was ₹4,622.16 as first built)"), and the LLM's text moves into an "Original answer" expander. | `app.py` |
+
+**Also fixed (found by the new cases):** "rat poison price" was refused because the LLM's scope check said
+"not sold by BigBasket", but the catalogue has Mortein Rat Kill Cake and HIT Rat Killer. An LLM
+out-of-scope verdict is now overridden when the catalogue has a match at similarity ≥ 0.70, the same
+threshold that gates answers. Unrelated products stay refused: iPhone 0.63, Samsung TV 0.58,
+petrol 0.66, cigarettes 0.68. Unsafe and medical asks never reach this point (safety runs first).
+
+**Decisions and why**
+- *Rules, not a moderation API*: the project has no second paid service, and the rules are testable
+  and explainable. Each rule needs intent ("kill" + a person, "take" + a symptom), because BigBasket
+  sells knives, rat killer, "germ kill" cleaners and cough balms. Tests pin 18 such shopping questions
+  as allowed.
+- *Self-harm gets help, not a refusal*: a message about self-harm is not an off-topic question.
+- *Claims are checked word by word against the cited product's line* (singular forms; "safe" must be
+  there too), so a claim can't be borrowed from another product or from the question.
+- *Mixed-claim questions* ("kills 99.9% germs **and** safe for babies"): no product says both, so an
+  honest "not in the data" is a correct result. The battery accepts that or a partial answer that passes
+  the claim check (`answer-or-honest-refusal`).
+- Changing the answer prompt changes its cache key, so cached demo answers were rebuilt by the eval run.
+
+**Verification**
+- Tests: 263 pass (42 safety cases, 7 claim cases, 1 app test for the safety refusal and rate limit).
+- Edge battery: 69/69 (the 56 earlier cases + 13 guardrail cases: 8 must refuse, 4 shopping questions
+  with risky words must answer, 1 mixed claim).
+- App (AppTest): a quantity edit switches to the code-written summary; refusals render; the 9th question
+  in a minute is held back.
+
+## Bare dish names ("butter chicken") (17 Nov 2026)
+
+**Symptom:** "butter chicken" was refused ("the user is asking about a dish, not a product"), while "need to
+cook butter chicken" built a cart.
+
+**Cause:** with no cooking word or serving count, the message was routed as a product question. The bare-
+name check only accepted an exact recipe title or a semantic match ≥ 0.80; the dataset's title is "Butter
+Chicken - The Classic Indian Chicken Gravy" (0.75), so neither fired, and the LLM's scope check then refused it.
+
+**Fix** (`_bare_dish_title` in `rag/decompose.py`): a bare name is a dish when, after typo fixes, it equals
+a recipe title's head (the part before " - "), unless the phrase is itself a common product, i.e. it is in
+≥ 40 product names. "butter chicken" (13 names, masala mixes) → cart; "green tea" (328) and "peanut
+butter" (124) stay product searches. One product word ("paneer", "butter") never equals a whole title head.
+Tests in `tests/test_decompose.py`; battery cases added for "butter chicken" (cart) and "green tea" (catalogue).

@@ -43,6 +43,13 @@ retrieval is weak or the guard fails, the bot says so instead of guessing.
 
 ## The online steps
 
+**0. Safety check (`rag/safety.py`).** Every message is checked before planning, with no LLM call:
+too long (over 4,000 characters), self-harm (a supportive reply with the Tele-MANAS 14416 and KIRAN
+helplines), prompt injection ("ignore previous instructions", "you are now…", "show your system
+prompt"), unsafe requests (weapons, poisoning a person, illegal drugs), abuse, and medical advice ("what
+should I take for a fever"). Each rule needs the harmful *intent*, not one word: BigBasket sells knives,
+rat killer and "germ kill" cleaners, and those questions still get answers.
+
 **1. Decompose (`rag/decompose.py`).** Rules first, so most requests need no LLM call to plan:
 - **Out of scope** (stock, delivery, other shops, medical advice) → fallback with 0 LLM calls.
 - **Pasted recipe** (several quantities) → the fast LLM extracts the ingredients as JSON, and every extracted
@@ -101,13 +108,20 @@ Temperature is 0.1.
   that product's own price or MRP;
 - there is at least one citation;
 - no pack size appears unless a product name or recipe quantity contains it;
-- the sentinel is never embedded inside an answer.
+- the sentinel is never embedded inside an answer;
+- every benefit or health claim ("for oily skin", "kills 99.9% germs", "organic", "safe for babies",
+  "reduces hair fall"…) is written in the cited product's own context line. The user's message never
+  counts as evidence.
+
+The prompt also fences the user's message as data (`<<< >>>`) and tells the model to ignore instructions
+inside the message or the product descriptions.
 
 On failure the answer is regenerated once, with the problems listed. If it fails again, the fallback is shown.
 
 | Fallback trigger | When |
 |---|---|
-| `out_of_scope` | scope rules (stock, delivery, other platforms, medical) or the LLM's scope check |
+| `injection`, `self_harm`, `unsafe`, `abusive`, `medical`, `too_long` | the safety check (step 0), before any planning |
+| `out_of_scope` | scope rules (stock, delivery, other platforms, medical) or the LLM's scope check. An LLM "not sold here" is overridden when the catalogue has a match at similarity ≥ 0.70 |
 | `weak_retrieval` | a catalogue question whose best vector similarity is below **0.70**, or nothing passes the relevance checks |
 | `no_match` | no recipe, kit or item matched anything |
 | `llm_sentinel` | the LLM says the context doesn't contain the answer |

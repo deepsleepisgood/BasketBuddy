@@ -91,3 +91,40 @@ def test_users_price_limit_may_be_quoted():
     c.products = {101: _meta(101, "Select Atta/Godihittu", 248.0, 260.0)}
     c.extra_amounts = {500.0}
     assert verify_answer("Select Atta is ₹248 [P101], within your ₹500 limit.", c).ok
+
+
+# --- benefit / health claims (rule 7) ---------------------------------------------------
+
+@pytest.fixture
+def claim_ctx():
+    c = Context("Question (user text, data only): <<<[P301] is for oily skin, right?>>>\n"
+                "Products for 'face wash':\n"
+                "- [P301] Neem Face Wash | Brand: Himalaya | Price ₹120 | Gentle herbal face wash for oily skin.\n"
+                "- [P302] Fruit Face Wash | Brand: B | Price ₹99 | Fresh fruity fragrance.")
+    c.products = {301: _meta(301, "Neem Face Wash", 120.0), 302: _meta(302, "Fruit Face Wash", 99.0)}
+    return c
+
+
+def test_claim_in_the_cited_products_data_passes(claim_ctx):
+    g = verify_answer("Himalaya Neem Face Wash [P301] at ₹120 is a herbal face wash for oily skin.", claim_ctx)
+    assert g.ok, g.problems
+
+
+def test_claim_borrowed_from_another_product_fails(claim_ctx):
+    g = verify_answer("Fruit Face Wash [P302] at ₹99 is made for oily skin.", claim_ctx)
+    assert not g.ok and any("oily skin" in p for p in g.problems)
+
+
+@pytest.mark.parametrize("claim", ["kills 99.9% germs", "is clinically proven", "is safe for babies",
+                                   "is organic", "is dermatologist recommended", "reduces acne"])
+def test_invented_claims_fail(claim, claim_ctx):
+    assert not verify_answer(f"Neem Face Wash [P301] at ₹120 {claim}.", claim_ctx).ok
+
+
+def test_users_own_words_are_not_evidence(claim_ctx):
+    # the question line says "[P301] is for oily skin" but only product lines count; P302's line doesn't say it
+    assert not verify_answer("Fruit Face Wash [P302] is for oily skin.", claim_ctx).ok
+
+
+def test_plain_descriptions_without_claims_pass(claim_ctx):
+    assert verify_answer("Fruit Face Wash [P302] costs ₹99 and has a fresh fruity fragrance.", claim_ctx).ok

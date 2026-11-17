@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import random
 import re
+import time
 from typing import Any
 
 import pandas as pd
@@ -17,6 +18,7 @@ import config
 from rag.llm import describe
 from rag.pipeline import BotResponse, answer
 from rag.retriever import SearchResult, warm_up
+from rag.safety import MAX_MESSAGE_CHARS
 from ui.basket_download import basket_download
 from ui.style import CSS, HERO, card_html, header_html, rupees, savings_html, total_html
 
@@ -56,6 +58,7 @@ TIPS = [
 SYNTHETIC_KIT_NOTE = ("Synthetic kit list, authored by the BasketBuddy team. The products and prices are real "
                       "BigBasket data; the item list is not.")
 CARDS_PER_ROW = 4
+RATE_LIMIT = (8, 60)   # at most 8 questions per 60 s per browser session (Groq free tier: 8k tokens/min)
 
 
 # --- startup -------------------------------------------------------------------------
@@ -74,6 +77,7 @@ ss.setdefault("messages", [])     # {"role", "content"} or {"role", "resp", "req
 ss.setdefault("saved", {})        # product_id -> card metadata ("save for later")
 ss.setdefault("basket_seen", 0)   # item count shown last run, to bump the header pill on change
 ss.setdefault("tip", random.choice(TIPS))
+ss.setdefault("ask_times", [])   # when this session last asked, for the rate limit
 
 if flash := ss.pop("flash", None):
     st.toast(flash, icon="🧺")
@@ -127,6 +131,21 @@ def _edited_lines(resp: BotResponse, idx: int) -> list[tuple[int, Any, int]]:
     """(line index, cart line, quantity the user now wants) for every line."""
     assert resp.cart is not None
     return [(j, ln, _qty(idx, j, ln.count)) for j, ln in enumerate(resp.cart.lines)]
+
+
+def _is_edited(resp: BotResponse, idx: int) -> bool:
+    return any(q != ln.count for _, ln, q in _edited_lines(resp, idx))
+
+
+def _rate_limited() -> int:
+    """Seconds to wait if this session has hit RATE_LIMIT, else 0 (and the ask is recorded)."""
+    limit, window = RATE_LIMIT
+    now = time.time()
+    ss.ask_times = [t for t in ss.ask_times if now - t < window]
+    if len(ss.ask_times) >= limit:
+        return int(window - (now - ss.ask_times[0])) + 1
+    ss.ask_times.append(now)
+    return 0
 
 
 def _basket_summary() -> tuple[int, float]:
@@ -353,7 +372,7 @@ def render_cart(resp: BotResponse, idx: int) -> None:
                                               if isinstance(k, str) and k.startswith((f"q_{i}_", f"qty_{i}_"))])
     st.caption(f"Mode: {cart.mode}"
                + (" (switched from your mode because the cart was over budget)" if cart.budget_switched else "")
-               + (" · the answer above describes the cart as first built" if edited else ""))
+               + (" · quantities changed by you" if edited else ""))
     if cart.budget is not None:
         fits = total <= cart.budget
         st.progress(min(total / cart.budget, 1.0) if cart.budget else 1.0,
@@ -429,6 +448,15 @@ def render_assistant(msg: dict[str, Any], idx: int) -> None:
     if resp.kind == "suggestion":
         render_suggestion(msg, idx)
         st.markdown(_md(resp.text))
+    elif resp.kind == "cart" and resp.cart and resp.cart.lines and _is_edited(resp, idx):
+        # The LLM's text was checked against the cart as first built; after edits, only code speaks.
+        lines = [(ln, q) for _, ln, q in _edited_lines(resp, idx) if q > 0]
+        st.markdown(f"**Updated basket:** {sum(q for _, q in lines)} items across {len(lines)} products, "
+                    f"total **{rupees(sum(ln.price * q for ln, q in lines))}** "
+                    f"(was {rupees(resp.cart.total)} as first built).".replace("$", r"\$"))
+        with st.expander("Original answer (for the cart as first built)", icon=":material/history:"):
+            st.markdown(_md(resp.text))
+        render_cart(resp, idx)
     else:
         st.markdown(_md(resp.text))
         if resp.kind == "cart":
@@ -460,7 +488,8 @@ chat_tab, how_tab = st.tabs([":material/chat: Chat", ":material/menu_book: How i
 with how_tab:
     st.markdown((config.DOCS_DIR / "PIPELINE.md").read_text(encoding="utf-8"))
 
-prompt = st.chat_input("Search for a dish, paste a recipe, or describe a task (\"deep-clean my bathroom\")")
+prompt = st.chat_input("Search for a dish, paste a recipe, or describe a task (\"deep-clean my bathroom\")",
+                       max_chars=MAX_MESSAGE_CHARS)
 prompt = prompt or ss.pop("pending", None)
 
 with chat_tab:
@@ -480,6 +509,10 @@ with chat_tab:
             else:
                 render_assistant(m, i)
 
+    if prompt and (wait := _rate_limited()):
+        st.warning(f"You're asking faster than the free model allows. Try again in {wait} s.",
+                   icon=":material/hourglass_top:")
+        prompt = None
     if prompt:
         req = {"message": prompt, "mode": None if mode == "Auto" else mode, "pantry": PANTRY, "servings": int(servings)}
         ss.messages.append({"role": "user", "content": prompt})

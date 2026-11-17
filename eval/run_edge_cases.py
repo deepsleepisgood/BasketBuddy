@@ -23,7 +23,10 @@ for i, (msg, exp) in enumerate(CASES):
         bad.append(i)
         continue
     kind = r.kind
-    ok = (exp == "any-answer" and kind in ("cart", "catalogue")) or kind == exp or (exp == "fallback" and kind == "help")
+    honest = r.fallback_trigger in ("llm_sentinel", "weak_retrieval")
+    ok = ((exp == "any-answer" and kind in ("cart", "catalogue")) or kind == exp
+          or (exp == "fallback" and kind == "help")
+          or (exp == "answer-or-honest-refusal" and (kind in ("cart", "catalogue") or honest)))
     detail = ""
     if r.cart is not None and r.cart.lines:
         detail = (f"recipe={r.plan.recipe['name'] if r.plan.recipe else None} kit={r.plan.kit['name'] if r.plan.kit else None} "
