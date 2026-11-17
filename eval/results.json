@@ -15,7 +15,7 @@
     "Edible Oils & Ghee"
    ],
    "evidence": "Y",
-   "answer": "Fortune Sunflower Refined Oil (Sun Lite) – two price variants are listed:\n\n- Price ₹171 (MRP ₹233) – rating 4.1/5 [P15438]  \n- Price ₹866 (MRP ₹1,195) – rating 4.1/5 [P6749]  \n\nThe dataset does not record pack sizes, so the exact “1 L” size cannot be confirmed.",
+   "answer": "- Sun Lite – Sunflower Refined Oil – Price ₹171 (MRP ₹233) – Rating 4.1/5 [P15438]  \n- Sun Lite – Sunflower Refined Oil – Price ₹866 (MRP ₹1,195) – Rating 4.1/5 [P6749]  \n\nThe dataset does not record pack sizes.",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -25,7 +25,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "",
-   "latency_ms": 4337,
+   "latency_ms": 2131,
    "llm_calls": 2,
    "intent": "catalogue",
    "trace": [
@@ -52,7 +52,7 @@
     "Atta, Flours & Sooji"
    ],
    "evidence": "Y",
-   "answer": "- **Aashirvaad whole wheat atta** – Price ₹406, Rating 4.1/5 [P23556]  \n- **Pillsbury whole wheat atta** – No whole‑wheat atta product for Pillsbury is present in the data.  \n\nThe dataset does not record pack sizes for these items.",
+   "answer": "**Aashirvaad – whole wheat atta**  \n- Price: ₹406 [P23556]  \n- Rating: 4.1/5 [P23556]  \n\n**Pillsbury – whole wheat atta**  \n- No whole‑wheat atta product appears in the dataset for Pillsbury; only multigrain and Chakki Fresh variants are listed.  \n\n*The dataset does not record pack sizes for these items.*",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -62,7 +62,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "",
-   "latency_ms": 2930,
+   "latency_ms": 2288,
    "llm_calls": 2,
    "intent": "catalogue",
    "trace": [
@@ -89,7 +89,7 @@
     "Dairy"
    ],
    "evidence": "Y",
-   "answer": "This cart was built from the **ingredients of the recipe ‘Creamy Dal Makhani’ from the Archana's Kitchen recipe dataset (serves 4)**, selecting the budget options. It includes essentials like Black Urad Dal at ₹31 [P16295] and Fresh Cream at ₹47 [P16605], plus Premium Butter at ₹54 [P17233]. The total for all 16 items comes to **₹607.5**. Salt is already excluded since you have it.",
+   "answer": "This cart was built from the **ingredients of the recipe “Creamy Dal Makhani” from the Archana's Kitchen recipe dataset (serves 4)**, selecting the most budget‑friendly options. It includes items like **Urad – Black, Whole/Sabut** priced at **₹31** [P16295], **Red Rajma/Capparadavare** at **₹76** [P10843], and **Fresh Cream** at **₹47** [P16605]. The total for all 16 products comes to **₹607.5**. Salt was excluded because you already have it.",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -99,7 +99,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "",
-   "latency_ms": 4081,
+   "latency_ms": 3368,
    "llm_calls": 1,
    "intent": "dish",
    "trace": [
@@ -231,7 +231,7 @@
     "Organic Staples"
    ],
    "evidence": "Y",
-   "answer": "Here’s a quick‑shopping list created from the “ingredients extracted from the recipe the user pasted.” It includes key items such as Organic Poha at ₹61.88 [P20102], Fresh Onion at ₹28.71 [P11011] and Lemon Juice Concentrate at ₹285 [P8863]. The cart total comes to ₹1,099.1 for all 10 products.",
+   "answer": "This cart was created from ingredients extracted from the recipe the user pasted []. It includes items like Organic Poha at ₹61.88 [P20102], Onion at ₹28.71 [P11011] and Lemon Juice Concentrate at ₹285 [P8863]. The total for the 10 selected products is ₹1,099.1.",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -241,7 +241,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "",
-   "latency_ms": 2251,
+   "latency_ms": 2734,
    "llm_calls": 2,
    "intent": "recipe_text",
    "trace": [
@@ -332,7 +332,7 @@
     "Organic Staples"
    ],
    "evidence": "Y",
-   "answer": "**Jeera (Cumin)**  \n- Organic Cumin Seeds – ₹169, not rated [P22635]  \n- Jeera/Cumin Powder (Ravi) – ₹32, 5/5 [P4842]  \n- Powder – Jeera (JK) – ₹230, 4.4/5 [P5376]  \n\n**Haldi (Turmeric)**  \n- Organic Turmeric Powder (Earthon) – ₹215, not rated [P19522]  \n- Turmeric Powder (Conscious Food) – ₹78, 1/5 [P17457]  \n- Turmeric Powder (JK) – ₹30, 4.4/5 [P3901]",
+   "answer": "**Jeera (Cumin)**  \n- Earthon Organic Cumin Seeds – ₹169 (MRP ₹169) – not rated [P22635]  \n- MeraKisan Organic Cumin Seed Powder – ₹56 (MRP ₹56) – rating 4/5 [P10674]  \n- Ravi Jeera/Cumin Powder – ₹32 (MRP ₹32) – rating 5/5 [P4842]  \n\n**Haldi (Turmeric)**  \n- Earthon Organic Turmeric Powder – ₹215 (MRP ₹215) – not rated [P19522]  \n- Conscious Food Turmeric Powder – ₹78 (MRP ₹78) – rating 1/5 [P17457]  \n- JK Turmeric Powder – ₹30 (MRP ₹30) – rating 4.4/5 [P3901]  \n\n*The dataset does not record pack sizes, so each listed price represents a separate variant.*",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -342,7 +342,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "",
-   "latency_ms": 1980,
+   "latency_ms": 3047,
    "llm_calls": 2,
    "intent": "catalogue",
    "trace": [
@@ -368,7 +368,7 @@
     "All Purpose Cleaners"
    ],
    "evidence": "Y",
-   "answer": "Your bathroom deep‑clean kit was assembled from the ‘Bathroom deep‑clean’ kit, a synthetic item list written by the BasketBuddy team (products and prices are real BigBasket data). It includes essentials like Toilet Cleaner ₹149 [P13659] and Disinfectant Floor Cleaner ₹235 [P1268], plus a fresh scent from Zipper Bathroom Air Freshener ₹55 [P4099]. The complete cart totals ₹912.1 for the eight selected products.",
+   "answer": "The cart was generated from the ‘Bathroom deep‑clean’ kit, a synthetic item list written by the BasketBuddy team (products and prices are real BigBasket data). It includes Toilet Cleaner by Excel Plus at ₹149 [P13659] and Disinfectant Bathroom Cleaner – Lemon by Harpic at ₹44 [P8068], among other essentials. The total for the eight selected items is ₹912.1.",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -378,13 +378,13 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "0 forbidden",
-   "latency_ms": 1557,
+   "latency_ms": 1906,
    "llm_calls": 1,
    "intent": "need",
    "trace": [
     "Intent: need (task/occasion word: 'deep-clean').",
     "Matched kit: Bathroom deep-clean (similarity 0.72 ≥ 0.7); 8 items. Kit lists are synthetic, written by the team.",
-    "Answer by openai/gpt-oss-120b; guard passed, 3 citation(s)."
+    "Answer by openai/gpt-oss-120b; guard passed, 2 citation(s)."
    ],
    "kind": "cart",
    "cart_total": 912.1,
@@ -457,7 +457,7 @@
     "Skin Care"
    ],
    "evidence": "Y",
-   "answer": "Here’s a quick look at the ‘Oily‑skin routine’ kit, a synthetic item list written by the BasketBuddy team (products and prices are real BigBasket data). The cart includes the Oil Control Face Wash at ₹80.75 [P6538] and the Ultra Sheer Dry Touch SPF 50 Sun Block at ₹237.5 [P26568], plus the Tea Tree Skin Clearing Clay Mask for ₹187.5 [P25696]. The total for these five items comes to exactly ₹817.79.",
+   "answer": "The suggested cart comes from the 'Oily-skin routine' kit, a synthetic item list written by the BasketBuddy team (products and prices are real BigBasket data). It includes Oil Control Face Wash at ₹80.75 [P6538], Purifying Toner at ₹217 [P5271] and Ultra Sheer Dry Touch SPF 50 Sun Block at ₹237.5 [P26568]. The complete selection totals ₹817.79.",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -467,7 +467,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "",
-   "latency_ms": 2394,
+   "latency_ms": 2093,
    "llm_calls": 1,
    "intent": "need",
    "trace": [
@@ -528,7 +528,7 @@
     "Hair Care"
    ],
    "evidence": "Y",
-   "answer": "Here are the coconut‑oil‑for‑hair options in the data (the catalogue does not record pack sizes, so variants with different prices are listed separately):\n\n- **Parachute Advansed Aloe Vera Enriched Coconut Hair Oil** – ₹78, rating 4.3/5 [P9323]  \n- **Parachute Advansed Aloe Vera Enriched Coconut Hair Oil** – ₹157.7, rating 4.4/5 [P14513]  \n- **Patanjali Coconut Oil** – ₹75, rating 4.1/5 [P22920]  \n\n(Other items like the organic virgin oil and the shampoo‑conditioner set are also present but exceed the three‑product limit.)",
+   "answer": "Here are the coconut‑oil‑for‑hair options in the snapshot:\n\n- **Parachute Advansed Aloe Vera Enriched Coconut Hair Oil** – ₹78, rating 4.3/5 [P9323]  \n- **Parachute Advansed Aloe Vera Enriched Coconut Hair Oil** – ₹157.7, rating 4.4/5 [P14513]  \n- **Patanjali Coconut Oil** – ₹75, rating 4.1/5 [P22920]  \n\n*The two Parachute entries are separate price variants; the dataset does not record pack sizes, so they cannot be distinguished by size.*",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -538,7 +538,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "5/5 in expected",
-   "latency_ms": 5211,
+   "latency_ms": 2507,
    "llm_calls": 2,
    "intent": "catalogue",
    "trace": [
@@ -564,25 +564,24 @@
     "Edible Oils & Ghee"
    ],
    "evidence": "Y",
-   "answer": "Here are the coconut‑oil options for cooking found in the data (the catalogue does not record pack sizes, so variants with the same name appear as separate entries):\n\n- **Earthon Organic Coconut Oil/Narial Tel** – ₹130 [P22405]  \n- **Earthon Organic Coconut Oil/Narial Tel** – ₹285 [P12726] (rating 4.7/5)  \n- **Swarnanjali Coconut Oil – Cold Pressed** – ₹440 [P24082] (rating 3.1/5)  \n\n(Other Earthon variants at ₹548 [P3853] and the Forgreen organic oil at ₹219 [P18126] also exist, but only three are shown as requested.)",
+   "answer": "Here are the coconut‑oil options that can be used for cooking:\n\n- **Earthon Organic Coconut Oil/Narial Tel** – ₹130 (MRP ₹130) – not rated[P22405]  \n- **Earthon Organic Coconut Oil/Narial Tel** – ₹285 (MRP ₹285) – rating 4.7/5[P12726]  \n- **Swarnanjali Coconut Oil – Cold Pressed** – ₹440 (MRP ₹440) – rating 3.1/5[P24082]\n\n*The dataset does not record pack sizes, so the same product name appears at several price points.*",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
-   "regenerated": true,
+   "regenerated": false,
    "fallback_expected": false,
    "fallback_actual": false,
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "5/5 in expected",
-   "latency_ms": 2557,
-   "llm_calls": 3,
+   "latency_ms": 2679,
+   "llm_calls": 2,
    "intent": "catalogue",
    "trace": [
     "Intent: catalogue (no rule fired (default)).",
     "Domain guess: food (confidence 1.0, purpose phrase).",
     "LLM decomposition (openai/gpt-oss-20b): ['coconut oil for cooking']; constraints none",
-    "Guard failed: the answer mentions no product citation [P<id>]. Regenerating once.",
-    "Answer by openai/gpt-oss-120b; guard passed, 5 citation(s)."
+    "Answer by openai/gpt-oss-120b; guard passed, 3 citation(s)."
    ],
    "kind": "catalogue"
   },
@@ -601,7 +600,7 @@
     "All Purpose Cleaners"
    ],
    "evidence": "Y",
-   "answer": "- **Floor Cleaner - Pine White** – ₹50, Rating 4/5 [P19563]  \n- **Floor Cleaner - Pine** – ₹55, Rating 3.7/5 [P7398]  \n- **Floor Cleaner - Lime** – ₹70, Rating 3.8/5 [P451]",
+   "answer": "- **Floor Cleaner - Pine White** – Price **₹50**, Rating **4/5** [P19563]  \n- **Floor Cleaner - Pine** – Price **₹55**, Rating **3.7/5** [P7398]  \n- **Floor Cleaner - Lime** – Price **₹70**, Rating **3.8/5** [P451]  \n\nThese are the three lowest‑priced floor cleaners in the data.",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -611,7 +610,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "0 forbidden",
-   "latency_ms": 3364,
+   "latency_ms": 1895,
    "llm_calls": 2,
    "intent": "catalogue",
    "trace": [
@@ -637,7 +636,7 @@
     "Bath & Hand Wash"
    ],
    "evidence": "Y",
-   "answer": "**Dove bathing soaps**  \n- Care & Protect Moisturising Cream Beauty Bathing Bar – Price **₹199**, Rating **4.3/5** [P15030]  \n- Go Fresh Moisture Bathing Bar Soap – Price **₹50**, Rating **4.2/5** [P8528]  \n- Cream Beauty Bathing Bar – Price **₹340**, Rating **4.3/5** (other variants at ₹115 and ₹53 also exist, but the dataset does not record pack sizes) [P13886]  \n\n**Pears bathing soaps**  \n- Pure & Gentle Bathing Bar – Price **₹236**, Rating **4.3/5** (other variants at ₹40 and ₹120 also exist, size not recorded) [P6527]  \n- Oil Clear & Glow Soap Bar – Price **₹45**, Rating **4.3/5** [P12366]  \n- Soft & Fresh Soap Bar – Price **₹72**, Rating **4.4/5** [P505]  \n\n**Comparison**  \n- **Price range:** Dove soaps range from **₹50** to **₹340**, while Pears soaps range from **₹40** to **₹236** (with an additional ₹72 variant).  \n- **Ratings:** Dove soaps have ratings of **4.2–4.3/5**; Pears soaps have ratings of **4.3–4.4/5**, with the Soft & Fresh variant slightly higher.",
+   "answer": "**Dove bathing soaps**  \n- Care & Protect Moisturising Cream Beauty Bathing Bar – price **₹199**, rating **4.3/5** [P15030]  \n- Go Fresh Moisture Bathing Bar Soap – price **₹50**, rating **4.2/5** [P8528]  \n- Cream Beauty Bathing Bar (multiple price variants) – prices **₹340**, **₹115**, **₹53**; rating **4.3/5** (dataset does not record pack sizes) [P13886], [P15677], [P2197]  \n\n**Pears bathing soaps**  \n- Pure & Gentle Bathing Bar (multiple price variants) – prices **₹236**, **₹40**, **₹120**; rating **4.3/5** (dataset does not record pack sizes) [P6527], [P6949], [P12884]  \n- Oil Clear & Glow Soap Bar – price **₹45**, rating **4.3/5** [P12366]  \n- Soft & Fresh Soap Bar – price **₹72**, rating **4.4/5** [P505]  \n\n*Comparison*: Dove offers soaps ranging from **₹50 to ₹340** with ratings **4.2–4.3/5**. Pears offers soaps from **₹40 to ₹236** (plus a ₹72 variant) with ratings **4.3–4.4/5**.",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -647,7 +646,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "",
-   "latency_ms": 7315,
+   "latency_ms": 2972,
    "llm_calls": 2,
    "intent": "catalogue",
    "trace": [
@@ -655,7 +654,7 @@
     "Domain guess: personal_care (confidence 1.0, keyword rule).",
     "LLM decomposition (openai/gpt-oss-20b): ['Dove bathing soap', 'Pears bathing soap']; constraints none",
     "Brand filters: Dove bathing soap → Dove, Pears bathing soap → Pears",
-    "Answer by openai/gpt-oss-120b; guard passed, 6 citation(s)."
+    "Answer by openai/gpt-oss-120b; guard passed, 10 citation(s)."
    ],
    "kind": "catalogue"
   },
@@ -702,7 +701,7 @@
    "fallback_trigger": "out_of_scope",
    "fallback_reason": "the dataset only covers BigBasket, so it can't compare other shopping apps",
    "category_check": "",
-   "latency_ms": 0,
+   "latency_ms": 1,
    "llm_calls": 0,
    "intent": "out_of_scope",
    "trace": [
@@ -715,27 +714,35 @@
    "id": "Q14",
    "type": "unsupported (off-catalogue)",
    "question": "best laptop under 50000",
-   "top3": [],
-   "top3_sub": [],
+   "top3": [
+    "Notebook - Soft Bound, Un Ruled",
+    "Notebook - Soft Bound, Single Line Rule",
+    "Notebook - Soft Bound, Single Line Ruled, Long Size"
+   ],
+   "top3_sub": [
+    "Stationery",
+    "Stationery",
+    "Stationery"
+   ],
    "evidence": "n/a",
-   "answer": "I can't answer that from the BigBasket catalogue data I have.\n\n_Why: the request is for a laptop, which is not sold by BigBasket._\n\nI can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), or look up and compare BigBasket products by price and rating.",
+   "answer": "I can't answer that from the BigBasket catalogue data I have.\n\n_Why: the closest catalogue match has similarity 0.65, below the 0.70 needed to answer from the data._\n\nI can build a cart for a dish or a need (e.g. *paneer butter masala for 4*, *deep-clean my bathroom*), or look up and compare BigBasket products by price and rating.",
    "faithful": "n/a",
    "faith_notes": "",
    "guard_ok": null,
    "regenerated": false,
    "fallback_expected": true,
    "fallback_actual": true,
-   "fallback_trigger": "out_of_scope",
-   "fallback_reason": "The request is for a laptop, which is not sold by BigBasket.",
+   "fallback_trigger": "weak_retrieval",
+   "fallback_reason": "the closest catalogue match has similarity 0.65, below the 0.70 needed to answer from the data",
    "category_check": "",
-   "latency_ms": 949,
+   "latency_ms": 844,
    "llm_calls": 1,
-   "intent": "out_of_scope",
+   "intent": "catalogue",
    "trace": [
     "Intent: catalogue (product-question word: 'best').",
     "Domain guess: household (confidence 0.7, retrieval vote).",
-    "LLM judged the question out of scope: The request is for a laptop, which is not sold by BigBasket.",
-    "Fallback (out_of_scope): The request is for a laptop, which is not sold by BigBasket."
+    "LLM decomposition (openai/gpt-oss-20b): ['laptop']; constraints {'max_price': 50000, 'sort': 'price_asc'}",
+    "Fallback (weak_retrieval): the closest catalogue match has similarity 0.65, below the 0.70 needed to answer from the data"
    ],
    "kind": "fallback"
   },
@@ -756,14 +763,14 @@
    "fallback_trigger": "no_match",
    "fallback_reason": "none of the items matched a BigBasket product",
    "category_check": "",
-   "latency_ms": 2181,
+   "latency_ms": 2306,
    "llm_calls": 1,
    "intent": "need",
    "trace": [
     "Intent: need (task/occasion word: 'getting a pet').",
     "No kit above 0.7 (best: New puppy 0.51); asking the LLM for a list.",
-    "Suggested list (AI-generated, openai/gpt-oss-20b): 7 items. The user should edit it before adding.",
-    "User removed from the suggested list: UVB light fixture, substrate (coconut coir or soil mix), thermometer, cleaning wipes",
+    "Suggested list (AI-generated, openai/gpt-oss-20b): 5 items. The user should edit it before adding.",
+    "User removed from the suggested list: Water dish, Substrate (coconut coir or sand), Vitamin supplement (calcium powder)",
     "Fallback (no_match): none of the items matched a BigBasket product"
    ],
    "kind": "fallback",
@@ -771,16 +778,12 @@
    "cart_lines": [],
    "unmatched": [
     [
-     "tortoise enclosure",
-     "no product above similarity 0.62 (best 0.57)"
-    ],
-    [
-     "tortoise food mix",
+     "Tortoise food mix",
      "no product mentions the item (closest matches were a different thing)"
     ],
     [
-     "water dish",
-     "no product above similarity 0.62 (best 0.61)"
+     "Tortoise enclosure",
+     "no product above similarity 0.62 (best 0.57)"
     ]
    ],
    "excluded": [],
@@ -801,7 +804,7 @@
     "Masalas & Spices"
    ],
    "evidence": "Y",
-   "answer": "This cart was generated from the **ingredients of the recipe ‘Paneer Butter Masala’ from the Archana’s Kitchen recipe dataset (serves 4; quantities scaled ×1.5 for 6 people)**. It includes items such as Organic Tofu – Soy Paneer at ₹85.14 [P20], Premium Butter – Salted at ₹54 [P17233], and Fresh Cream at ₹50 [P26829]. The complete selection totals **₹789.14** for 13 products.",
+   "answer": "This cart was generated from the **ingredients of the recipe ‘Paneer Butter Masala’ from the Archana’s Kitchen recipe dataset (serves 4; quantities scaled ×1.5 for 6 people)**. It includes items like Organic Tofu‑Soy Paneer at ₹85.14 [P20], Premium Butter – Salted at ₹54 [P17233], and Fresh Cream at ₹50 [P26829]. The total for all 13 products is **₹789.14**.",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -811,7 +814,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "",
-   "latency_ms": 2030,
+   "latency_ms": 3543,
    "llm_calls": 1,
    "intent": "dish",
    "trace": [
@@ -923,7 +926,7 @@
     "Masalas & Spices"
    ],
    "evidence": "Y",
-   "answer": "This cart was generated from the **ingredients of the recipe 'Butter Chicken - The Classic Indian Chicken Gravy' from the Archana's Kitchen recipe dataset (serves 4; quantities scaled ×1.25 for 5 people)**. It includes Fresh Boneless Chicken Breast at ₹240 [P7118], Premium Unsalted Butter at ₹165 [P4131], and Dahi – Made From Toned Milk at ₹50 [P4142]. The complete selection totals **₹1,359** for 14 products. The app will display the full table of items.",
+   "answer": "This cart was generated from the **ingredients of the recipe “Butter Chicken - The Classic Indian Chicken Gravy” from the Archana's Kitchen recipe dataset (serves 4; quantities scaled ×1.25 for 5 people)**. It includes Fresh Boneless Chicken Breast at ₹240 [P7118], Premium Unsalted Butter at ₹165 [P4131], and Fresh Cream at ₹47 [P16605]. The complete selection totals **₹1,359** for 14 products. The app will display the full item table.",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -933,7 +936,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "",
-   "latency_ms": 4980,
+   "latency_ms": 4546,
    "llm_calls": 1,
    "intent": "dish",
    "trace": [
@@ -1050,7 +1053,7 @@
     "Skin Care"
    ],
    "evidence": "Y",
-   "answer": "For oily skin, the catalogue lists these facial cleansers:\n\n- **Deep Clean Facial Cleanser – Normal to Oily Skin** – ₹123.5, Rating 4.2/5 [P17600]  \n- **Anti‑Acne Face Cleanser – With Salicylic Acid, For Oily Skin** – ₹236, Rating 3/5 [P305]  \n- **Oil Free Acne Wash Facial Cleanser** – ₹585, Rating 4.2/5 [P17968]  \n\n**Comparison**  \n- **Price:** ₹123.5 (cheapest) → ₹236 → ₹585 (most expensive).  \n- **Rating:** Two products have a 4.2/5 rating (P17600, P17968); the middle‑priced option has a 3/5 rating (P305).  \n\nThese are the only cleansers for oily skin in the provided data.",
+   "answer": "Here are three cleansers suited for oily skin, compared by price and rating:\n\n- **Deep Clean Facial Cleanser – Normal to Oily Skin** – ₹123.5, rating 4.2/5 [P17600]  \n- **Anti‑Acne Face Cleanser – With Salyclic Acid, For Oily Skin** – ₹236, rating 3/5 [P305]  \n- **Oil Free Acne Wash Facial Cleanser** – ₹585, rating 4.2/5 [P17968]",
    "faithful": "Y",
    "faith_notes": "",
    "guard_ok": true,
@@ -1060,7 +1063,7 @@
    "fallback_trigger": null,
    "fallback_reason": null,
    "category_check": "5/5 in expected",
-   "latency_ms": 2215,
+   "latency_ms": 2303,
    "llm_calls": 2,
    "intent": "catalogue",
    "trace": [
@@ -3376,8 +3379,8 @@
   {
    "group": "off",
    "query": "best laptop under 50000",
-   "stopped_by": "scope rule",
-   "best_sim": NaN
+   "stopped_by": "threshold",
+   "best_sim": 0.654
   },
   {
    "group": "off",
