@@ -15,6 +15,7 @@ import pandas as pd
 import streamlit as st
 
 import config
+from ingest.fetch_index import fetch_index, index_missing
 from rag.llm import describe
 from rag.pipeline import BotResponse, answer
 from rag.retriever import SearchResult, warm_up
@@ -65,11 +66,14 @@ RATE_LIMIT = (8, 60)   # at most 8 questions per 60 s per browser session (Groq 
 
 @st.cache_resource(show_spinner=False)
 def _warm() -> dict[str, float]:
-    """Load the embedding model and all three indexes once per server process."""
+    """Fetch the index on a fresh deploy (index/ is not in git), then load the model and all indexes once."""
+    if index_missing():
+        fetch_index()
     return warm_up()
 
 
-with st.spinner("Loading the embedding model and indexes (about 30 s on the first start)…"):
+with st.spinner("First start on this server: downloading the search index and model (about 1–2 min)…"
+                if index_missing() else "Loading the embedding model and indexes (about 30 s on the first start)…"):
     WARM = _warm()
 
 ss = st.session_state

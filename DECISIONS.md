@@ -733,8 +733,10 @@ petrol 0.66, cigarettes 0.68. Unsafe and medical asks never reach this point (sa
 
 **Verification**
 - Tests: 263 pass (42 safety cases, 7 claim cases, 1 app test for the safety refusal and rate limit).
-- Edge battery: 69/69 (the 56 earlier cases + 13 guardrail cases: 8 must refuse, 4 shopping questions
-  with risky words must answer, 1 mixed claim).
+- Edge battery: all 13 guardrail cases pass (8 must refuse, 4 shopping questions with risky words must
+  answer, 1 mixed claim); full totals are under the next section.
+- Eval re-run (`--fresh`, 17 Nov): unchanged: 17/18 fallback behaviour (Q15 tortoise, as before),
+  14/14 faithful, MRR@5 0.962 with the filter, threshold 0.70 keeps 15/15 and blocks 12/12.
 - App (AppTest): a quantity edit switches to the code-written summary; refusals render; the 9th question
   in a minute is held back.
 
@@ -752,3 +754,31 @@ a recipe title's head (the part before " - "), unless the phrase is itself a com
 ≥ 40 product names. "butter chicken" (13 names, masala mixes) → cart; "green tea" (328) and "peanut
 butter" (124) stay product searches. One product word ("paneer", "butter") never equals a whole title head.
 Tests in `tests/test_decompose.py`; battery cases added for "butter chicken" (cart) and "green tea" (catalogue).
+
+**Also:** the check for common products now applies to every bare-name path, including the older exact-
+title one. Bare "green tea" (itself a recipe title) used to build a cart; now it's a product search.
+
+**Verification:** 270 tests pass. Edge battery: 71/71 (70 on the full run, then "green tea" fixed and all
+dish cases 0–19 re-run, all OK).
+
+## Deployment on Streamlit Community Cloud (17 Nov 2026)
+
+**Problem:** the deployed app crashed with `FileNotFoundError: index/bm25/... missing`. `index/` is
+git-ignored: its Chroma file is 181 MB, over GitHub's 100 MB file limit.
+
+**Decision:** download, don't rebuild. Building on the cloud's CPU would take ~45 min on every cold start
+(the app sleeps when idle). The index zips to 154 MB, which fits as a GitHub Release asset. The new
+`ingest/fetch_index.py` downloads it with `urllib`, refuses zip paths outside `index/`, and checks the
+result. `app.py` calls it inside the cached warm-up when the index is missing. `INDEX_URL` overrides the
+default `releases/download/index-v1/index.zip`.
+
+**Also:**
+- `requirements.txt` is runtime only. It installs the CPU build of torch (the default Linux wheel ships
+  CUDA, gigabytes the cloud can't use), and pins `chromadb==1.5.9` and `rank_bm25==0.2.2` so the store
+  and pickles load with the versions that wrote them. The dev extras moved to `requirements-dev.txt`.
+- The Streamlit secrets box is TOML: values need quotes. Top-level secrets become environment variables,
+  so `rag/llm.py` reads `GROQ_API_KEY` unchanged.
+
+**Verification:** the zip was downloaded through `fetch_index` (file URL) into a temp root; all three
+collections loaded with matching counts (27,081 / 6,163 / 26) in both Chroma and BM25. 270 tests pass.
+The cloud run itself is checked once the release is uploaded.

@@ -1,16 +1,16 @@
+# Runtime packages (also what Streamlit Community Cloud installs).
+# Dev/eval extras (pytest, kaggle, other LLM SDKs): pip install -r requirements-dev.txt
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
 pandas>=2.2
 pyarrow>=15
-streamlit>=1.40
+numpy>=2.0
+streamlit>=1.67
 sentence-transformers>=3.0
-chromadb>=0.5
-rank_bm25>=0.2.2
+# pinned: the prebuilt index (Chroma store + pickled BM25) must load with the versions that wrote it
+chromadb==1.5.9
+rank_bm25==0.2.2
 python-dotenv>=1.0
 pyyaml>=6.0
 tqdm>=4.66
-pytest>=8.0
-kaggle>=1.6
-# LLM SDKs: only the one matching LLM_PROVIDER is needed at runtime
-anthropic>=0.40
-google-genai>=1.0
 groq>=0.11
-openai>=1.50

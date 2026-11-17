@@ -26,7 +26,7 @@ one-off index build ~5 min instead of ~45 min.
 # 1. virtual environment
 py -3.11 -m venv .venv            # macOS/Linux: python3.11 -m venv .venv
 .venv\Scripts\activate            # macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt   # app only: requirements.txt
 # optional, NVIDIA GPU: install the CUDA build of torch from https://pytorch.org/get-started/locally/
 
 # 2. LLM key
@@ -58,6 +58,26 @@ python -m eval.run_eval --fresh   # full eval: ~10 min, paced for Groq's 8k toke
 
 Never commit `.env`. It is in `.gitignore`.
 
+## Deploy (Streamlit Community Cloud)
+
+`index/` (181 MB) is not in git, and building it on a CPU-only host takes ~45 min. The deployed app
+downloads a zipped copy of your local index instead (`ingest/fetch_index.py`, run on first start).
+
+1. Zip the local index: `index.zip` holding `index/...` (one is in the project root, git-ignored).
+2. On GitHub: Releases → new release, tag `index-v1`, attach `index.zip`, publish. The app's default
+   download URL is `.../releases/download/index-v1/index.zip`; set `INDEX_URL` in secrets to use another.
+3. share.streamlit.io → Create app → this repo, branch `main`, file `app.py`; Advanced settings:
+   Python 3.11, and secrets (TOML, values in quotes):
+   ```toml
+   LLM_PROVIDER = "groq"
+   GROQ_API_KEY = "gsk_..."
+   ```
+4. Open the app once: the first start downloads the index and model (~1–2 min).
+
+Rebuild the index locally? Re-zip it and upload a new release (e.g. `index-v2`, then set `INDEX_URL`).
+`requirements.txt` holds runtime packages only (CPU torch, pinned chromadb and rank_bm25 so the zipped
+index loads); `requirements-dev.txt` adds pytest, kaggle and the other LLM SDKs.
+
 ## 5-minute demo script
 
 **Before presenting (about 3 minutes):** start the app, then click every example button once (or run
@@ -85,7 +105,7 @@ ui/                    BigBasket-style look: style.py (CSS, product cards, heade
                        (animated CSV download, a Streamlit custom component)
 .streamlit/config.toml theme: BigBasket greens, crimson CTAs, Plus Jakarta Sans
 config.py              paths, models, thresholds
-ingest/                clean_products, clean_recipes, pack_size, text_fix, build_index
+ingest/                clean_products, clean_recipes, pack_size, text_fix, build_index, fetch_index
 rag/                   chunking, embeddings, synonyms, category_map, retriever (hybrid + RRF + filters),
                        ingredients, decompose, cart, llm, generator (context + guard), fallback, pipeline
 data/kits/kits.json    26 synthetic need/occasion kits (team-written)

@@ -794,7 +794,11 @@ def decompose(message: str, extra_pantry: list[str] | None = None, default_servi
     if intent == "catalogue" and why.endswith("(default)"):
         # Short bare names ("paneer butter masala") may be dishes; check the recipe index.
         name = dish_name_from(msg)
-        if 0 < len(name.split()) <= 6:
+        words = " ".join(re.sub(r"[^a-z ]", " ", name.lower()).split())
+        if words and _products_named(words) >= PRODUCT_NAME_LIMIT:
+            # "green tea" is a recipe title too, but 328 products carry the name: a product question
+            plan.trace.append(f"Kept as a product question: '{name}' is in ≥ {PRODUCT_NAME_LIMIT} product names.")
+        elif 0 < len(name.split()) <= 6:
             if exact_recipe(name) is not None:
                 plan.intent = "dish"
                 plan.trace.append(f"Re-classified as dish: '{name}' is an exact recipe title.")

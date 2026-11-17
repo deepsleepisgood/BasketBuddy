@@ -1,0 +1,8 @@
+# Everything for local dev, tests, eval and data download.
+-r requirements.txt
+pytest>=8.0
+kaggle>=1.6
+# LLM SDKs: only the one matching LLM_PROVIDER is needed at runtime
+anthropic>=0.40
+google-genai>=1.0
+openai>=1.50
